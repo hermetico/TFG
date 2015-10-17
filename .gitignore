@@ -1,0 +1,8 @@
+# compiled python
+*.py[cod]
+
+#Virtual enviroment
+venv
+
+#intellij
+.idea/
