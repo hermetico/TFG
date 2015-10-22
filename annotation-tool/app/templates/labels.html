@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+ {{ super() }} - Registrar nuevo etiqueta
+{% endblock %}
+
+
+{% block content_title %}
+    <h1 class="page-header">Etiquetas</h1>
+{% endblock %}
+{% block content %}
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-sticky-note"></i> Etiquetas
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                {% for label in labels %}
+                <div class="list-group-item">
+                    {{ label.name }}
+                    <span class="pull-right text-muted small"><em>{{ label.pictures.count() }} imagenes</em>
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-sticky-note"></i> Nueva etiqueta
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                <form class="form" method="post" role="form">
+                    {{ wtf.quick_form(form) }}
+                </form>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+{% endblock %}

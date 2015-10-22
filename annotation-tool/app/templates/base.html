@@ -1,0 +1,70 @@
+{# para navegadores antiguos #}
+{% import "bootstrap/fixes.html" as fixes %}
+<!DOCTYPE html>
+<html lang="es" {% block html_tags %}{% endblock %}>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Annotation tool{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{{ url_for('static', filename='components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='styles/base.css')}}"  rel="stylesheet" >
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename='components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+
+    {{fixes.ie8()}}
+    {% endblock %}
+</head>
+<body {% block body_tags %}{% endblock %}>
+    <div id="wrapper">
+        {% block navbar %}
+          {% include "navbar.html" %}
+        {% endblock %}
+        <div id="page-wrapper">
+            {% block flash_messages_block %}
+                {% include "flash-messages.html" %}
+            {% endblock %}
+            <div class="row">
+                <div class="col-lg-12">
+                    {% block content_title %}<h1 class="page-header"></h1>{% endblock %}
+                    {% block content %}{% endblock %}
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    {% block scripts %}
+    <!-- jQuery -->
+    <script src="{{url_for('static', filename='components/jquery/dist/jquery.min.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{url_for('static', filename='components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+    <script src="{{url_for('static', filename='components/metisMenu/dist/metisMenu.min.js')}}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{url_for('static', filename='js/sb-admin-2.js')}}"></script>
+
+        {{ moment.include_moment() }}
+    {{ moment.lang('es') }}
+    {% endblock %}
+</body>
+</html>
+

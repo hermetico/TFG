@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block html_tags %}
+ng-app="annonApp"
+{% endblock %}
+
+{% block head %}
+    {{super()}}
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="{{ url_for('static', filename='js/controllers.js') }}"></script>
+    <link href="{{ url_for('static', filename='styles/annon-tool.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+ {{ super() }} - Catalogo
+{% endblock %}
+
+{% block body_tags %}
+    ng-controller="pictures-list" data-date="{{data['date']}}", data-userid="{{data['userid']}}"
+{% endblock %}
+
+{% block content_title %}
+    <h1 class="page-header">Catalogo</h1>
+{% endblock %}
+{% block content %}
+<div class="col-lg-10 col-md-10 col-sm-10">
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <ul class="list-group pictures-list">
+                <ul>
+                <li ng-repeat="(id,picture) in pictures">
+
+                    <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}">
+                        <input id="check-{a picture.id a}" type="checkbox" ng-model="selectedCheckboxes[picture.id]" value="">
+                        <img ng-src="{{ url_for('static', filename='media/')}}{a picture.path a}" imageonload border="0">
+                    </label>
+
+                </li>
+            </ul>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+
+<div class="col-lg-2  col-md-2 col-sm-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-users"></i> Etiquetas
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group labels-list">
+                {% for label in data['labels'] %}
+                <button class="list-group-item"> {{label.name}} </button>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{ url_for('static', filename='js/shiftkey.js') }}"></script>
+{% endblock %}

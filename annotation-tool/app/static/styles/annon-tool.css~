@@ -1,0 +1,47 @@
+.pictures-list label{
+  border-width:5px;
+  border-style:solid;
+    /* 160x120 + 2 de borde de imagen*/
+  height:132px;
+  padding:0;
+  margin:0;
+ }
+.pictures-list img{
+  border-width:2px;
+  border-style:solid;
+ }
+.pictures-list input[type=checkbox] + img{
+    border-color:transparent;
+}
+
+.pictures-list input[type=checkbox]:checked + img{
+    border-color:aqua;
+}
+
+.pictures-list li{
+
+
+    list-style-type:none;
+    float:left;
+    margin:0;
+}
+
+.pictures-list input{display:none;}
+
+.labels-list button{width:100%;}
+
+.pictures-list label.picture-label-1{
+    border-color:transparent;
+}
+.label-1{
+  background-color:transparent;
+}
+
+
+.pictures-list label.picture-label-2{
+    border-color:#AF3232;
+}
+.label-2{
+  background-color:#AF3232;
+}
+

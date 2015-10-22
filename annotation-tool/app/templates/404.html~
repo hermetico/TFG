@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{super()}} - Index
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Oops error 404</h1>
+    </div>
+</div>
+{% endblock %}

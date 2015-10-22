@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+ {{ super() }} - Catalogo
+{% endblock %}
+
+
+{% block content_title %}
+    <h1 class="page-header">Catalogo</h1>
+{% endblock %}
+{% block content %}
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-users"></i> {{ data.label}}
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                {% for row in data.rows %}
+                <a href="{{ data.baseurl }}/{{ row }}" class="list-group-item">
+                    {{ row }}
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+{% endblock %}

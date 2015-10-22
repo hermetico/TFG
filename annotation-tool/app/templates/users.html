@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+ {{ super() }} - Registrar nuevo usuario
+{% endblock %}
+
+
+{% block content_title %}
+    <h1 class="page-header">Registrar nuevo usuario</h1>
+{% endblock %}
+{% block content %}
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-users"></i> Usuarios
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                {% for user in users %}
+                <div class="list-group-item">
+                    {{ user.username}}
+                    <span class="pull-right text-muted small"><em>{% if user.is_admin %} Admin {% else %} id: {{ user.id }} {% endif %}</em>
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-user"></i> Nuevo usuario
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                <form class="form" method="post" role="form">
+                    {{ wtf.quick_form(form) }}
+                </form>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+{% endblock %}
