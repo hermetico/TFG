@@ -144,7 +144,7 @@ def catalogday(userid, year, month, day, labelid=1):
 @main.route('/api/get/<int:userid>/<date>/<int:labelid>/<int:page>')
 @login_required
 def apiget(userid, date, page=1, labelid=1):
-    pagesize = 50
+    pagesize = 10
     pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .filter(Picture.label_id==labelid)\

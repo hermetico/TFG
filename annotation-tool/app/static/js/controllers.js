@@ -1,4 +1,4 @@
-var annonApp = angular.module('annonApp', []);
+var annonApp = angular.module('annonApp', ['infinite-scroll']);
 
 // changes the default behaviour of the {{ in angular in order to not colide
 // with jinja2 templates
@@ -19,6 +19,7 @@ annonApp.directive('imageonload', function() {
     };
 });
 */
+
 annonApp.controller('pictures-list', function($scope, $http) {
 
     var dataset = document.body.dataset;
@@ -74,4 +75,4 @@ annonApp.controller('pictures-list', function($scope, $http) {
 
 });
 
-
+//annonApp.factory('AnnonLoader')
