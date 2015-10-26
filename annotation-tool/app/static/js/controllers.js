@@ -20,18 +20,58 @@ annonApp.directive('imageonload', function() {
 });
 */
 
-annonApp.controller('pictures-list', function($scope, $http) {
+annonApp.factory('AnnonLoader', function($http){
+    var date = '';
+    var userid = 0;
+    var page = 1;
+    var labelid = 1; //TODO load label id dynamically
+    var busy = false;
+    var after = '';
+
+    var AnnonLoader = function(date_, userid_){
+        // init params
+        this.pictures = {};
+        date = date_;
+        userid = userid_;
+        page = 1;
+    }
+    AnnonLoader.prototype.nextPage = function(){
+        if(busy) return;
+        busy = true;
+        var url = '/api/get/' + userid + '/' + date + '/' + labelid + '/' + page;
+
+        $http.get(url).success(function(data){
+            if(!data) return;
+            page = data['next-page'];
+            items = data.pictures;
+            for(var key in items){
+                picture = items[key];
+                //console.log(picture)
+                this.pictures[key] = picture;
+            }
+            busy = false;
+
+        }.bind(this))
+    };
+
+    return AnnonLoader;
+});
+
+annonApp.controller('pictures-list', function($scope, AnnonLoader) {
 
     var dataset = document.body.dataset;
     var date = dataset.date;
     var userid = dataset.userid;
 
+    $scope.annonLoader = new AnnonLoader(date, userid);
+
+/*
     $http.get('/api/get/'+userid+'/'+date).success(function(data){
         $scope.pictures = data;
     }).then(function(){
         jQuery(document.body).find('input[type="checkbox"]').shiftSelectable();
     });
-    
+*/
     // the selected checkboxes will be stored here
     $scope.selectedCheckboxes = {} 
     
@@ -75,4 +115,4 @@ annonApp.controller('pictures-list', function($scope, $http) {
 
 });
 
-//annonApp.factory('AnnonLoader')
+

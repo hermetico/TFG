@@ -25,6 +25,8 @@
     <!-- Custom Fonts -->
     <link href="{{ url_for('static', filename='components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- jQuery -->
+    <script src="{{url_for('static', filename='components/jquery/dist/jquery.min.js')}}"></script>
 
     {{fixes.ie8()}}
     {% endblock %}
@@ -50,8 +52,7 @@
     </div>
     <!-- /#wrapper -->
     {% block scripts %}
-    <!-- jQuery -->
-    <script src="{{url_for('static', filename='components/jquery/dist/jquery.min.js')}}"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{url_for('static', filename='components/bootstrap/dist/js/bootstrap.min.js')}}"></script>

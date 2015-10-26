@@ -149,8 +149,12 @@ def apiget(userid, date, page=1, labelid=1):
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .filter(Picture.label_id==labelid)\
                 .paginate(page, pagesize, False).items
-    pictures = { picture.id : {'path':picture.path, 'label':picture.label_id, 'id':picture.id} for picture in pictures }
-
-    js = json.dumps(pictures)
+    nextpage = page + 1
+    # basic response structure
+    result = {'working': True, 'next-page': nextpage, 'label-id': labelid, 'user-id': userid}
+    pictures = { picture.id : {'path': picture.path, 'label': picture.label_id, 'id': picture.id} for picture in pictures}
+    result['pictures'] = pictures
+    # dumping data
+    js = json.dumps(result)
     resp = Response(js, status=200, mimetype='application/json')
     return resp

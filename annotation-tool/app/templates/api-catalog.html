@@ -6,7 +6,7 @@ ng-app="annonApp"
 
 {% block head %}
     {{super()}}
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="{{ url_for('static', filename='js/angular.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ng-infinite-scroll.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/controllers.js') }}"></script>
     <link href="{{ url_for('static', filename='styles/annon-tool.css') }}" rel="stylesheet">
@@ -28,8 +28,8 @@ ng-app="annonApp"
     <div class="panel panel-default">
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <ul class="list-group pictures-list" infinite-scroll="annon.nextPage()">
-                <li ng-repeat="(id,picture) in pictures">
+            <ul class="list-group pictures-list" infinite-scroll="annonLoader.nextPage()" infinite-scroll-disabled="annonLoader.busy" infinite-scroll-distance='0' >
+                <li ng-repeat="(id,picture) in annonLoader.pictures">
 
                     <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}">
                         <input id="check-{a picture.id a}" type="checkbox" ng-model="selectedCheckboxes[picture.id]" value="">
