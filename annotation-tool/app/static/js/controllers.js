@@ -40,18 +40,19 @@ annonApp.factory('AnnonLoader', function($http){
         busy = true;
         var url = '/api/get/' + userid + '/' + date + '/' + labelid + '/' + page;
 
-        $http.get(url).success(function(data){
-            if(!data) return;
-            page = data['next-page'];
-            items = data.pictures;
-            for(var key in items){
-                picture = items[key];
-                //console.log(picture)
-                this.pictures[key] = picture;
-            }
-            busy = false;
+        $http.get(url).success(
+            function(data){
+                if(!data) return;
+                page = data['next-page'];
+                items = data.pictures;
+                for(var key in items){
+                    picture = items[key];
+                    //console.log(picture)
+                    this.pictures[key] = picture;
+                }
+                busy = false;
 
-        }.bind(this))
+            }.bind(this))
     };
 
     return AnnonLoader;

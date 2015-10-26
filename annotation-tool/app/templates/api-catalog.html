@@ -52,7 +52,7 @@ ng-app="annonApp"
         <div class="panel-body">
             <div class="list-group labels-list">
                 {% for label in data['labels'] %}
-                <button class="list-group-item"> {{label.name}} </button>
+                <button class="list-group-item label-{{label.id}}"> {{label.name}} </button>
                 {% endfor %}
             </div>
         </div>

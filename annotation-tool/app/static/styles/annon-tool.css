@@ -2,12 +2,12 @@
   border-width:5px;
   border-style:solid;
     /* 160x120 + 2 de borde de imagen*/
-  height:132px;
+  height:133px;
   padding:0;
   margin:0;
  }
 .pictures-list img{
-  border-width:2px;
+  border-width:3px;
   border-style:solid;
  }
 .pictures-list input[type=checkbox] + img{
@@ -15,12 +15,11 @@
 }
 
 .pictures-list input[type=checkbox]:checked + img{
-    border-color:#7BE28B;
+    border-color:#ccc;
+    opacity:.8;
 }
 
 .pictures-list li{
-
-
     list-style-type:none;
     float:left;
     margin:0;
