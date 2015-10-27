@@ -18,17 +18,25 @@ annonApp.factory('AnnonLoader', function($http){
     var after = '';
     var finished = false;
 
-    var AnnonLoader = function(date_, userid_){
+    var AnnonLoader = function(date_, userid_, labelid_){
         // init params
         this.pictures = {};
         date = date_;
         userid = userid_;
         page = 1;
+        labelid = labelid_;
     }
     AnnonLoader.prototype.nextPage = function(){
         if(busy || finished) return;
         busy = true;
-        var url = '/api/get/' + userid + '/' + date + '/' + labelid + '/' + page;
+        if(labelid)
+        {
+            var url = '/api/get/' + userid + '/' + date + '/' + page + '/' + labelid;
+        }
+        else
+        {
+            var url = '/api/get/' + userid + '/' + date + '/' + page;
+        }
 
         $http.get(url).success(
             function(data){
@@ -99,8 +107,9 @@ annonApp.controller('pictures-list', function($scope, AnnonLoader) {
     var dataset = document.body.dataset;
     var date = dataset.date;
     var userid = dataset.userid;
+    var labelid = dataset.labelid || false;
 
-    $scope.annonLoader = new AnnonLoader(date, userid);
+    $scope.annonLoader = new AnnonLoader(date, userid, labelid);
 
     // the selected checkboxes will be stored here
     $scope.selectedCheckboxes = {} 

@@ -123,7 +123,7 @@ def catalogmonth(userid, year, month):
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
             return redirect(url_for('.index'))
-        
+
         return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl})
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
@@ -148,13 +148,19 @@ def catalogday(userid, year, month, day, labelid=1):
 
 
 @main.route('/api/get/<int:userid>/<date>')
-@main.route('/api/get/<int:userid>/<date>/<int:labelid>/<int:page>')
+@main.route('/api/get/<int:userid>/<date>/<int:page>')
+@main.route('/api/get/<int:userid>/<date>/<int:page>/<int:labelid>')
 @login_required
-def apiget(userid, date, page=1, labelid=1):
+def apiget(userid, date, page=1, labelid=None):
     pagesize = 20
-    pictures = Picture.query.filter(Picture.user_id==userid)\
+    if labelid is not None:
+        pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .filter(Picture.label_id==labelid)\
+                .paginate(page, pagesize, False).items
+    else:
+        pictures = Picture.query.filter(Picture.user_id==userid)\
+                .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .paginate(page, pagesize, False).items
     nextpage = page + 1
     morepages = len(pictures) == pagesize # si hay menos items que el tamaño del paginado es que ya no hay mas paginas
