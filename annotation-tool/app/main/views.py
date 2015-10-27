@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, session, redirect, url_for, flash, json, Response
+from flask import render_template, session, redirect, url_for, flash, json, Response, request
 from flask.ext.login import login_required
 from .decorators import admin_required
 from . import main
@@ -64,6 +64,7 @@ def labels():
     return render_template('labels.html', form=form, labels=label_list)
 
 
+# es el primer paso del catalogo, muestra los años
 @main.route('/catalog/<int:userid>')
 @login_required
 def cataloguser(userid):
@@ -83,6 +84,7 @@ def cataloguser(userid):
     return redirect(url_for('.index'))
 
 
+# segundo paso del catalogo muestra los meses
 @main.route('/catalog/<int:userid>/<year>')
 @login_required
 def catalogyear(userid, year):
@@ -102,12 +104,14 @@ def catalogyear(userid, year):
     return redirect(url_for('.index'))
 
 
-
+# tercer paso del catalogo muestra los dias
 @main.route('/catalog/<int:userid>/<year>/<month>')
 @login_required
 def catalogmonth(userid, year, month):
     user = User.query.filter_by(id=userid).first()
     label = 'day'
+
+    # nos aseguramos que hay user, que el año tiene cuatro letras y el mes 2
     if user is not None and len(year)==4 and len(month)==2:
         rows = db.session.query(db.func.strftime('%d', Picture.date).label(label))\
             .filter(Picture.user_id==user.id).filter(db.func.strftime('%Y', Picture.date)==year)\
@@ -115,12 +119,15 @@ def catalogmonth(userid, year, month):
             .group_by(label).all()
         rows = [x[0] for x in rows]
         baseurl = url_for('.catalogmonth', userid=userid, year=year, month=month)
+
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
             return redirect(url_for('.index'))
+        
         return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl})
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
+
 
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>')
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>/<int:labelid>')
@@ -144,17 +151,41 @@ def catalogday(userid, year, month, day, labelid=1):
 @main.route('/api/get/<int:userid>/<date>/<int:labelid>/<int:page>')
 @login_required
 def apiget(userid, date, page=1, labelid=1):
-    pagesize = 10
+    pagesize = 20
     pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .filter(Picture.label_id==labelid)\
                 .paginate(page, pagesize, False).items
     nextpage = page + 1
+    morepages = len(pictures) == pagesize # si hay menos items que el tamaño del paginado es que ya no hay mas paginas
     # basic response structure
-    result = {'working': True, 'next-page': nextpage, 'label-id': labelid, 'user-id': userid}
-    pictures = { picture.id : {'path': picture.path, 'label': picture.label_id, 'id': picture.id} for picture in pictures}
+    result = {'working': True, 'next-page': nextpage, 'label-id': labelid, 'user-id': userid, 'more-pages': morepages}
+    # incluimos la id, el path, el label y el datetime
+    pictures = {picture.id: {'path': picture.path, 'label': picture.label_id, 'id': picture.id, 'datetime': picture.date.isoformat()} for picture in pictures}
     result['pictures'] = pictures
     # dumping data
     js = json.dumps(result)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
+
+@main.route('/api/set', methods=['POST'])
+@login_required
+def api_db_set():
+    data = request.get_json()
+    print "the requested data:"
+    print data
+
+    #for key in data['keys']:
+    #    db_elem = FAKEDB[int(key)]
+    #    db_elem['label'] = data['label']
+    #    print "The element %s gets the label %s" % (db_elem['name'],  db_elem['label'])
+    # update all elements by id
+    for id in data['keys']:
+        picture = Picture.query.filter_by(id=id).first()
+        picture.label_id = data['label']
+        db.session.add(picture)
+
+    db.session.commit()
+
+    return Response('{"status":true}', status=200, mimetype='application/json')

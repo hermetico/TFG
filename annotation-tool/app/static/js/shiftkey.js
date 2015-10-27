@@ -5,9 +5,9 @@ $.fn.shiftSelectable = function() {
     var lastChecked,
         $boxes = this;
 
-    $.each($boxes, function(key, value){
-        $(value).prop('checked', false);
-    })
+    //$.each($boxes, function(key, value){
+    //    $(value).prop('checked', false);
+    //})
 
     $boxes.click(function(evt) {
         if(!lastChecked) {
@@ -19,11 +19,17 @@ $.fn.shiftSelectable = function() {
             var start = $boxes.index(this),
                 end = $boxes.index(lastChecked);
             /*$boxes.slice(Math.min(start, end), Math.max(start, end) + 1)
-                .attr('checked', lastChecked.checked)
-                .trigger('change');*/
-            $boxes.slice(Math.min(start, end), Math.max(start, end) + 1)
                 .prop('checked', lastChecked.checked)
-                .trigger('change');
+                .trigger('change');*/
+            var boxes = $boxes.slice(Math.min(start, end), Math.max(start, end) + 1);
+            // para cada elemento seleccionado
+            $.each(boxes, function(key, value){
+                // cambiamos su estado en funcion del ultimo seleccionado
+                $(value).prop('checked', lastChecked.checked)
+                // avisamos a angularjs de que hemos cambiado su estado para que actualize el scope
+                angular.element(value).triggerHandler('click');
+            })
+
         }
 
         lastChecked = this;

@@ -28,11 +28,14 @@ ng-app="annonApp"
     <div class="panel panel-default">
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <ul class="list-group pictures-list" infinite-scroll="annonLoader.nextPage()" infinite-scroll-disabled="annonLoader.busy" infinite-scroll-distance='0' >
-                <li ng-repeat="(id,picture) in annonLoader.pictures">
+            <ul class="list-group pictures-list" infinite-scroll="annonLoader.nextPage()"
+                infinite-scroll-disabled="annonLoader.busy" infinite-scroll-distance='0'
+                infinite-scroll-immediate-check="true">
+                {#<li ng-repeat="(id,picture) in annonLoader.pictures">#}
+                <li ng-repeat="id in annonLoader.orderedPictures()" ng-init="picture=annonLoader.pictures[id]">
 
                     <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}">
-                        <input id="check-{a picture.id a}" type="checkbox" ng-model="selectedCheckboxes[picture.id]" value="">
+                        <input id="check-{a picture.id a}" type="checkbox" ng-change="elemChange()" ng-model="selectedCheckboxes[picture.id]" value="">
                         <img ng-src="{{ url_for('static', filename='media/')}}{a picture.path a}" imageonload border="0">
                     </label>
 
@@ -52,7 +55,7 @@ ng-app="annonApp"
         <div class="panel-body">
             <div class="list-group labels-list">
                 {% for label in data['labels'] %}
-                <button class="list-group-item label-{{label.id}}"> {{label.name}} </button>
+                <button class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
                 {% endfor %}
             </div>
         </div>

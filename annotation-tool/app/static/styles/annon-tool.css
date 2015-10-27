@@ -1,13 +1,15 @@
+.pictures-list{overflow:hidden;}
+
 .pictures-list label{
   border-width:5px;
   border-style:solid;
     /* 160x120 + 2 de borde de imagen*/
-  height:133px;
+  height:140px;
   padding:0;
   margin:0;
  }
 .pictures-list img{
-  border-width:3px;
+  border-width:5px;
   border-style:solid;
  }
 .pictures-list input[type=checkbox] + img{
@@ -15,7 +17,7 @@
 }
 
 .pictures-list input[type=checkbox]:checked + img{
-    border-color:#ccc;
+    border-color:#444;
     opacity:.8;
 }
 
@@ -28,6 +30,8 @@
 .pictures-list input{display:none;}
 
 .labels-list button{width:100%;}
+
+
 
 .pictures-list label.picture-label-1{
     border-color:transparent;
@@ -44,5 +48,14 @@
 }
 .label-2{
   background-color:#AF3232;
+  color:#fff;
 }
 
+.pictures-list label.picture-label-3{
+    border-color:#CC3399;
+    background-color:#CC3399;
+}
+.label-3{
+  background-color:#CC3399;
+  color:#fff;
+}
