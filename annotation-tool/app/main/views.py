@@ -119,16 +119,16 @@ def catalogmonth(userid, year, month):
             .group_by(label).all()
         rows = [x[0] for x in rows]
         baseurl = url_for('.catalogmonth', userid=userid, year=year, month=month)
-
+        label_list = Label.query.order_by(Label.id).all()
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
             return redirect(url_for('.index'))
 
-        return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl})
+        return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl, 'label-list': label_list})
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
 
-
+## recibe la fecha y el label(opcional) y reenvia a la pagina de la api
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>')
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>/<int:labelid>')
 @login_required
@@ -146,6 +146,9 @@ def catalogday(userid, year, month, day, labelid=1):
     flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
     return redirect(url_for('.index'))
 
+#########################################################################################
+## funciones de la api llamadas por ajax
+#######################################################################################
 
 @main.route('/api/get/<int:userid>/<date>')
 @main.route('/api/get/<int:userid>/<date>/<int:page>')
@@ -179,13 +182,9 @@ def apiget(userid, date, page=1, labelid=None):
 @login_required
 def api_db_set():
     data = request.get_json()
-    print "the requested data:"
-    print data
+    #print "the requested data:"
+    #print data
 
-    #for key in data['keys']:
-    #    db_elem = FAKEDB[int(key)]
-    #    db_elem['label'] = data['label']
-    #    print "The element %s gets the label %s" % (db_elem['name'],  db_elem['label'])
     # update all elements by id
     for id in data['keys']:
         picture = Picture.query.filter_by(id=id).first()

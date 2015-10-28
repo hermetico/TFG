@@ -6,6 +6,10 @@
  {{ super() }} - Catalogo
 {% endblock %}
 
+{% block head %}
+    {{super()}}
+    <link href="{{ url_for('static', filename='styles/annon-tool.css') }}" rel="stylesheet">
+{% endblock %}
 
 {% block content_title %}
     <h1 class="page-header">Catalogo</h1>
@@ -19,12 +23,29 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div class="list-group">
-                {% for row in data.rows %}
-                <a href="{{ data.baseurl }}/{{ row }}" class="list-group-item">
-                    {{ row }}
-                    </span>
-                </a>
-                {% endfor %}
+                {# si hay labels es que estamos en la pagina que muestra los dias #}
+                {% if data['label-list'] %}
+                    {% for row in data.rows %}
+                        <div class="list-group-item">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="{{ data.baseurl }}/{{ row }}" class="btn btn-default" role="button">
+                                {{ row }}
+                                </a>
+                                {% for label in data['label-list'] %}
+                                    <a href="{{ data.baseurl }}/{{ row }}/{{ label.id }}" class="btn btn-default label-{{ label.id }}" role="button">
+                                    {{ label.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for row in data.rows %}
+                    <a href="{{ data.baseurl }}/{{ row }}" >
+                        {{ row }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
         <!-- /.panel-body -->
