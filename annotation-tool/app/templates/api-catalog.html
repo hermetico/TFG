@@ -23,6 +23,9 @@ ng-app="annonApp"
 {% block content_title %}
     <h1 class="page-header">Catalogo</h1>
 {% endblock %}
+{% block breadcrumb %}
+    {% include 'breadcrumb.html' %}
+{% endblock %}
 {% block content %}
 <div class="col-lg-10 col-md-10 col-sm-10">
     <div class="panel panel-default">

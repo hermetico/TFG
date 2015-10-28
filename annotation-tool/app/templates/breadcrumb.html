@@ -1,0 +1,13 @@
+{% if breadcrumbs %}
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+        {%- for breadcrumb in breadcrumbs -%}
+            {% if not loop.last %}
+                <li><a href="{{ breadcrumb.url }}">{{ breadcrumb.text }}</a></li>
+            {% else %}
+                <li class="active">{{ breadcrumb.text }}</li>
+            {% endif %}
+        {%- endfor -%}
+        </ol>
+    </div>
+{% endif %}

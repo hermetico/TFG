@@ -14,8 +14,11 @@
 {% block content_title %}
     <h1 class="page-header">Catalogo</h1>
 {% endblock %}
+{% block breadcrumb %}
+    {% include 'breadcrumb.html' %}
+{% endblock %}
 {% block content %}
-<div class="col-lg-8">
+<div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-users"></i> {{ data.label}}
@@ -41,7 +44,7 @@
                     {% endfor %}
                 {% else %}
                     {% for row in data.rows %}
-                    <a href="{{ data.baseurl }}/{{ row }}" >
+                    <a href="{{ data.baseurl }}/{{ row }}" class="list-group-item">
                         {{ row }}
                     </a>
                     {% endfor %}

@@ -7,7 +7,6 @@ from .. import db
 from ..models import User, Label, Picture, Role
 from .forms import NewUserForm, NewLabelForm
 
-
 @main.context_processor
 def current_user():
     users_with_pictures = db.session.query(User.username, User.id).filter(User.role_id!=1).all()
@@ -64,6 +63,10 @@ def labels():
     return render_template('labels.html', form=form, labels=label_list)
 
 
+#################################################
+## Rutas del catalogo
+#################################################
+
 # es el primer paso del catalogo, muestra los años
 @main.route('/catalog/<int:userid>')
 @login_required
@@ -79,7 +82,10 @@ def cataloguser(userid):
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas' % user.username, 'info')
             return redirect(url_for('.index'))
-        return render_template('catalog.html', data={'label': 'Año', 'rows': rows, 'baseurl': baseurl})
+        breadcrumb = [{'text': 'catalogo', 'url': '/catalog/%i' % userid}]
+
+        return render_template('catalog.html', data={'label': 'Año', 'rows': rows, 'baseurl': baseurl},
+                               breadcrumbs=breadcrumb)
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
 
@@ -99,7 +105,12 @@ def catalogyear(userid, year):
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
             return redirect(url_for('.index'))
-        return render_template('catalog.html', data={'label': 'Mes', 'rows': rows, 'baseurl': baseurl})
+        breadcrumb = [
+            {'text': 'catalogo', 'url': '/catalog/%i' % userid},
+            {'text': year, 'url': '/catalog/%i/%s' %(userid, year)}
+        ]
+        return render_template('catalog.html', data={'label': 'Mes', 'rows': rows, 'baseurl': baseurl},
+                               breadcrumbs=breadcrumb)
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
 
@@ -123,8 +134,13 @@ def catalogmonth(userid, year, month):
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
             return redirect(url_for('.index'))
-
-        return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl, 'label-list': label_list})
+        breadcrumb = [
+            {'text': 'catalogo', 'url': '/catalog/%i' % userid},
+            {'text': year, 'url': '/catalog/%i/%s' %(userid, year)},
+            {'text': month, 'url': '/catalog/%i/%s/%s' %(userid, year, month)}
+        ]
+        return render_template('catalog.html', data={'label': 'Dia', 'rows': rows, 'baseurl': baseurl, 'label-list': label_list},
+                               breadcrumbs=breadcrumb)
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
 
@@ -132,7 +148,7 @@ def catalogmonth(userid, year, month):
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>')
 @main.route('/catalog/<int:userid>/<year>/<month>/<day>/<int:labelid>')
 @login_required
-def catalogday(userid, year, month, day, labelid=1):
+def catalogday(userid, year, month, day, labelid=None):
     date = '%s-%s-%s' %(year, month, day)
     user = User.query.filter_by(id=userid).first()
     numpictures = Picture.query.filter(Picture.user_id==user.id)\
@@ -140,8 +156,21 @@ def catalogday(userid, year, month, day, labelid=1):
                     ==db.func.strftime('%Y-%m-%d', Picture.date)).count()
     if user is not None and numpictures:
         label_list = Label.query.order_by(Label.id).all()
+
+        breadcrumb = [
+            {'text': 'catalogo', 'url': '/catalog/%i' % userid},
+            {'text': year, 'url': '/catalog/%i/%s' %(userid, year)},
+            {'text': month, 'url': '/catalog/%i/%s/%s' %(userid, year, month)}
+        ]
+        # dependiendo de si han especificado o no label, lo mostramos en el breadcrumb o no
+        if labelid is not None:
+            label_name = Label.query.filter_by(id=labelid).first().name
+            breadcrumb.append({'text': '%s - %s'%(day, label_name), 'url': '/catalog/%i/%s/%s/%s/%s' %(userid, year, month, day, labelid)})
+        else:
+            breadcrumb.append({'text': '%s'%(day), 'url': '/catalog/%i/%s/%s/%s' %(userid, year, month, day)})
+
         return render_template('api-catalog.html', data={'date':date, 'labelid':labelid,
-            'userid':user.id, 'labels':label_list})
+            'userid':user.id, 'labels':label_list}, breadcrumbs=breadcrumb)
 
     flash('El usuario %s no tiene imagenes asociadas para esta combinacion de fechas' % user.username, 'info')
     return redirect(url_for('.index'))
