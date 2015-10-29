@@ -40,7 +40,9 @@
                     <ul class="nav nav-second-level">
                         {% for user in users_with_pictures %}
                         <li>
-                            <a href="/catalog/{{user.id}}"><i class="fa fa-picture-o fa-fw"></i> {{user.username}}</a>
+                            <a href="/catalog/{{user.id}}" class="presentation")>
+                                <i class="fa fa-picture-o fa-fw"></i> {{user.username}}
+                                </a>
                         </li>
                         {% endfor %}
                     </ul>

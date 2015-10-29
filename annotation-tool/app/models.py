@@ -49,6 +49,11 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+    @property
+    def num_pictures(self):
+        """Return the number of pictures associated with the user"""
+        return self.pictures.count()
+
 
 class Picture(db.Model):
     __tablename__ = 'pictures'

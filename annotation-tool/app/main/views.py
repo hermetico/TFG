@@ -9,8 +9,8 @@ from .forms import NewUserForm, NewLabelForm
 
 @main.context_processor
 def current_user():
-    users_with_pictures = db.session.query(User.username, User.id).filter(User.role_id!=1).all()
-    users_with_pictures = [{'username': x[0], 'id':x[1]} for x in users_with_pictures]
+    # recuperamos los usuarios con imagenes
+    users_with_pictures = User.query.join(Picture).filter(User.id == Picture.user_id).all()
     return dict(users_with_pictures=users_with_pictures)
 
 @main.route('/')
