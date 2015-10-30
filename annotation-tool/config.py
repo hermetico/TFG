@@ -5,6 +5,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'You are not gonna expect this'
     SQLALCHEMY_COMMIT_ON_TEAR_DOWN = True
+    IMPORT_FOLDER = os.path.join(basedir, "import bucket")
+    IMPORTED_PICTURES_FOLDER = os.path.join(basedir, "app", "static", "media")
+
 
     @staticmethod
     def init_app(app):

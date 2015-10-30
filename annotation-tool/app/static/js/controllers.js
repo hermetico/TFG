@@ -13,7 +13,7 @@ annonApp.factory('AnnonLoader', function($http){
     var date = '';
     var userid = 0;
     var page = 1;
-    var labelid = 1; //TODO load label id dynamically
+    var labelid = 1;
     var busy = false;
     var after = '';
     var finished = false;
@@ -72,6 +72,7 @@ annonApp.factory('AnnonLoader', function($http){
     {
         var order = [];
         order = Object.keys(this.pictures);
+        //TODO order by time
         /*
         var param = param || 'datetime';
         // esto las ordena por id : Object.keys(this.pictures);

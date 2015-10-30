@@ -34,7 +34,7 @@ def users():
         if user is not None:
             flash('Ya existe un usuario llamado %s' % user.username, 'danger')
             return redirect(url_for('.users'))
-        user = User(username=form.username.data, password=form.password.data, role_id=form.role.data)
+        user = User(username=form.username.data.lower(), password=form.password.data, role_id=form.role.data)
         db.session.add(user)
         db.session.commit()
         flash('Usuario %s registrado correctamente' %user.username, 'success')

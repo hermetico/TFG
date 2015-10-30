@@ -49,6 +49,14 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+    def fancy_print(self):
+        print """User:
+        \tid: %(id)s
+        \tusername: %(name)s
+        \trole: %(role)s""" % (
+            dict(id=self.id, name=self.username, role=self.role_id)
+        )
+
     @property
     def num_pictures(self):
         """Return the number of pictures associated with the user"""
@@ -63,8 +71,26 @@ class Picture(db.Model):
     path = db.Column(db.String(256))
     label_id = db.Column(db.Integer, db.ForeignKey('labels.id'), index=True)
 
+
     def __repr__(self):
-        return '<Picture %r>' % self.path
+        """
+        :return:default representation for the current model
+        """
+        return "<Picture id: %(id)s>"% dict(id=self.id)
+
+    def fancy_print(self):
+        print """Picture
+        \tid = %(id)s
+        \tuserid = %(userid)s
+        \tdate = %(date)s
+        \tpath = %(path)s
+        \tlabelid = %(labelid)s """ % (
+            dict(id=self.id,
+                 userid=self.user_id,
+                 date=self.date,
+                 path=self.path,
+                 labelid=self.label_id)
+        )
 
 
 class Label(db.Model):

@@ -8,7 +8,7 @@ import os
 from app import create_app, db
 from app.models import User, Role, Picture, Label
 from flask.ext.script import Manager, Shell
-from flask.ext.migrate import Migrate, MigrateCommand
+from flask.ext.migrate import Migrate, MigrateCommand, upgrade
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
@@ -31,14 +31,24 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
-@manager.command
-def importsuite():
-    from importtools import importer
 
-    IMPORT_FOLDER_NAME = "import bucket"
-    route = os.path.join(os.path.dirname(os.path.abspath(IMPORT_FOLDER_NAME)), IMPORT_FOLDER_NAME)
-    context = dict(app=app, db=db, User=User, Label=Label, Picture=Picture)
-    importer.load(route, context)
+@manager.command
+def import_pictures():
+    """Import the pictures from the import folder and add them to the database"""
+    from tools import importer
+    origin = app.config['IMPORT_FOLDER']
+    destiny = app.config['IMPORTED_PICTURES_FOLDER']
+    context = dict(app=app, db=db, User=User, Label=Label, Picture=Picture, route=origin, destiny=destiny)
+    importer.load(context)
+
+
+@manager.command
+def deploy():
+    """Create the database, tables and needed users, roles, and labels"""
+    from tools import deploy
+    upgrade()
+    context = dict(app=app, db=db, User=User, Label=Label, Role=Role)
+    deploy.initial_deploy(context)
 
 
 
