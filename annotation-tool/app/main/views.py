@@ -7,6 +7,9 @@ from .. import db
 from ..models import User, Label, Picture, Role
 from .forms import NewUserForm, NewLabelForm
 
+PAGESIZE = 50
+
+
 @main.context_processor
 def current_user():
     # recuperamos los usuarios con imagenes
@@ -184,7 +187,7 @@ def catalogday(userid, year, month, day, labelid=None):
 @main.route('/api/get/<int:userid>/<date>/<int:page>/<int:labelid>')
 @login_required
 def apiget(userid, date, page=1, labelid=None):
-    pagesize = 20
+    pagesize = PAGESIZE
     if labelid is not None:
         pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
