@@ -1,0 +1,23 @@
+[uwsgi]
+#applications base folder
+base = /home/hermetico/dev/annotation-tool/annotation-tool
+
+#python module to import
+app = manage
+module = %(app)
+
+#virtualenv = /home/hermetico/dev/annotation-tool/annotation-tool/venv/
+home = %(base)/venv
+pythonpath = %(base)
+
+#socket file location
+socket = /home/hermetico/dev/annotation-tool/annotation-tool/%n.sock
+
+#permissions for the socket file
+chmod-socket    = 666
+
+#the variable that holds a flask application inside the module imported at line #6
+callable = manager
+
+#location of log files
+#logto = /home/hermetico/dev/annotation-tool/log/uwsgi/%n.log

@@ -1,0 +1,594 @@
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:08:31 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1c59420
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 7195, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:11:38 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xfb6420
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 8076, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:33:44 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Continuum Analytics, Inc.| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1469600
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 5, in <module>
+    from flask import Flask, render_template
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/flask/__init__.py", line 17, in <module>
+    from werkzeug.exceptions import abort
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/__init__.py", line 20, in <module>
+    from werkzeug._compat import iteritems
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/_compat.py", line 2, in <module>
+    import operator
+ImportError: No module named operator
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 14439, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:39:40 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Continuum Analytics, Inc.| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x2611600
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+ImportError: No module named manager
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 16174, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:41:03 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Continuum Analytics, Inc.| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x25a5600
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+ImportError: No module named manager
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 16605, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:41:40 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Continuum Analytics, Inc.| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x24a5600
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 5, in <module>
+    from flask import Flask, render_template
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/flask/__init__.py", line 17, in <module>
+    from werkzeug.exceptions import abort
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/__init__.py", line 20, in <module>
+    from werkzeug._compat import iteritems
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/_compat.py", line 2, in <module>
+    import operator
+ImportError: No module named operator
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 16773, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:45:29 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x12504f0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 18085, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:49:25 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x23014f0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 19328, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:51:32 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to base = /home/hermetico/dev/annotation-tool/annotation-tool/venv/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x11d6d50
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+ImportError: No module named manage
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 19923, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:51:52 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to base = /home/hermetico/dev/annotation-tool/annotation-tool/venv/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xc8ec80
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+ImportError: No module named manage
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 20014, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:52:32 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to base = /home/hermetico/dev/annotation-tool/annotation-tool/venv/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1cba4f0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 20190, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 15:57:49 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool/venv/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1bab4f0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 21628, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 16:02:50 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7ed530
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 23022, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 16:05:06 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Anaconda 2.3.0 (64-bit)| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x15fc530
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 13, in <module>
+    from flask.ext.login import LoginManager
+  File "/home/hermetico/anaconda/lib/python2.7/site-packages/flask/exthook.py", line 87, in load_module
+    raise ImportError('No module named %s' % fullname)
+ImportError: No module named flask.ext.login
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 23734, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 16:06:01 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.10 |Continuum Analytics, Inc.| (default, Sep 15 2015, 14:50:01)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x204a5e0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 5, in <module>
+    from flask import Flask, render_template
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/flask/__init__.py", line 17, in <module>
+    from werkzeug.exceptions import abort
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/__init__.py", line 20, in <module>
+    from werkzeug._compat import iteritems
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/_compat.py", line 2, in <module>
+    import operator
+ImportError: No module named operator
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 24005, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Tue Nov  3 16:21:18 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/anaconda/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.8 |Continuum Analytics, Inc.| (default, Aug 21 2014, 18:22:21)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool//venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x192d5e0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Traceback (most recent call last):
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/manage.py", line 8, in <module>
+    from app import create_app, db
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/app/__init__.py", line 5, in <module>
+    from flask import Flask, render_template
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/flask/__init__.py", line 17, in <module>
+    from werkzeug.exceptions import abort
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/__init__.py", line 20, in <module>
+    from werkzeug._compat import iteritems
+  File "/home/hermetico/dev/annotation-tool/annotation-tool/venv/local/lib/python2.7/site-packages/werkzeug/_compat.py", line 2, in <module>
+    import operator
+ImportError: No module named operator
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 28410, cores: 1)
