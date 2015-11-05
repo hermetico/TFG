@@ -17,7 +17,7 @@ socket = /home/hermetico/dev/annotation-tool/annotation-tool/%n.sock
 chmod-socket    = 666
 
 #the variable that holds a flask application inside the module imported at line #6
-callable = manager
+callable = app
 
 #location of log files
-#logto = /home/hermetico/dev/annotation-tool/log/uwsgi/%n.log
+logto = /home/hermetico/dev/annotation-tool/log/uwsgi/%n.log

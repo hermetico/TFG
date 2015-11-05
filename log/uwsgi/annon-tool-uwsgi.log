@@ -592,3 +592,113 @@ unable to load app 0 (mountpoint='') (callable not found or import error)
 *** no app loaded. going in full dynamic mode ***
 *** uWSGI is running in multiple interpreter mode ***
 spawned uWSGI worker 1 (and the only) (pid: 28410, cores: 1)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Thu Nov  5 00:58:44 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/dev/annotation-tool/annotation-tool/venv/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.8 |Continuum Analytics, Inc.| (default, Aug 21 2014, 18:22:21)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1d4b490
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Importing environment from .env...
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1d4b490 pid: 31258 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 31258, cores: 1)
+[pid: 31258|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 909 bytes} [Thu Nov  5 01:02:49 2015] GET /auth/login?next=%2Fmain => generated 3859 bytes in 95 msecs (HTTP/1.1 200) 3 headers in 283 bytes (1 switches on core 0)
+[pid: 31258|app: 0|req: 2/2] 127.0.0.1 () {46 vars in 1053 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/bootstrap/dist/css/bootstrap.min.css => generated 117305 bytes in 5 msecs via sendfile() (HTTP/1.1 200) 8 headers in 491 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 3/3] 127.0.0.1 () {46 vars in 1042 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/metisMenu/dist/metisMenu.min.css => generated 781 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 485 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 4/4] 127.0.0.1 () {46 vars in 999 bytes} [Thu Nov  5 01:02:49 2015] GET /static/styles/sb-admin-2.css => generated 5593 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 487 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 5/5] 127.0.0.1 () {46 vars in 986 bytes} [Thu Nov  5 01:02:49 2015] GET /static/styles/base.css => generated 750 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 486 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 6/6] 127.0.0.1 () {46 vars in 1054 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/font-awesome/css/font-awesome.min.css => generated 26711 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 490 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 7/7] 127.0.0.1 () {46 vars in 1015 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/jquery/dist/jquery.min.js => generated 84355 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 488 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 8/8] 127.0.0.1 () {46 vars in 1032 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/bootstrap/dist/js/bootstrap.min.js => generated 35951 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 488 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 9/9] 127.0.0.1 () {46 vars in 1026 bytes} [Thu Nov  5 01:02:49 2015] GET /static/components/metisMenu/dist/metisMenu.min.js => generated 1879 bytes in 2 msecs via sendfile() (HTTP/1.1 200) 8 headers in 486 bytes (0 switches on core 0)
+[pid: 31258|app: 0|req: 10/10] 127.0.0.1 () {46 vars in 973 bytes} [Thu Nov  5 01:02:49 2015] GET /static/js/sb-admin-2.js => generated 1181 bytes in 1 msecs via sendfile() (HTTP/1.1 200) 8 headers in 486 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Thu Nov  5 01:08:04 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/dev/annotation-tool/annotation-tool/venv/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.8 |Continuum Analytics, Inc.| (default, Aug 21 2014, 18:22:21)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1005490
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Importing environment from .env...
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1005490 pid: 1464 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 1464, cores: 1)
+[pid: 1464|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 909 bytes} [Thu Nov  5 01:08:07 2015] GET /auth/login?next=%2Fmain => generated 3859 bytes in 96 msecs (HTTP/1.1 200) 3 headers in 283 bytes (1 switches on core 0)
+[pid: 1464|app: 0|req: 2/2] 127.0.0.1 () {46 vars in 1052 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/bootstrap/dist/css/bootstrap.min.css => generated 0 bytes in 8 msecs (HTTP/1.1 304) 5 headers in 392 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 3/3] 127.0.0.1 () {46 vars in 1041 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/metisMenu/dist/metisMenu.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 389 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 4/4] 127.0.0.1 () {46 vars in 998 bytes} [Thu Nov  5 01:08:07 2015] GET /static/styles/sb-admin-2.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 390 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 5/5] 127.0.0.1 () {46 vars in 986 bytes} [Thu Nov  5 01:08:07 2015] GET /static/styles/base.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 390 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 6/6] 127.0.0.1 () {46 vars in 1054 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/font-awesome/css/font-awesome.min.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 392 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 7/7] 127.0.0.1 () {46 vars in 1014 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/jquery/dist/jquery.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 391 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 8/8] 127.0.0.1 () {46 vars in 1032 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/bootstrap/dist/js/bootstrap.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 391 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 9/9] 127.0.0.1 () {46 vars in 1025 bytes} [Thu Nov  5 01:08:07 2015] GET /static/components/metisMenu/dist/metisMenu.min.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 390 bytes (0 switches on core 0)
+[pid: 1464|app: 0|req: 10/10] 127.0.0.1 () {46 vars in 973 bytes} [Thu Nov  5 01:08:07 2015] GET /static/js/sb-admin-2.js => generated 0 bytes in 1 msecs (HTTP/1.1 304) 5 headers in 390 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.11.2 (64bit) on [Thu Nov  5 15:17:54 2015] ***
+compiled with version: 4.8.4 on 03 November 2015 13:10:01
+os: Linux-3.13.0-65-generic #106-Ubuntu SMP Fri Oct 2 22:08:27 UTC 2015
+nodename: socrates
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/hermetico/dev/annotation-tool/annotation-tool
+detected binary path: /home/hermetico/dev/annotation-tool/annotation-tool/venv/bin/uwsgi
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63527
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/hermetico/dev/annotation-tool/annotation-tool/annon-tool-uwsgi.sock fd 3
+Python version: 2.7.8 |Continuum Analytics, Inc.| (default, Aug 21 2014, 18:22:21)  [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Set PythonHome to /home/hermetico/dev/annotation-tool/annotation-tool/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x17bf530
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72768 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+added /home/hermetico/dev/annotation-tool/annotation-tool/ to pythonpath.
+Importing environment from .env...
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x17bf530 pid: 1020 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 1020, cores: 1)
