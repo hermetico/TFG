@@ -8,4 +8,9 @@ venv
 .idea/
 
 #logs 
+log/
 *.log
+
+#conf and ini files
+annon-tool.conf
+annon-tool-uwsgi.ini
