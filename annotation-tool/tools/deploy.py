@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 DEFAULT_LABELS = [
     'Tareas hogar',
     'Conduciendo',
