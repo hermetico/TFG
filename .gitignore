@@ -15,5 +15,5 @@ log/
 annon-tool.conf
 annon-tool-uwsgi.ini
 
-# media files
+#media files
 *media/
