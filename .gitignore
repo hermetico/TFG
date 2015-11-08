@@ -17,3 +17,6 @@ annon-tool-uwsgi.ini
 
 #media files
 *media/
+
+# production database
+annotation-tool/data.sqlite
