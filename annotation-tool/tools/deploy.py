@@ -1,4 +1,23 @@
 
+DEFAULT_LABELS = [
+    'Tareas hogar',
+    'Conduciendo',
+    'Cocinando',
+    'Deporte',
+    'Leyendo',
+    'Perros',
+    'Gatos',
+    'Descansando',
+    'Comiendo',
+    'trabajando',
+    'Charlando',
+    'TV',
+    'Limpiando',
+    'Socializando',
+    'Comprando',
+    'Bicicleta',
+    'Familia'
+]
 
 def create_admin_role(db, Role):
     role = Role.query.first()
@@ -28,10 +47,13 @@ def create_admin_user(db, User):
     # ojo que es casesensitive, ponemos el nombre en lower
     user = User(username=nombre.lower(), password=password, role_id=1) # default admin role is 1
     db.session.add(user)
+    user = User(username="lifelogging", password="LogTeamBCN@15", role_id=1)
+    db.session.add(user)
     db.session.commit()
 
 
 def create_default_label(db, Label):
+
     label = Label.query.first()
     if label:
         print "Default label is already in the database, skipping this step"
@@ -39,6 +61,13 @@ def create_default_label(db, Label):
     nombre = raw_input("Inserta un nombre para la etiqueta por defecto(default:sin-etiqueta)") or "sin-etiqueta"
     label = Label(name=nombre)
     db.session.add(label)
+
+    # añadimos las etiquetas extra
+    for nombre in DEFAULT_LABELS:
+        print "Añadiendo etiquta %s"%(nombre)
+        label = Label(name=nombre)
+        db.session.add(label)
+
     db.session.commit()
 
 
