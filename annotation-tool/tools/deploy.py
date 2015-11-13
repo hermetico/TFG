@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 DEFAULT_LABELS = [
-    'Tareas hogar',
+    'Tareas domesticas',
     'Conduciendo',
     'Cocinando',
     'Deporte',
@@ -12,11 +12,12 @@ DEFAULT_LABELS = [
     'trabajando',
     'Charlando',
     'TV',
-    'Limpiando',
-    'Socializando',
     'Comprando',
     'Bicicleta',
-    'Familia'
+    'Familia',
+    'Reunion',
+    'WC',
+    'Transporte'
 ]
 
 def create_admin_role(db, Role):
