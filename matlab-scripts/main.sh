@@ -4,6 +4,8 @@
 #          FILE: main.sh
 # 
 #         USAGE: ./main.sh "abs-path-to-execute" "abs-path-to-move-results"
+#               nohup main.sh  "abs-path-to-execute" "abs-path-to-move-results"
+
 #                           use double quotes if the paths have white spaces
 # 
 #   DESCRIPTION: Lanza el script de matlab con los parametros de entrada
