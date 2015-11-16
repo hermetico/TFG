@@ -36,6 +36,7 @@
   position:fixed;
   right:-150px;
   margin-top:10px;
+  transition: all .5s ease;
 }
 .panel-etiquetas-flotante:hover{
   right:0px;

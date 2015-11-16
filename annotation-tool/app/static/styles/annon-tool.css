@@ -33,7 +33,7 @@
 
 .panel-etiquetas-flotante{
   width:200px;
-  position:fixed;
+  position:static;
   right:-150px;
   margin-top:10px;
   transition: all .5s ease;
