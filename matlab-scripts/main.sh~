@@ -1,0 +1,95 @@
+#!/bin/bash - 
+#===============================================================================
+#
+#          FILE: main.sh
+# 
+#         USAGE: ./main.sh abs-path-to-execute abs-path-to-move-results
+# 
+#   DESCRIPTION: Lanza el script de matlab con los parametros de entrada
+#                 especificados
+# 
+#        AUTHOR: Juan Marín (), 
+#  ORGANIZATION: 
+#       CREATED: 14/11/15 17:53
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+
+MATLABSCRIPT=Rectimages
+MATLABSCRIPTFOLDER=matlab
+#MATLABSCRIPT=foo
+MATLAB_PICTURE_OUTPUT_SIZE=256
+
+cd $MATLABSCRIPTFOLDER
+
+# The first input argument is needed
+# This argument should be the base folder for the pictures to be parsed
+if [ -z "$1" ]
+then
+    echo No argument supplied
+    echo Usage $0 abs-path-to-execute abs-path-to-move-results
+    exit 1
+fi
+
+# the second input argument is needed too
+# it should be the destionation for the parsed pictures
+if [ -z "$2" ]
+then
+    echo No argument supplied
+    echo Usage $0 abs-path-to-execute abs-path-to-move-results
+    exit 1
+fi
+
+
+SRCFOLDER="$1"
+DSTFOLDER="$2"
+
+
+# All the folders recursively only the next type of folder structure
+# user/year/month/day
+#SRCFOLDERS=( $(find "$SRCFOLDER" -mindepth 4 -not -path "*meta*"  -not -path "*_Crop*" -type d -printf '%P\n') )
+SRCFOLDERS=( $(find "$SRCFOLDER" -mindepth 4 -not -path "*meta*"  -not -path "*_Crop*" -type d) )
+#dirs=( $(find . -maxdepth 1 -type d -printf '%P\n') )
+
+# executes the matlab script for each folder
+for folder in $SRCFOLDERS
+do
+    finalfolder="$SRCFOLDER/$folder"
+    echo "$finalfolder"
+done
+exit
+# executes the matlab script for each folder
+for folder in $SRCFOLDERS
+do
+    finalfolder="$SRCFOLDER/$folder"
+    echo Executing Rectimages in folder: "$finalfolder"
+    # executes the script
+    echo matlab -nodesktop -nojvm -r "folder='"$finalfolder"';output_size="$MATLAB_PICTURE_OUTPUT_SIZE";"$MATLABSCRIPT""
+    echo OK
+done
+
+# Retrieves all the folders, but only with the next structure
+#DSTFOLDERS=( $(find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -path "*_Crop*" -type d -printf '%P\n') )
+DSTFOLDERS=( $(find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -path "*_Crop*" -type d ) )
+
+for folder in $DSTFOLDERS
+do
+    dstfolder="$DSTFOLDER/$folder"
+    srcfolder="$SRCFOLDER/$folder"
+    # changes the substring of the source folder to the destiny folder
+    # changes the word _Crop for nothing
+    dstfolder=${dstfolder/_Crop}
+    echo Copying images from "$srcfolder" to "$dstfolder"
+    # creating the new folder
+    echo mkdir -p "$dstfolder"
+
+    # copying images
+    echo cp "$srcfolder" "$dstfolder"
+
+    
+    echo OK
+done
+
+echo BYE
+
