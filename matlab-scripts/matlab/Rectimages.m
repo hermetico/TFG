@@ -91,7 +91,7 @@ for i=1:(fin)
                                
                 % redimensionamos la imagen si hay parametro de entrada
                 if exist('output_size', 'var'),
-                  im_cropped = imresize(im_cropped,[ output_size output_size])
+                  im_cropped = imresize(im_cropped,[ output_size output_size]);
 
                 end             
                 

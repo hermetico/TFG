@@ -49,6 +49,10 @@ fi
 
 SRCFOLDER="$1"
 DSTFOLDER="$2"
+NOW="$(date)"
+LOG=0
+
+
 echo
 echo "================================================================================"
 echo "|                                                                              |"
@@ -58,6 +62,8 @@ echo "| contained in the meta folders.                                          
 echo "| Folders which don't contain a meta folder inside won't be processed          |"
 echo "|                                                                              |"
 echo "================================================================================"
+echo
+echo "Executed: $NOW"
 echo
 echo "Executing Rectimages recursively in $SRCFOLDER"
 echo "This may take some time"
@@ -73,7 +79,7 @@ do
     #echo Executing Rectimages in folder: "$path"
     
     # executes the script
-    command="matlab -nodesktop -nojvm -r "'"folder='"'$path'"';exit_on_end=1;output_size='"$MATLAB_PICTURE_OUTPUT_SIZE;$MATLABSCRIPT"'" >output.txt 2>&1'
+    command="matlab -nodesktop -nojvm -r "'"folder='"'$path'"';exit_on_end=1;output_size='"$MATLAB_PICTURE_OUTPUT_SIZE;$MATLABSCRIPT"'" >output-'"$((++LOG))"'.txt 2>&1'
     echo ">> $command"
     eval $command
 
