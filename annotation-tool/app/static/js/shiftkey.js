@@ -51,5 +51,5 @@ var loadingCheckBoxes = setInterval(
         }
 
     },
-    500
+    900
     )
