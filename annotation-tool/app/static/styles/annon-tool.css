@@ -33,9 +33,9 @@
 
 .panel-etiquetas-flotante{
   width:200px;
-  position:static;
+  position:fixed;
   right:-150px;
-  margin-top:10px;
+  top:150px;
   transition: all .5s ease;
 }
 .panel-etiquetas-flotante:hover{
