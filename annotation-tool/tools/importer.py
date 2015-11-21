@@ -27,10 +27,17 @@ def moveFilesToFolder(origin, destiny, folders):
     ## hacemos un cp de los archivos
     for folder in folders:
         src = os.path.join(origin, folder)
-        command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
+        # como van a haber archivos con imagenes y algunos que no , utilizaremos el comando rsync
+        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny]
+        #command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
         #command = r'cp -R %s %s' %(src, destiny)
         p = subprocess.Popen(command)
         p.wait()
+
+    # de destiny eliminamos las carpetas vacias
+    command = ["find", destiny, "-empty", "-type", "d", "-delete"]
+    p = subprocess.Popen(command)
+    p.wait()
 
     print "Eliminando archivos viejos"
     ## finalmente, como hemos copiado los archivos ya no nos interesa que sigan

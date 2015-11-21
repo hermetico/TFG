@@ -27,7 +27,8 @@ ng-app="annonApp"
     {% include 'breadcrumb.html' %}
 {% endblock %}
 {% block content %}
-<div class="col-lg-10 col-md-10 col-sm-10">
+
+<div class="col-lg-12 col-md-12 col-sm-12">
     <div class="panel panel-default">
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -49,22 +50,13 @@ ng-app="annonApp"
     </div>
 </div>
 
-<div class="col-lg-2  col-md-2 col-sm-2">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="fa fa-users"></i> Etiquetas
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-            <div class="list-group labels-list">
-                {% for label in data['labels'] %}
-                <button class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
-                {% endfor %}
-            </div>
-        </div>
-        <!-- /.panel-body -->
-    </div>
+<div class="list-group labels-list panel-etiquetas-flotante">
+    {% for label in data['labels'] %}
+    <button class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
+    {% endfor %}
 </div>
+
+
 {% endblock %}
 {% block scripts %}
     {{super()}}

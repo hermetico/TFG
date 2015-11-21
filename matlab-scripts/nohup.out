@@ -1,0 +1,60 @@
+
+Executed: lun nov 16 18:54:37 CET 2015
+
+================================================================================
+|                                                                              |
+| This script will launch Rectimages, which is a matlab script which rotates   |
+| crops and resized images from a wearable camera, based in the information    |
+| contained in the meta folders.                                               |
+| Folders which don't contain a meta folder inside won't be processed          |
+|                                                                              |
+================================================================================
+
+Executing Rectimages recursively in /home/hermetico/Pictures/test matlab/fotos
+This may take some time
+
+>> matlab -nodesktop -nojvm -r "folder='/home/hermetico/Pictures/test matlab/fotos/2/2015/03/24';exit_on_end=1;output_size=256;Rectimages" >output.txt 2>&1
+
+>> matlab -nodesktop -nojvm -r "folder='/home/hermetico/Pictures/test matlab/fotos/2/2015/03/04';exit_on_end=1;output_size=256;Rectimages" >output.txt 2>&1
+
+
+Copying the result images preserving the same folder structure to /home/hermetico/dev/annotation-tool/annotation-tool/import bucket
+This should be faster
+
+>> mkdir -p '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/24'
+>> cp -R '/home/hermetico/Pictures/test matlab/fotos/2/2015/03/24_Crop/.' '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/24/'
+
+>> mkdir -p '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/04'
+>> cp -R '/home/hermetico/Pictures/test matlab/fotos/2/2015/03/04_Crop/.' '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/04/'
+
+BYE
+
+Executed: lun nov 16 19:04:04 CET 2015
+
+================================================================================
+|                                                                              |
+| This script will launch Rectimages, which is a matlab script which rotates   |
+| crops and resized images from a wearable camera, based in the information    |
+| contained in the meta folders.                                               |
+| Folders which don't contain a meta folder inside won't be processed          |
+|                                                                              |
+================================================================================
+
+Executing Rectimages recursively in /home/hermetico/Pictures/test matlab/fotos
+This may take some time
+
+>> matlab -nodesktop -nojvm -r "folder='/home/hermetico/Pictures/test matlab/fotos/2/2015/03/24';exit_on_end=1;output_size=256;Rectimages" >output-1.txt 2>&1
+
+>> matlab -nodesktop -nojvm -r "folder='/home/hermetico/Pictures/test matlab/fotos/2/2015/03/04';exit_on_end=1;output_size=256;Rectimages" >output-2.txt 2>&1
+
+
+Copying the result images preserving the same folder structure to /home/hermetico/dev/annotation-tool/annotation-tool/import bucket
+This should be faster
+
+>> mkdir -p '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/24'
+>> cp -R '/home/hermetico/Pictures/test matlab/fotos/2/2015/03/24_Crop/.' '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/24/'
+
+>> mkdir -p '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/04'
+>> cp -R '/home/hermetico/Pictures/test matlab/fotos/2/2015/03/04_Crop/.' '/home/hermetico/dev/annotation-tool/annotation-tool/import bucket/2/2015/03/04/'
+
+BYE

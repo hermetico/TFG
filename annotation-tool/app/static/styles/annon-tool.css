@@ -4,7 +4,7 @@
   border-width:5px;
   border-style:solid;
     /* 160x120 + 2 de borde de imagen*/
-  height:140px;
+  height:274px;
   padding:0;
   margin:0;
  }
@@ -31,31 +31,206 @@
 
 .labels-list button{width:100%;}
 
+.panel-etiquetas-flotante{
+  width:200px;
+  position:fixed;
+  right:-150px;
+  top:150px;
+  transition: all .5s ease;
+}
+.panel-etiquetas-flotante:hover{
+  right:0px;
+}
+.panel-etiquetas-flotante button{ height:35px;}
 
+/********************************** COLORS ***************************/
 
 .pictures-list label.picture-label-1{
-    border-color:transparent;
-    background-color:transparent;
+    border-color:#fff;
+    background-color:#fff;
 }
 .label-1{
-  background-color:transparent;
+  background-color:#fff;
 }
-
 
 .pictures-list label.picture-label-2{
-    border-color:#AF3232;
-    background-color:#AF3232;
+    border-color:#9CC8D6;
+    background-color:#9CC8D6;
 }
 .label-2{
-  background-color:#AF3232;
-  color:#fff;
+  background-color:#9CC8D6;
+  color:#000;
 }
 
 .pictures-list label.picture-label-3{
-    border-color:#CC3399;
-    background-color:#CC3399;
+    border-color:#C79CD6;
+    background-color:#C79CD6;
 }
 .label-3{
-  background-color:#CC3399;
+  background-color:#C79CD6;
+  color:#000;
+}
+
+.pictures-list label.picture-label-4{
+    border-color:#D6AA9C;
+    background-color:#D6AA9C;
+}
+.label-4{
+  background-color:#D6AA9C;
+  color:#000;
+}
+
+.pictures-list label.picture-label-5{
+    border-color:#ABD69C;
+    background-color:#ABD69C;
+}
+.label-5{
+  background-color:#ABD69C;
+  color:#000;
+}
+
+.pictures-list label.picture-label-6{
+    border-color:#FFA8D5;
+    background-color:#FFA8D5;
+}
+.label-6{
+  background-color:#FFA8D5;
+  color:#000;
+}
+
+.pictures-list label.picture-label-7{
+    border-color:#FFFDA8;
+    background-color:#FFFDA8;
+}
+.label-7{
+  background-color:#FFFDA8;
+  color:#000;
+}
+
+.pictures-list label.picture-label-8{
+    border-color:#A8FFD2;
+    background-color:#A8FFD2;
+}
+.label-8{
+  background-color:#A8FFD2;
+  color:#000;
+}
+
+.pictures-list label.picture-label-9{
+    border-color:#A8AAFF;
+    background-color:#A8AAFF;
+}
+.label-9{
+  background-color:#A8AAFF;
+  color:#000;
+}
+
+.pictures-list label.picture-label-10{
+    border-color:#E770FF;
+    background-color:#E770FF;
+}
+.label-10{
+  background-color:#E770FF;
+  color:#000;
+}
+
+.pictures-list label.picture-label-11{
+    border-color:#FFA070;
+    background-color:#FFA070;
+}
+.label-11{
+  background-color:#FFA070;
+  color:#000;
+}
+
+.pictures-list label.picture-label-12{
+    border-color:#70CFFF;
+    background-color:#70CFFF;
+}
+.label-12{
+  background-color:#70CFFF;
+  color:#000;
+}
+
+.pictures-list label.picture-label-13{
+    border-color:#87FF70;
+    background-color:#87FF70;
+}
+.label-13{
+  background-color:#87FF70;
+  color:#000;
+}
+
+.pictures-list label.picture-label-14{
+    border-color:#FF7070;
+    background-color:#FF7070;
+}
+.label-14{
+  background-color:#FF7070;
+  color:#000;
+}
+
+.pictures-list label.picture-label-15{
+    border-color:#D45386;
+    background-color:#D45386;
+}
+.label-15{
+  background-color:#D45386;
+  color:#000;
+}
+
+
+.pictures-list label.picture-label-16{
+    border-color:#C7D453;
+    background-color:#C7D453;
+}
+.label-16{
+  background-color:#C7D453;
+  color:#000;
+}
+
+.pictures-list label.picture-label-17{
+    border-color:#B03C3C;
+    background-color:#B03C3C;
+}
+.label-17{
+  background-color:#B03C3C;
   color:#fff;
 }
+
+.pictures-list label.picture-label-18{
+    border-color:#763CB0;
+    background-color:#763CB0;
+}
+.label-18{
+  background-color:#763CB0;
+  color:#fff;
+}
+
+.pictures-list label.picture-label-19{
+    border-color:#76B03C;
+    background-color:#76B03C;
+}
+.label-19{
+  background-color:#76B03C;
+  color:#fff;
+}
+
+.pictures-list label.picture-label-20{
+    border-color:#4FA1A1;
+    background-color:#4FA1A1;
+}
+.label-20{
+  background-color:#4FA1A1;
+  color:#fff;
+}
+
+.pictures-list label.picture-label-21{
+    border-color:#5E85C4;
+    background-color:#5E85C4;
+}
+.label-21{
+  background-color:#5E85C4;
+  color:#fff;
+}
+
