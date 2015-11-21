@@ -8,5 +8,8 @@
 To get started, type one of these: helpwin, helpdesk, or demo.
 For product information, visit www.mathworks.com.
  
-{Warning: Directory already exists.} 
-{> In Rectimages at 65} 
+Processing /home/hermetico/Pictures/test matlab/fotos/2/2015/03/24
+Resizing output to 256 * 256
+Processed 6/6 images.
+Done
+Result stored in /home/hermetico/Pictures/test matlab/fotos/2/2015/03/24_Crop

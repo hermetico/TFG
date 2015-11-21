@@ -21,7 +21,7 @@
 
 set -o nounset                              # Treat unset variables as an error
 
-MATLABSCRIPT=Rectimages
+MATLABSCRIPT=mainRotate
 MATLABSCRIPTFOLDER=matlab
 #MATLABSCRIPT=foo
 MATLAB_PICTURE_OUTPUT_SIZE=256
@@ -56,8 +56,8 @@ LOG=0
 echo
 echo "================================================================================"
 echo "|                                                                              |"
-echo "| This script will launch Rectimages, which is a matlab script which rotates   |"
-echo "| crops and resized images from a wearable camera, based in the information    |"
+echo "| This script will launch mainRotate, which is a matlab script which rotates   |"
+echo "| crops and resizes images from a wearable camera, based in the information    |"
 echo "| contained in the meta folders.                                               |"
 echo "| Folders which don't contain a meta folder inside won't be processed          |"
 echo "|                                                                              |"
@@ -74,7 +74,7 @@ echo
 # user/year/month/day
 # executes the matlab script for each folder
 
-find "$SRCFOLDER" -mindepth 4 -not -path "*meta*"  -not -path "*_Crop*" -type d | while read path
+find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -not -path "*Meta*"  -not -path "*_Crop*" -type d | while read path
 do
     #echo Executing Rectimages in folder: "$path"
     
@@ -94,7 +94,7 @@ echo
 
 
 # Retrieves all the folders, but only with the next structure
-find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -path "*_Crop*" -type d | while read srcfolder
+find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -path "*_Crop*" -type d | while read srcfolder
 do
     # changes the substring of the source folder to the destiny folder
     dstfolder="${srcfolder/$SRCFOLDER/$DSTFOLDER}"

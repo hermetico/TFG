@@ -8,7 +8,7 @@
 if exist('folder', 'var'),
   path_carpeta_img=folder;
 else
-  path_carpeta_img=uigetdir('/','Seleccione el directorio de las imagenes');  
+  path_carpeta_img=uigetdir('/home/hermetico/Pictures/','Seleccione el directorio de las imagenes');  
 end
 
 % Images Directory
@@ -91,6 +91,7 @@ for i=1:(fin)
                                
                 % redimensionamos la imagen si hay parametro de entrada
                 if exist('output_size', 'var'),
+                  print(['Resizing to ' output_size]) 
                   im_cropped = imresize(im_cropped,[ output_size output_size]);
 
                 end             
