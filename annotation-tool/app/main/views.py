@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, session, redirect, url_for, flash, json, Response, request
+from flask import render_template, session, redirect, url_for, flash, json, Response, request, send_file
 from flask.ext.login import login_required
 from .decorators import admin_required
 from . import main
 from .. import db
 from ..models import User, Label, Picture, Role
 from .forms import NewUserForm, NewLabelForm
+from flask import current_app as app
 
 PAGESIZE = 50
 
@@ -64,6 +65,44 @@ def labels():
 
     label_list = Label.query.order_by(Label.id).all()
     return render_template('labels.html', form=form, labels=label_list)
+
+
+@main.route('/export/labels.csv', methods=['GET'])
+@login_required
+@admin_required
+def export_csv():
+    pictures = Picture.query.all()
+    response = ""
+    for picture in pictures:
+        response += '%s;%s\n' % (picture.label_id, picture.path)
+    return Response(response, mimetype='text/csv')
+
+
+@main.route('/export/dataset.zip', methods=['GET'])
+@login_required
+@admin_required
+def export_dataset():
+    import shutil
+    pictures = Picture.query.all()
+    media_folder = app.config['IMPORTED_PICTURES_FOLDER']
+    static_folder = app.config['STATIC_FOLDER']
+    zip_file = static_folder + '/dataset'
+
+    # creates the csv
+    with open(media_folder + "/labels.csv", "wb") as fo:
+        for picture in pictures:
+            fo.write('%s;%s\n' % (picture.label_id, picture.path))
+
+    # creates the zip
+    #zip_file = zipfile.ZipFile(static_folder + '/dataset.zip', 'w')
+    #for root, dirs, files in os.walk(media_folder):
+    #    for file in files:
+    #        zip_file.write(os.path.join(root, file))
+
+    # creates the zip using shutil
+    shutil.make_archive(zip_file, 'zip', media_folder)
+
+    return send_file(zip_file + '.zip', mimetype='application/zip')
 
 
 #################################################

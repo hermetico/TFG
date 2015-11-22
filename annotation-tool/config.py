@@ -7,7 +7,7 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEAR_DOWN = True
     IMPORT_FOLDER = os.path.join(basedir, "import bucket")
     IMPORTED_PICTURES_FOLDER = os.path.join(basedir, "app", "static", "media")
-
+    STATIC_FOLDER = os.path.join(basedir, "app", "static")
 
     @staticmethod
     def init_app(app):

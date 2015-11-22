@@ -18,6 +18,6 @@ annon-tool-uwsgi.ini
 #media files
 *import bucket/
 *media/
-
+*.zip
 # production database
 annotation-tool/data.sqlite
