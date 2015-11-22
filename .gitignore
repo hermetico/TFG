@@ -25,3 +25,6 @@ annotation-tool/data.sqlite
 # log files
 nohup.out
 output-*
+
+#dunno filws
+.fuse*
