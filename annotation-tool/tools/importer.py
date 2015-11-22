@@ -36,14 +36,14 @@ def moveFilesToFolder(origin, destiny, folders):
     for folder in folders:
         src = os.path.join(origin, folder)
         # como van a haber archivos con imagenes y algunos que no , utilizaremos el comando rsync
-        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny]
+        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny], "&"
         #command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
         #command = r'cp -R %s %s' %(src, destiny)
         p = subprocess.Popen(command)
         p.wait()
 
     # de destiny eliminamos las carpetas vacias
-    command = ["find", destiny, "-empty", "-type", "d", "-delete"]
+    command = ["find", destiny, "-empty", "-type", "d", "-delete", "&"]
     p = subprocess.Popen(command)
     p.wait()
 
@@ -126,7 +126,9 @@ def load(context):
                     dayroute = os.path.join(monthroute, day)
                     #pictures = [folder for folder in os.listdir(dayroute)]
                     # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
-                    for picture in sorted(os.listdir(dayroute)):
+                    pictures = sorted(os.listdir(dayroute))
+                    print "Importing %s pictures" % len(pictures)
+                    for picture in pictures:
                         path = os.path.join(user, year, month, day, picture)
                         time = getTimeFromName(picture)
                         nDatetime = getDateTimeFromParams(year, month, day, time)
