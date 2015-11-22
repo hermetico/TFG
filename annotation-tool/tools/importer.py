@@ -8,6 +8,14 @@ TIME_FORMAT = "%H:%M:%S"
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
+def RepresentsInt(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+
 def getDateTimeFromParams(year, month, day, time):
     """Devuelve un objeto fecha a partir de los parametros con el siguiente
     formato de salida:
@@ -28,14 +36,14 @@ def moveFilesToFolder(origin, destiny, folders):
     for folder in folders:
         src = os.path.join(origin, folder)
         # como van a haber archivos con imagenes y algunos que no , utilizaremos el comando rsync
-        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny]
+        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny], "&"
         #command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
         #command = r'cp -R %s %s' %(src, destiny)
         p = subprocess.Popen(command)
         p.wait()
 
     # de destiny eliminamos las carpetas vacias
-    command = ["find", destiny, "-empty", "-type", "d", "-delete"]
+    command = ["find", destiny, "-empty", "-type", "d", "-delete", "&"]
     p = subprocess.Popen(command)
     p.wait()
 
@@ -50,6 +58,23 @@ def moveFilesToFolder(origin, destiny, folders):
         p.wait()
 
     pass
+
+
+def check_users(db, User, users):
+    delete_users = []
+    for user in users:
+        if not RepresentsInt(user):
+            delete_users.append(user)
+            continue
+        u = User.query.filter_by(id=user)
+        if u is None:
+            delete_users.appaned(user)
+
+    for u in delete_users:
+        print "Skipping %s folder" %u
+        users.pop(users.index(u))
+
+    return users
 
 
 def check_new_user(db, User, id):
@@ -78,13 +103,12 @@ def load(context):
 
     # los usuarios son el primer nivel en la carpeta
     users = sorted([folder for folder in os.listdir(route) if os.path.isdir(os.path.join(route, folder))])
+
+    # comprobamos que las carpetas son validas
+    users = check_users(db, User, users)
     # por cada usuario
     print "Incorporando nuevas imagenes a la base de datos"
     for user in users:
-        # comprobamos que no sea un user nuevo
-        if check_new_user(db, User, user):
-            print "Skipping %s" %(user)
-            continue
 
         userroute = os.path.join(route, user)
         # sacamos los años por usuario
@@ -102,7 +126,9 @@ def load(context):
                     dayroute = os.path.join(monthroute, day)
                     #pictures = [folder for folder in os.listdir(dayroute)]
                     # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
-                    for picture in sorted(os.listdir(dayroute)):
+                    pictures = sorted(os.listdir(dayroute))
+                    print "Importing %s pictures" % len(pictures)
+                    for picture in pictures:
                         path = os.path.join(user, year, month, day, picture)
                         time = getTimeFromName(picture)
                         nDatetime = getDateTimeFromParams(year, month, day, time)
