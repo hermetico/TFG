@@ -18,7 +18,8 @@
     {% include 'breadcrumb.html' %}
 {% endblock %}
 {% block content %}
-<div class="col-lg-12">
+
+<div class="col-lg-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-users"></i> {{ data.label}}
@@ -54,4 +55,28 @@
         <!-- /.panel-body -->
     </div>
 </div>
+
+{% if data['less-labeled'] %}
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-users"></i> Dias con menos imagenes etiquetadas
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                {% for row in data['less-labeled'] %}
+                <a href="{{ data.baseurl }}/{{ row[1] }}/{{ row[2] }}/{{ row[3] }}" class="list-group-item">
+                    {{ row[0] }}
+                    <span class="pull-right text-muted small"><em>{{ row[4] }} imagenes sin etiqueta</em>
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

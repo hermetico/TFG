@@ -78,16 +78,29 @@ def cataloguser(userid):
     if user is not None:
         label = 'year'
         rows = db.session.query(db.func.strftime('%Y', Picture.date).label(label))\
-                .filter(Picture.user_id==user.id).group_by(label).all()
+                .filter(Picture.user_id == user.id).group_by(label).all()
         rows = [x[0] for x in rows]
 
+        less_labeled = db.session.query(
+                db.func.strftime('%Y-%m-%d', Picture.date).label('each_day'),
+                db.func.strftime('%Y', Picture.date).label('year'),
+                db.func.strftime('%m', Picture.date).label('month'),
+                db.func.strftime('%d', Picture.date).label('day'),
+                db.func.count().label('no_labeled')
+            ) \
+            .filter(Picture.label_id == 1, Picture.user_id == user.id)\
+            .group_by('each_day')\
+            .order_by(db.desc('no_labeled')).limit(20).all()
+
         baseurl = url_for('.cataloguser', userid=userid)
+
         if not rows:
             flash('El usuario %s no tiene imagenes asociadas' % user.username, 'info')
             return redirect(url_for('.index'))
         breadcrumb = [{'text': 'catalogo', 'url': '/catalog/%i' % userid}]
 
-        return render_template('catalog.html', data={'label': 'Año', 'rows': rows, 'baseurl': baseurl},
+        return render_template('catalog.html',
+                               data={'label': 'Año', 'rows': rows, 'baseurl': baseurl, 'less-labeled':less_labeled },
                                breadcrumbs=breadcrumb)
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
