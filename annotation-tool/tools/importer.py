@@ -82,7 +82,10 @@ def load(context):
     print "Incorporando nuevas imagenes a la base de datos"
     for user in users:
         # comprobamos que no sea un user nuevo
-        if check_new_user(db, User, user): return
+        if check_new_user(db, User, user):
+            print "Skipping %s" %(user)
+            continue
+
         userroute = os.path.join(route, user)
         # sacamos los años por usuario
         years = sorted([folder for folder in os.listdir(userroute) if os.path.isdir(os.path.join(userroute, folder))])
