@@ -36,7 +36,7 @@ def moveFilesToFolder(origin, destiny, folders):
     for folder in folders:
         src = os.path.join(origin, folder)
         # como van a haber archivos con imagenes y algunos que no , utilizaremos el comando rsync
-        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny], "&"
+        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny, "&"]
         #command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
         #command = r'cp -R %s %s' %(src, destiny)
         p = subprocess.Popen(command)
