@@ -36,14 +36,14 @@ def moveFilesToFolder(origin, destiny, folders):
     for folder in folders:
         src = os.path.join(origin, folder)
         # como van a haber archivos con imagenes y algunos que no , utilizaremos el comando rsync
-        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny, "&"]
+        command = ["rsync", "-av", "--include='*.jpg'", "--include='*/'", "--exclude='*'", src, destiny]
         #command = ["cp", "-R", src, destiny] # evitamos problemas de espacios en nombres
         #command = r'cp -R %s %s' %(src, destiny)
         p = subprocess.Popen(command)
         p.wait()
 
     # de destiny eliminamos las carpetas vacias
-    command = ["find", destiny, "-empty", "-type", "d", "-delete", "&"]
+    command = ["find", destiny, "-empty", "-type", "d", "-delete"]
     p = subprocess.Popen(command)
     p.wait()
 
@@ -104,7 +104,8 @@ def load(context):
     # los usuarios son el primer nivel en la carpeta
     users = sorted([folder for folder in os.listdir(route) if os.path.isdir(os.path.join(route, folder))])
 
-    # comprobamos que las carpetas son validas
+    # comprobamos que las carpetas son validas, la funcion check elimina las que
+    # no
     users = check_users(db, User, users)
     # por cada usuario
     print "Incorporando nuevas imagenes a la base de datos"
