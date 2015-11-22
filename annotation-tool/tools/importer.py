@@ -8,6 +8,14 @@ TIME_FORMAT = "%H:%M:%S"
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
+def RepresentsInt(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+
 def getDateTimeFromParams(year, month, day, time):
     """Devuelve un objeto fecha a partir de los parametros con el siguiente
     formato de salida:
@@ -52,6 +60,23 @@ def moveFilesToFolder(origin, destiny, folders):
     pass
 
 
+def check_users(db, User, users):
+    delete_users = []
+    for user in users:
+        if not RepresentsInt(user):
+            delete_users.append(user)
+            continue
+        u = User.query.filter_by(id=user)
+        if u is None:
+            delete_users.appaned(user)
+
+    for u in delete_users:
+        print "Skipping %s folder" %u
+        users.pop(users.index(u))
+
+    return users
+
+
 def check_new_user(db, User, id):
     user = User.query.filter_by(id=id)
     if user is None:
@@ -78,13 +103,12 @@ def load(context):
 
     # los usuarios son el primer nivel en la carpeta
     users = sorted([folder for folder in os.listdir(route) if os.path.isdir(os.path.join(route, folder))])
+
+    # comprobamos que las carpetas son validas
+    users = check_users(db, User, users)
     # por cada usuario
     print "Incorporando nuevas imagenes a la base de datos"
     for user in users:
-        # comprobamos que no sea un user nuevo
-        if check_new_user(db, User, user):
-            print "Skipping %s" %(user)
-            continue
 
         userroute = os.path.join(route, user)
         # sacamos los años por usuario
