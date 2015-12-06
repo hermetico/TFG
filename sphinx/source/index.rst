@@ -23,6 +23,7 @@ Contenidos
 .. toctree::
 
     getting_started
+    deploying
 
 
 Indices and tables
