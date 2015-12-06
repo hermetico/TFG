@@ -59,17 +59,25 @@ def create_default_label(db, Label):
     if label:
         print "Default label is already in the database, skipping this step"
         return
-    nombre = raw_input("Inserta un nombre para la etiqueta por defecto(default:sin-etiqueta)") or "sin-etiqueta"
+    nombre = raw_input("Inserta un nombre para la etiqueta por defecto(default:sin-etiqueta): ") or "sin-etiqueta"
     label = Label(name=nombre)
     db.session.add(label)
 
-    # añadimos las etiquetas extra
-    for nombre in DEFAULT_LABELS:
-        print "Añadiendo etiquta %s"%(nombre)
-        label = Label(name=nombre)
-        db.session.add(label)
-
     db.session.commit()
+
+    print "Hay un conjunto de etiquetas que puede ser incorporado por defecto, son las siguientes:"
+    print
+
+    print ", ".join(DEFAULT_LABELS)
+
+    if (raw_input("Quieres añadir el conjunto de etiquetas definidas por defecto, responde con 'y' o 'n' (default:y): ") or "y") == "y":
+        # añadimos las etiquetas extra
+        for nombre in DEFAULT_LABELS:
+            print "Añadiendo etiquta %s"%(nombre)
+            label = Label(name=nombre)
+            db.session.add(label)
+
+        db.session.commit()
 
 
 def initial_deploy(context):
