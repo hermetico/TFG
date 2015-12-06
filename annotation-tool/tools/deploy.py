@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# modifica esta lista de etiquetas a tu gusto para realizar el deploy
 DEFAULT_LABELS = [
     'Tareas domesticas',
     'Conduciendo',
