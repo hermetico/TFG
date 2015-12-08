@@ -10,7 +10,7 @@ Importando imágenes
 Pasos previos
 =============
 
-Para importar imagenes primero has de crear un usuario a nombre del cual iran asignadas dentro de la base de datos. Si solo vas a importar imagenes de una persona, puedes hacerlo sobre el usuairo adminitrador. 
+Para importar imagenes primero has de crear un usuario a nombre del cual iran asignadas dentro de la base de datos. Si solo vas a importar imagenes de una persona, puedes hacerlo sobre el usuario administrador. 
 
 Importar imagenes
 =================
