@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Importando imágenes &mdash; Annotation Tool 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Annotation Tool 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Ejecutando la aplicación" href="deploying.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Annotation Tool</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Instalación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-la-aplicacion-desde-github">Instalando la aplicación desde Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-a-partir-de-una-copia-existente">Instalando a partir de una copia existente</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploying.html">Ejecutando la aplicación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deploying.html#probando-la-instalacion">Probando la instalación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying.html#puesta-a-punto">Puesta a punto</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Importando imágenes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pasos-previos">Pasos previos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importar-imagenes">Importar imagenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tratamiento-de-imagenes-previo-a-la-importacion">Tratamiento de imagenes previo a la importación</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Annotation Tool</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Importando imágenes</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/import-files.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="importando-imagenes">
+<h1>Importando imágenes<a class="headerlink" href="#importando-imagenes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pasos-previos">
+<span id="importing-images"></span><h2>Pasos previos<a class="headerlink" href="#pasos-previos" title="Permalink to this headline">¶</a></h2>
+<p>Para importar imagenes primero has de crear un usuario a nombre del cual iran asignadas dentro de la base de datos. Si solo vas a importar imagenes de una persona, puedes hacerlo sobre el usuario administrador.</p>
+</div>
+<div class="section" id="importar-imagenes">
+<h2>Importar imagenes<a class="headerlink" href="#importar-imagenes" title="Permalink to this headline">¶</a></h2>
+<p>Las imagenes que van a ser importadas han de estar en la carpeta <code class="docutils literal"><span class="pre">TFG/annotation-tool/import</span> <span class="pre">bucket</span></code> y puesto que originalmente es para trabajar con la imagenes de la camara Clip narrative, las imagenes han de mantener la siguiente estructura:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">id</span><span class="o">/</span><span class="n">year</span><span class="o">/</span><span class="n">month</span><span class="o">/</span><span class="n">day</span><span class="o">/</span><span class="n">time</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>Como las imagenes de la camara clip narrative ya nos dan la estructura de <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code> lo unico que tenemos que hacer es copiar las imagenes que queremos importar dentro de la carpeta <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket/&lt;id&gt;</span></code> donde id sera la id del usuario al cual asociaremos las imagenes.</p>
+<p>Una vez hemos copiado las imagenes que queremos importar, lanzaremos el script de importacion:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd TFG/annotation-tool
+$ python manage.py import_pictures
+</pre></div>
+</div>
+<p>Este script ira añadiendo las imagenes a la base de datos, les asociará el id especificado en la carpeta y además les asociará la etiqueta por defecto especificada en el deploy.</p>
+<p>Cuando el script termine verás que ya no esta la carpeta que creaste, las imagenes se habran movido a la carpeta <code class="docutils literal"><span class="pre">TFG/annotation-tool/appstatic/media/</span></code></p>
+</div>
+<div class="section" id="tratamiento-de-imagenes-previo-a-la-importacion">
+<h2>Tratamiento de imagenes previo a la importación<a class="headerlink" href="#tratamiento-de-imagenes-previo-a-la-importacion" title="Permalink to this headline">¶</a></h2>
+<p>Es posible que quieras tratar las imagenes antes de importarlas al sistema, para ello se han incluido dos scripts, uno que hace practicamente todos los pasos necesarios : rotar, cropar y redimensionar. Y un segundo script que tan sólo redimensiona las imagenes.</p>
+<p>Rotando, cropando y redimensionando</p>
+<hr class="docutils" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Para importar imagenes de la camara clip narrative, se ha incluido un script que hace uso de librerias matlab. Asegurate de tener instalado matlab antes de ejecutar el script.</p>
+</div>
+<p>Ves a la carpeta <code class="docutils literal"><span class="pre">TFG/matlab-scripts</span></code> en la cual encontraras un archivo llamado <code class="docutils literal"><span class="pre">main.sh</span></code> el cual funciona de la siguiente manera:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ ./main.sh &lt;path-carpeta-origen&gt; &lt;path-carpeta-destino&gt;
+</pre></div>
+</div>
+<p>Este script hará un rotate, crop y un resize de las imagenes que contenga la carpeta origen y guardará el resultado en la carpeta destino manteniendo su estructura interna. Además, te ira informando por pantalla de los comandos que va ejecutando.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>La camara narrative clip mantiene la siguiente estructura de carpetas <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code>. Este script espera encontrar la estructura <code class="docutils literal"><span class="pre">name/year/month/day/time.jpg</span></code> dentro de la carpeta origen indicada.</p>
+<p>Dentro de la carpeta <code class="docutils literal"><span class="pre">TFG/matlab-scripts/matlab/</span></code> se guardarán los logs de cada proceso matlab ejecutado.</p>
+<p class="last">Puedes indicar que la carpeta destino sea la propia <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket</span></code> asi luego tan solo tendras que modificar la id del usuario</p>
+</div>
+<div class="section" id="solo-redimensionando">
+<h3>Solo redimensionando<a class="headerlink" href="#solo-redimensionando" title="Permalink to this headline">¶</a></h3>
+<p>El segundo script se encuentra en la carpeta <code class="docutils literal"><span class="pre">TFG/scripts</span></code> y se llama <code class="docutils literal"><span class="pre">resize-images.sh</span></code>. Este script tan solo redimensiona las imagenes a un tamaño especificado, para ello hace uso de la libreria imagemagick, en concreto de un script llamado <code class="docutils literal"><span class="pre">mogrify</span></code> ejecuta <code class="docutils literal"><span class="pre">$</span> <span class="pre">man</span> <span class="pre">mogrify</span></code> para asegurarte de que lo tienes instalado. El script funciona de la siguiente manera:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ resize-images.sh &lt;path-carpeta&gt;
+</pre></div>
+</div>
+<p>Como en el caso anterior, ira mostrando por pantalla los comandos que se van ejecutando.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Al igual que el script anterior, espera una estructura de carpetas del tipo <code class="docutils literal"><span class="pre">name/year/month/day/time.jpg</span></code></p>
+<p>En este caso, puedes ejecutar el script sobre la propia carpeta <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket</span></code> para redimensionar todas las imagenes que haya dentro.</p>
+<p class="last">Actualmente el tamaño especificado es de 256x256 pero si quieres lo puedes modificar sobre el propio script en la variable <code class="docutils literal"><span class="pre">SIZE=&quot;256x256&quot;</span></code></p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="deploying.html" class="btn btn-neutral" title="Ejecutando la aplicación"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Juan Marín.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

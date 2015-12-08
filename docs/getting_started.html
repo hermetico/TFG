@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Instalación &mdash; Annotation Tool 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Annotation Tool 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Ejecutando la aplicación" href="deploying.html"/>
+        <link rel="prev" title="Bienvenido a la documentacion del Annotation tool" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Annotation Tool
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Instalación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#instalando-la-aplicacion-desde-github">Instalando la aplicación desde Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instalando-a-partir-de-una-copia-existente">Instalando a partir de una copia existente</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploying.html">Ejecutando la aplicación</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Annotation Tool</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Instalación</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/getting_started.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="instalacion">
+<span id="getting-started"></span><h1>Instalación<a class="headerlink" href="#instalacion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="instalando-la-aplicacion-desde-github">
+<span id="installing-annotation-tool"></span><h2>Instalando la aplicación desde Github<a class="headerlink" href="#instalando-la-aplicacion-desde-github" title="Permalink to this headline">¶</a></h2>
+<p>La aplicación esta alojada en <a class="reference external" href="http://github.com">Github</a> con lo cual solo necesitarás clonar el repositorio haciendo:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone http://github.com/hermetico/TFG.git
+</pre></div>
+</div>
+<p>Esto te deberia crear una estructura similar a la siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre>TFG/
+  |- annotation-tool/
+      |- app/
+      |- manage.py
+      ...
+  |- matlab-scripts/
+  |- sphinx/
+  |- docs/
+  |- log/
+  ...
+</pre></div>
+</div>
+<p>Esto automaticamente te creara una carpeta llamada TFG con el contenido de la web dentro, incluida la documentacion.
+Si no
+tienes git instalado tan solo tienes que lanzar el siguiente comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install git
+</pre></div>
+</div>
+<p>Una vez descargado tendras que instalar las dependencias. Es recomendable que utilizes virtualenv.
+Puedes instalar virtualenv con el siguiente comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install virtualenv
+</pre></div>
+</div>
+<p>Ahora nos vamos a la raiz de la web e iniciamos un virtualenv para instalara ahi todos los modulos python
+que necesitamos en sus correspondientes versiones:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd TFG/annotation-tool
+$ virtualenv venv
+$ source venv/bin/activate
+</pre></div>
+</div>
+<p>Esto te creara el virtualenv en <code class="docutils literal"><span class="pre">TFG/annotation-tool/venv</span></code> aunque no es necesario que lo pongas ahi, lo puedes poner directamente en la raiz del proyecto.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si no utilizas virtualenv, los paquetes se instalaran en el python path que tengas por defecto pudiendo
+causar conflicto de paquetes y versiones</p>
+</div>
+<p>Con esto deberiamos ver <code class="docutils literal"><span class="pre">(venv)</span></code> en la consola, justo en la linea que escribimos los comandos. Para desactivar el enviroment basta con ejecutar el comando <code class="docutils literal"><span class="pre">deactivate</span></code>.</p>
+<img alt="_images/virtualenv-prompt.jpg" src="_images/virtualenv-prompt.jpg" />
+<p>Ahora podemos instalar los paquetes que se encuentran listados en el archivo <code class="file docutils literal"><span class="pre">requirements.txt</span></code> con el siguiente comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install -r requirements.txt
+</pre></div>
+</div>
+<p>Para instalar un paquete cualquiera bastaría con hacer <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Flask</span></code> y con esto nos instalaía el paqueteFlask sin necesidad de permisos de super usuario. Estos paquetes se instalan dentro del virtualenv que tenemos activado. Si en ese momento no esta activado el virualenv, pip lo instalara en la ubicación principal de python.
+Utilizando <code class="docutils literal"><span class="pre">-r</span> <span class="pre">requirements.txt</span></code> estamos diciendo a pip que nos instale los paquetes especificados en el archivo <code class="docutils literal"><span class="pre">requirements.txt</span></code>, que ademas incluye las versiones de cada paquete con lo cual el <code class="docutils literal"><span class="pre">enviroment</span></code> generado será exactamente el mismo.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Si en algun momento necesitas actualizar el archivo <code class="docutils literal"><span class="pre">requirements.txt</span></code> bastará con ejecutar el siguiente commando:</p>
+<div class="last highlight-python"><div class="highlight"><pre>$ pip freeze &gt; requirements.txt
+</pre></div>
+</div>
+</div>
+<p>Mas información de <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtualenv</a>  y de <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a></p>
+</div>
+<div class="section" id="instalando-a-partir-de-una-copia-existente">
+<h2>Instalando a partir de una copia existente<a class="headerlink" href="#instalando-a-partir-de-una-copia-existente" title="Permalink to this headline">¶</a></h2>
+<p>Si ya tenías la aplicación, puedes optar por realizar una copia de la misma a partir del directorio raiz. A partir de aqui, elimina la carpteta del virtualenv y vuelve a realizar los pasos de configuración del virtualenv.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deploying.html" class="btn btn-neutral float-right" title="Ejecutando la aplicación" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Bienvenido a la documentacion del Annotation tool" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Juan Marín.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ejecutando la aplicación &mdash; Annotation Tool 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Annotation Tool 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Importando imágenes" href="import-files.html"/>
+        <link rel="prev" title="Instalación" href="getting_started.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Annotation Tool</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Instalación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-la-aplicacion-desde-github">Instalando la aplicación desde Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-a-partir-de-una-copia-existente">Instalando a partir de una copia existente</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ejecutando la aplicación</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#probando-la-instalacion">Probando la instalación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#puesta-a-punto">Puesta a punto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="import-files.html">Importando imágenes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="import-files.html#pasos-previos">Pasos previos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-files.html#importar-imagenes">Importar imagenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-files.html#tratamiento-de-imagenes-previo-a-la-importacion">Tratamiento de imagenes previo a la importacion</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Annotation Tool</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Ejecutando la aplicación</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/deploying.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ejecutando-la-aplicacion">
+<span id="deploying"></span><h1>Ejecutando la aplicación<a class="headerlink" href="#ejecutando-la-aplicacion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="probando-la-instalacion">
+<span id="executing-annotation-tool"></span><h2>Probando la instalación<a class="headerlink" href="#probando-la-instalacion" title="Permalink to this headline">¶</a></h2>
+<p>Ejecutaremos el servidor de pruebas para ver que todo funciona correctamente, para ello solo tienes que ir a la raiz de la aplicación (<code class="docutils literal"><span class="pre">TFG/annotation-tool</span></code>) y ejecutar el servidor con los siguientes comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py runserver
+</pre></div>
+</div>
+<p>Antes de ejecutarlo asegurate de que tienes el <code class="docutils literal"><span class="pre">venv</span></code> activado. Luego deberas ver el siguiente mensaje:</p>
+<div class="highlight-python"><div class="highlight"><pre>Importing environment from .env...
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</pre></div>
+</div>
+<p>Si sale un mensaje parecido es que la instalación esta bien, por ahora no hace falta que abras el navegador, antes debemos realizar una serie de configuraciones.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Si te sale un error como el siguiente:</p>
+<div class="highlight-python"><div class="highlight"><pre>import hmac  File &quot;...../anaconda/lib/python2.7/hmac.py&quot;, line 8, in &lt;module&gt;
+from operator import _compare_digest as compare_digestImportError: cannot import name _compare_digest
+</pre></div>
+</div>
+<p>Es que probablemente estes usando python 2.7.6 que viene con anaconda. En la version 2.7.9 de python este problema no aparece, y el unico cambio que contiene el modulo es que esa linea ya no esta inlcuida. La manera rapida de solucionar este error sin necesidad de actualizar la version de python, que podría afectar otros programas que tengas en el ordenador, es copiar el modulo de anaconda a nuestro virtualenv y eliminar la linea afectada, asi al cargar el modulo nos cargara nuestra version modificada:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cp ~/anaconda/lib/python2.7/hmac.py venv/lib/python2.7/hmac.py
+</pre></div>
+</div>
+<p>Y con nuestro editor de texto eliminamos la linea 8 que contiene:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">_compare_digest</span> <span class="k">as</span> <span class="n">compare_digestImportError</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si partes de una copia, en este paso abriendo el navegador tendrias una copia exacta y funcional de la version de la cual copiaste.</p>
+</div>
+<p>Ahora puedes pulsar <code class="docutils literal"><span class="pre">CTRL+C</span></code> para parar el servidor y configurarlo.</p>
+</div>
+<div class="section" id="puesta-a-punto">
+<h2>Puesta a punto<a class="headerlink" href="#puesta-a-punto" title="Permalink to this headline">¶</a></h2>
+<p>Tanto si descargas la aplicacion desde github como si haces una copia de una versión existente y quieres trabajar desde cero con tus imagenes, es preferible eliminar las bases de datos que puedan haber y vaciar las carpetas de imagenes.</p>
+<p>Las bases de datos estan en la raiz de la y tienen la extension <code class="docutils literal"><span class="pre">.sqlite</span></code>. La base de datos de producción se llama <code class="docutils literal"><span class="pre">data.sqlite</span></code> (duh). Con que elimines esa ya será suficiente. Además, sera necesarió vacíar la carpeta de imagenes.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ rm data.sqlite
+$ rm -r app/static/media
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>En este paso se pediran datos para que la aplicación funcione correctamente, esto es roles: administrador y usuario. Se creará un usuario administrador y a parte se pedira dar nombre a una etiqueta por defecto, que sera la que se asignara a todas las imagenes importadas.</p>
+<p>El ultimo paso será opcional, se pedira si se quiere crear un cojunto de etiquetas, definidas en el archivo <code class="docutils literal"><span class="pre">tools/deploy.py</span></code>. Enn la parte superior del archivo encontraras un a lista:</p>
+<div class="highlight-python"><div class="highlight"><pre># modifica esta lista de etiquetas a tu gusto para realizar el deploy
+DEFAULT_LABELS = [&#39;etiqueta1, etiqueta2, blablabla]
+</pre></div>
+</div>
+<p>Puedes modificar esa lista para tener tus etiquetas a la hora de hace el deploy.</p>
+<p class="last">Piensa que puedes añadir mas adelante desde la propia apliación.</p>
+</div>
+<p>Para realizar las configuraciones iniciales para la aplicación tan solo tienes que ejecutar el siguiente comando en la raiz de la aplicación (recuerda: <code class="docutils literal"><span class="pre">TFG/annotation-tool/</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py deploy
+</pre></div>
+</div>
+<p>Sigue los pasos y ya tendras la aplicación <em>casi</em> lista para ser completamente funcional. Quedará importar imagenes. De todas formas, ejecuta el servidor y ya podras usar la web con el nombre de usuario y contraseña que indicaste en el deploy.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="import-files.html" class="btn btn-neutral float-right" title="Importando imágenes">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral" title="Instalación"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Juan Marín.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

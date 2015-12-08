@@ -54,7 +54,7 @@ def import_pictures():
 def deploy():
     """Create the database, tables and needed users, roles, and labels"""
     from tools import deploy
-    upgrade()
+    #upgrade() shouldn't be necessary
     context = dict(app=app, db=db, User=User, Label=Label, Role=Role)
     deploy.initial_deploy(context)
 
