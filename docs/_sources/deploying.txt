@@ -71,4 +71,4 @@ Para realizar las configuraciones iniciales para la aplicación tan solo tienes 
 
     $ python manage.py deploy
 
-Sigue los pasos y ya tendras la aplicación *casi* a punto para ser utilizada.
+Sigue los pasos y ya tendras la aplicación *casi* lista para ser completamente funcional. Quedará importar imagenes. De todas formas, ejecuta el servidor y ya podras usar la web con el nombre de usuario y contraseña que indicaste en el deploy.
