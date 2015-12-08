@@ -10,10 +10,15 @@ from app.models import User, Role, Picture, Label
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand, upgrade
 
+#print "******LOADING  ENVIROMENT MANUALLY" 
+#os.environ['FLASK_CONFIG'] = 'production'
+#print "Production enviroment loaded"
 
-if os.path.exists('.env'):
+enviroment_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+
+if os.path.exists(enviroment_file):
     print('Importing environment from .env...')
-    for line in open('.env'):
+    for line in open(enviroment_file):
         var = line.strip().split('=')
         if len(var) == 2:
             os.environ[var[0]] = var[1]
