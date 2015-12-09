@@ -28,10 +28,10 @@
             <ul class="nav" id="side-menu">
                 {% if current_user.is_admin %}
                 <li>
-                    <a href="/users"><i class="fa fa-users fa-fw"></i>Usuarios</a>
+                    <a href="{{ url_for('main.users') }}"><i class="fa fa-users fa-fw"></i>Usuarios</a>
                 </li>
                 <li>
-                    <a href="/labels"><i class="fa fa-sticky-note fa-fw"></i>Etiquetas</a>
+                    <a href="{{ url_for('main.labels') }}"><i class="fa fa-sticky-note fa-fw"></i>Etiquetas</a>
                 </li>
                 {% endif %}
                 {% if users_with_pictures %}
@@ -40,7 +40,7 @@
                     <ul class="nav nav-second-level">
                         {% for user in users_with_pictures %}
                         <li>
-                            <a href="/catalog/{{user.id}}" class="presentation")>
+                            <a href="{{ url_for('main.cataloguser', userid=user.id) }}" class="presentation")>
                                 <i class="fa fa-picture-o fa-fw"></i> {{user.username}}
                                 </a>
                         </li>
@@ -49,10 +49,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="/export/labels.csv" title="Descargar etiquetas en CSV"><i class="fa fa-download fa-fw" ></i>Etiquetas</a>
+                    <a href="{{ url_for('main.export_train') }}" title="Descargar relacion imagen:id-etiqueta en txt"><i class="fa fa-download fa-fw" ></i>Train file</a>
                 </li>
                 <li>
-                    <a href="/export/dataset.zip" title="Descargar dataset"><i class="fa fa-file-zip-o fa-fw" ></i>Dataset</a>
+                    <a href="{{ url_for('main.export_labels') }}" title="Descargar relacion id-etiqueta:nombre-etiqueta en txt"><i class="fa fa-download fa-fw" ></i>Labels file</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.export_dataset') }}" title="Descargar dataset completo"><i class="fa fa-file-zip-o fa-fw" ></i>Dataset</a>
                 </li>
                 {% endif %}
             </ul>

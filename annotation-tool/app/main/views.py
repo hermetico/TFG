@@ -67,15 +67,27 @@ def labels():
     return render_template('labels.html', form=form, labels=label_list)
 
 
-@main.route('/export/labels.csv', methods=['GET'])
+@main.route('/export/train.txt', methods=['GET'])
 @login_required
 @admin_required
-def export_csv():
+def export_train():
+    labels = Label.query.all()
+    response = ""
+    for label in labels:
+        response += '%s %s\n' % (label.id, label.name)
+    return Response(response, mimetype='text/txt')
+
+
+@main.route('/export/labels.txt', methods=['GET'])
+@login_required
+@admin_required
+def export_labels():
     pictures = Picture.query.all()
     response = ""
     for picture in pictures:
-        response += '%s;%s\n' % (picture.label_id, picture.path)
-    return Response(response, mimetype='text/csv')
+        response += '%s %s\n' % (picture.path, picture.label_id)
+    return Response(response, mimetype='text/txt')
+
 
 
 @main.route('/export/dataset.zip', methods=['GET'])
@@ -84,20 +96,19 @@ def export_csv():
 def export_dataset():
     import shutil
     pictures = Picture.query.all()
+    labels = Label.query.all()
     media_folder = app.config['IMPORTED_PICTURES_FOLDER']
     static_folder = app.config['STATIC_FOLDER']
     zip_file = static_folder + '/dataset'
 
     # creates the csv
-    with open(media_folder + "/labels.csv", "wb") as fo:
+    with open(media_folder + "/train.txt", "wb") as fo:
         for picture in pictures:
-            fo.write('%s;%s\n' % (picture.label_id, picture.path))
+            fo.write('%s %s\n' % (picture.path, picture.label_id))
 
-    # creates the zip
-    #zip_file = zipfile.ZipFile(static_folder + '/dataset.zip', 'w')
-    #for root, dirs, files in os.walk(media_folder):
-    #    for file in files:
-    #        zip_file.write(os.path.join(root, file))
+    with open(media_folder + "/labels.txt", "wb") as fo:
+        for label in labels:
+            fo.write('%s %s\n' % (label.id, label.name))
 
     # creates the zip using shutil
     shutil.make_archive(zip_file, 'zip', media_folder)
