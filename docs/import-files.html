@@ -138,8 +138,8 @@ $ python manage.py import_pictures
 <div class="section" id="tratamiento-de-imagenes-previo-a-la-importacion">
 <h2>Tratamiento de imagenes previo a la importación<a class="headerlink" href="#tratamiento-de-imagenes-previo-a-la-importacion" title="Permalink to this headline">¶</a></h2>
 <p>Es posible que quieras tratar las imagenes antes de importarlas al sistema, para ello se han incluido dos scripts, uno que hace practicamente todos los pasos necesarios : rotar, cropar y redimensionar. Y un segundo script que tan sólo redimensiona las imagenes.</p>
-<p>Rotando, cropando y redimensionando</p>
-<hr class="docutils" />
+<div class="section" id="rotando-cropando-y-redimensionando">
+<h3>Rotando, cropando y redimensionando<a class="headerlink" href="#rotando-cropando-y-redimensionando" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Para importar imagenes de la camara clip narrative, se ha incluido un script que hace uso de librerias matlab. Asegurate de tener instalado matlab antes de ejecutar el script.</p>
@@ -154,6 +154,7 @@ $ python manage.py import_pictures
 <p>La camara narrative clip mantiene la siguiente estructura de carpetas <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code>. Este script espera encontrar la estructura <code class="docutils literal"><span class="pre">name/year/month/day/time.jpg</span></code> dentro de la carpeta origen indicada.</p>
 <p>Dentro de la carpeta <code class="docutils literal"><span class="pre">TFG/matlab-scripts/matlab/</span></code> se guardarán los logs de cada proceso matlab ejecutado.</p>
 <p class="last">Puedes indicar que la carpeta destino sea la propia <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket</span></code> asi luego tan solo tendras que modificar la id del usuario</p>
+</div>
 </div>
 <div class="section" id="solo-redimensionando">
 <h3>Solo redimensionando<a class="headerlink" href="#solo-redimensionando" title="Permalink to this headline">¶</a></h3>

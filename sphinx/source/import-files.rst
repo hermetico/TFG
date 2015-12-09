@@ -39,7 +39,6 @@ Tratamiento de imagenes previo a la importación
 Es posible que quieras tratar las imagenes antes de importarlas al sistema, para ello se han incluido dos scripts, uno que hace practicamente todos los pasos necesarios : rotar, cropar y redimensionar. Y un segundo script que tan sólo redimensiona las imagenes.
 
 Rotando, cropando y redimensionando
-
 -----------------------------------
 
 .. warning::
