@@ -19,6 +19,7 @@ annon-tool-uwsgi.ini
 *import bucket/
 *media/
 *.zip
+pre-import/
 
 # production database
 annotation-tool/data.sqlite
@@ -31,3 +32,4 @@ output-*
 .fuse*
 # ignoring docs
 sphinx/build/
+
