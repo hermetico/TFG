@@ -22,7 +22,7 @@
                 {% for user in users %}
                 <div class="list-group-item">
                     {{ user.username}}
-                    <span class="pull-right text-muted small"><em>{% if user.is_admin %} Admin {% else %} id: {{ user.id }} {% endif %}</em>
+                    <span class="pull-right text-muted small"><em> {% if user.is_admin %} Admin {% else %} User {% endif %}id: {{ user.id }}</em>
                     </span>
                 </div>
                 {% endfor %}
