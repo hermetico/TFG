@@ -53,16 +53,19 @@ def users():
 def labels():
     form = NewLabelForm()
     if form.validate_on_submit():
-        label = Label.query.filter_by(name=form.label.data).first()
-        if label is not None:
-            flash('La etiqueta %s ya existe' % label.name, 'danger')
-            return redirect(url_for('.labels'))
-        label = Label(name=form.label.data)
-        db.session.add(label)
+        #batch label creation
+        labels = form.label.data
+        for nlabel in labels.split(";"):
+            nlabel = nlabel.strip()
+            label = Label.query.filter_by(name=nlabel).first()
+            if label is not None:
+                flash('La etiqueta %s ya existe' % label.name, 'danger')
+            else:
+                label = Label(name=nlabel)
+                db.session.add(label)
+                flash('Etiqueta  %s registrada correctamente' %label.name, 'success')
         db.session.commit()
-        flash('Etiqueta  %s registrada correctamente' %label.name, 'success')
         return redirect(url_for('.labels'))
-
     label_list = Label.query.order_by(Label.id).all()
     return render_template('labels.html', form=form, labels=label_list)
 
