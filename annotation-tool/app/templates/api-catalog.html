@@ -52,7 +52,7 @@ ng-app="annonApp"
 
 <div class="list-group labels-list panel-etiquetas-flotante">
     {% for label in data['labels'] %}
-    <button class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
+    <button title="{{label.name}}" class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
     {% endfor %}
 </div>
 
