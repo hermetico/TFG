@@ -31,7 +31,9 @@ fi
 
 SRCFOLDER="$1"
 NOW="$(date)"
-SIZE="256x256"
+# los simbolos \! indican que no es necesario mantener la proporcion de las imagenes
+# con lo cual tendremos seguro 256x256 aunque se deformen
+SIZE="256x256\!"
 
 echo
 echo "================================================================================"
