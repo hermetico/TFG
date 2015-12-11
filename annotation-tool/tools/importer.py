@@ -143,6 +143,6 @@ def load(context):
     # movemos todos los arhivos una vez insertados en la bd
     moveFilesToFolder(route, destiny, users)
     if total > 0:
-        print "Up to %s pictures imported, let's tag them!!"
+        print "Up to %s pictures imported, let's tag them!!" %total
     else:
         print "0 pictures imported, looks like something went wrong :("
