@@ -4,10 +4,29 @@
     {{super()}} - Principal
 {% endblock %}
 
-{% block content_title %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+{% endblock %}
 
+{% block content_title %}
+    <h1 class="page-header">Dashboard</h1>
 {% endblock %}
 
 {% block content %}
-
+<div class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-users"></i> Clasificacion actual
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                {{ chart.render()|safe }}
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
 {% endblock %}

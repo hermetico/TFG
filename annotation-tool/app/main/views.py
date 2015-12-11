@@ -25,7 +25,13 @@ def index():
 @main.route('/main')
 @login_required
 def main_page():
-    return render_template('index.html')
+    import pygal
+    data = Label.query.all()
+    chart = pygal.Bar()
+    chart.x_labels = ["Num Pictures"]
+    for label in data:
+        chart.add(label.name, label.pictures.count())
+    return render_template('index.html', chart=chart)
 
 
 @main.route('/users', methods=['GET', 'POST'])
