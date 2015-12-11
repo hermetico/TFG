@@ -100,7 +100,7 @@ def load(context):
     Picture = context['Picture']
     db = context['db']
     User = context['User']
-
+    total = 0
     # los usuarios son el primer nivel en la carpeta
     users = sorted([folder for folder in os.listdir(route) if os.path.isdir(os.path.join(route, folder))])
 
@@ -129,6 +129,7 @@ def load(context):
                     # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
                     pictures = sorted(os.listdir(dayroute))
                     print "Importing %s pictures" % len(pictures)
+                    total += len(pictures)
                     for picture in pictures:
                         path = os.path.join(user, year, month, day, picture)
                         time = getTimeFromName(picture)
@@ -141,3 +142,7 @@ def load(context):
     db.session.commit()
     # movemos todos los arhivos una vez insertados en la bd
     moveFilesToFolder(route, destiny, users)
+    if total > 0:
+        print "Up to %s pictures imported, let's tag them!!"
+    else:
+        print "0 pictures imported, looks like something went wrong :("
