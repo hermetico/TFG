@@ -50,12 +50,12 @@ echo
 # All the folders recursively only the next type of folder structure
 # user/year/month/day
 # executes the matlab script for each folder
-echo find '"'"$SRCFOLDER"'"' -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d
+echo ">> find" '"'"$SRCFOLDER"'"' -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d
 find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d | while read path
 do
     
     # executes the script
-    command='mogrify -resize $SIZE "'"$path/*.jpg"'"'
+    command='mogrify -resize' $SIZE "'"$path/*.jpg"'"
     echo ">> $command"
     eval $command
     echo
