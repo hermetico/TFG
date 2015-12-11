@@ -55,7 +55,7 @@ find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path
 do
     
     # executes the script
-    command='mogrify -resize '"$SIZE" "'"$path/*.jpg"'"
+    command='mogrify -resize' "$SIZE" '"'"$path/*.jpg"'"'
     echo ">> $command"
     eval $command
     echo
