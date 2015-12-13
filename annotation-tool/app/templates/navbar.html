@@ -49,13 +49,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="{{ url_for('main.create_dataset') }}" title="Generar dataset completo"><i class="fa fa-file-zip-o fa-fw" ></i>Dataset</a>
+                </li>
+                <li>
                     <a href="{{ url_for('main.export_train') }}" title="Descargar relacion imagen:id-etiqueta en txt"><i class="fa fa-download fa-fw" ></i>Train file</a>
                 </li>
                 <li>
                     <a href="{{ url_for('main.export_labels') }}" title="Descargar relacion id-etiqueta:nombre-etiqueta en txt"><i class="fa fa-download fa-fw" ></i>Labels file</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('main.export_dataset') }}" title="Descargar dataset completo"><i class="fa fa-file-zip-o fa-fw" ></i>Dataset</a>
                 </li>
                 {% endif %}
             </ul>

@@ -5,7 +5,7 @@ from .decorators import admin_required
 from . import main
 from .. import db
 from ..models import User, Label, Picture, Role
-from .forms import NewUserForm, NewLabelForm
+from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj
 from flask import current_app as app
 
 PAGESIZE = 50
@@ -29,6 +29,7 @@ def main_page():
     data = Label.query.all()
     chart = pygal.Bar()
     chart.x_labels = ["Num Pictures"]
+    chart.title = "%s Pictures" % (Picture.query.count())
     for label in data:
         chart.add(label.name, label.pictures.count())
     return render_template('index.html', chart=chart)
@@ -75,8 +76,81 @@ def labels():
     label_list = Label.query.order_by(Label.id).all()
     return render_template('labels.html', form=form, labels=label_list)
 
+@main.route('/dataset', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def create_dataset():
 
-@main.route('/export/train.txt', methods=['GET'])
+    #labels = Label.query.all()
+    #choices = ChoiceObj('Etiquetas', [ u"%i" % label.id for label in labels])
+    #form = CreateDatasetForm(obj=choices)
+    #form.select_labels.choices = [(label.id, label.name) for label in labels]
+
+    #if request.method == 'POST':
+    #    path = form.append_path.data or ""
+    #    test = form.test_percent.data
+    #    qLabels = [int(q) for w in form.select_labels.data]
+
+    form = CreateDatasetForm()
+
+    if form.validate_on_submit():
+        percent_test = form.test_percent.data
+        path = form.append_path.data or ""
+        import shutil, os
+        pictures = Picture.query.all()
+        labels = Label.query.all()
+        media_folder = app.config['IMPORTED_PICTURES_FOLDER']
+        static_folder = app.config['STATIC_FOLDER']
+        zip_file = static_folder + '/dataset'
+
+        # remove old files
+        for file_name in ["/train.txt", "/test.txt"]:
+            file_name = static_folder + file_name
+            if os.path.isfile(file_name):
+                os.remove(file_name)
+
+        if percent_test > 0:
+            import random
+            num_images = len(pictures)
+            num_test = int(num_images * (percent_test / 100.))
+            test_indices = random.sample(xrange(num_images), num_test)
+            test_data = [pictures[i] for i in test_indices]
+            train_data = [pictures[i] for i in xrange(num_images)if i not in test_indices]
+
+            # creates the txt
+            with open(media_folder + "/train.txt", "wb") as fo:
+                for picture in train_data:
+                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+
+            with open(media_folder + "/test.txt", "wb") as fo:
+                for picture in test_data:
+                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+
+        else:
+            # creates the csv
+            with open(media_folder + "/train.txt", "wb") as fo:
+                for picture in pictures:
+                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+
+        with open(media_folder + "/labels.txt", "wb") as fo:
+            for label in labels:
+                fo.write('%s %s\n' % (label.id, label.name))
+
+        # creates the zip using shutil
+        shutil.make_archive(zip_file, 'zip', media_folder)
+
+        return send_file(zip_file + '.zip', mimetype='application/zip')
+
+
+
+
+    return render_template('dataset.html', form=form)
+
+
+#################################################
+## Rutas de exportacion
+#################################################
+@main.route('/export/labels.txt', methods=['GET'])
 @login_required
 @admin_required
 def export_labels():
@@ -87,7 +161,7 @@ def export_labels():
     return Response(response, mimetype='text/txt')
 
 
-@main.route('/export/labels.txt', methods=['GET'])
+@main.route('/export/train.txt', methods=['GET'])
 @login_required
 @admin_required
 def export_train():
@@ -123,6 +197,9 @@ def export_dataset():
     shutil.make_archive(zip_file, 'zip', media_folder)
 
     return send_file(zip_file + '.zip', mimetype='application/zip')
+
+
+
 
 
 #################################################
