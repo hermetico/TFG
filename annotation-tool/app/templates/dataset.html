@@ -25,11 +25,12 @@
                 <form class="form" method="post" role="form" >
                     {# wtf.quick_form(form) #}
                     {{ form.hidden_tag() }}
-                    <div class="form-group">
-                        <label class="control-label" for="append_path">Añadir path en train/test txt</label>
-                        <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/myname/caffe/data/">
+                    <div class="form-group" title="Si se deja en blanco las imagenes vendran con la ruta relativa, sino, se incluirá el path especificado para generar la ruta absoluta">
+                        <label class="control-label" for="append_path">Añadir absolute path en train/test txt</label>
+                        <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/media/test-dataset/">
                     </div>
-                    <div class="form-group "><label class="control-label" for="test_percent">Porcentaje de imagenes para test</label>
+                    <div class="form-group "  title="Si esta a 0 no se generara el archivo test.txt">
+                        <label class="control-label" for="test_percent">Porcentaje de imagenes para test</label>
                         <input class="form-control" id="test_percent" name="test_percent" type="number" value="0">
                     </div>
                     {# form.select_labels #}
