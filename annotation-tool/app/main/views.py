@@ -79,7 +79,7 @@ def labels():
 @main.route('/export/train.txt', methods=['GET'])
 @login_required
 @admin_required
-def export_train():
+def export_labels():
     labels = Label.query.all()
     response = ""
     for label in labels:
@@ -90,7 +90,7 @@ def export_train():
 @main.route('/export/labels.txt', methods=['GET'])
 @login_required
 @admin_required
-def export_labels():
+def export_train():
     pictures = Picture.query.all()
     response = ""
     for picture in pictures:
