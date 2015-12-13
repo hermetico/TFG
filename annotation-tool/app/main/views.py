@@ -8,7 +8,7 @@ from ..models import User, Label, Picture, Role
 from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj
 from flask import current_app as app
 
-PAGESIZE = 50
+PAGESIZE = 75
 
 
 @main.context_processor
@@ -236,7 +236,7 @@ def cataloguser(userid):
         breadcrumb = [{'text': 'catalogo', 'url': '/catalog/%i' % userid}]
 
         return render_template('catalog.html',
-                               data={'label': 'Año', 'rows': rows, 'baseurl': baseurl, 'less-labeled':less_labeled },
+                               data={'label': 'Año', 'rows': rows, 'baseurl': baseurl, 'less-labeled':less_labeled, 'base-label':1},
                                breadcrumbs=breadcrumb)
     flash('El usuario especificado no existe', 'info')
     return redirect(url_for('.index'))
