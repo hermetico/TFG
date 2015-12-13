@@ -2,6 +2,7 @@
 import os
 from datetime import datetime
 import subprocess
+import glob
 
 DEFAULT_LABEL = 1
 TIME_FORMAT = "%H:%M:%S"
@@ -127,7 +128,9 @@ def load(context):
                     dayroute = os.path.join(monthroute, day)
                     #pictures = [folder for folder in os.listdir(dayroute)]
                     # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
-                    pictures = sorted(os.listdir(dayroute))
+                    pictures = glob.glob1(dayroute, '*jpg')
+                    pictures.extend(glob.glob1(dayroute, '*.png'))
+                    pictures = sorted(pictures)
                     print "Importing %s pictures" % len(pictures)
                     total += len(pictures)
                     for picture in pictures:
