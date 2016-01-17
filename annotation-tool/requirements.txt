@@ -12,8 +12,6 @@ Flask-Script==2.0.5
 Flask-SQLAlchemy==2.0
 Flask-WTF==0.12
 gunicorn==19.3.0
-hashlib==20081119
-hmac==20101005
 itsdangerous==0.24
 Jinja2==2.8
 Mako==1.0.2
