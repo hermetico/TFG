@@ -35,13 +35,17 @@
   width:200px;
   position:fixed;
   right:-150px;
-  top:150px;
+  top:100px;
   transition: all .5s ease;
 }
 .panel-etiquetas-flotante:hover{
   right:0px;
 }
 .panel-etiquetas-flotante button{ height:35px;}
+@media screen and (max-height:900px){
+	.panel-etiquetas-flotante button{ height:25px; padding:0px 5px;}
+}
+
 
 /********************************** COLORS ***************************/
 
