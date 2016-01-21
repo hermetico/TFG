@@ -38,7 +38,7 @@ ng-app="annonApp"
                 {#<li ng-repeat="(id,picture) in annonLoader.pictures">#}
                 <li ng-repeat="id in annonLoader.orderedPictures()" ng-init="picture=annonLoader.pictures[id]">
 
-                    <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}">
+                    <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}" title="label {a picture.label a}">
                         <input id="check-{a picture.id a}" type="checkbox" ng-change="elemChange()" ng-model="selectedCheckboxes[picture.id]" value="">
                         <img ng-src="{{ url_for('static', filename='media/')}}{a picture.path a}" imageonload border="0">
                     </label>
@@ -52,7 +52,7 @@ ng-app="annonApp"
 
 <div class="list-group labels-list panel-etiquetas-flotante">
     {% for label in data['labels'] %}
-    <button title="{{label.name}}" class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} </button>
+    <button title="{{label.name}}" class="list-group-item label-{{label.id}}" data-ng-click="showSelected('{{label.id}}')"> {{label.name}} <span class="pull-right text-muted small"><em>{{label.id}}</em></span></button>
     {% endfor %}
 </div>
 
