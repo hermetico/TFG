@@ -5,13 +5,15 @@ from .decorators import admin_required
 from . import main
 from .. import db
 from ..models import User, Label, Picture, Role
-from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj
+from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj, EliminarImagenesSinEtiqueta
 from flask import current_app as app
 
 PAGESIZE = 75
 CACHED_DATA = {
     'labels-count': {'dirty': True},
-    'sequences-count': {'dirty': True}
+    'sequences-count': {'dirty': True},
+    'num-pictures':0
+
 }
 
 @main.context_processor
@@ -28,6 +30,10 @@ def index():
 @main.route('/main')
 @login_required
 def main_page():
+
+    if check_dirty():
+        set_dirty()
+
     import pygal
     # first, we make sure whether the data is cached or not
     if CACHED_DATA['labels-count']['dirty']:
@@ -111,6 +117,20 @@ def labels():
         return redirect(url_for('.labels'))
     label_list = Label.query.order_by(Label.id).all()
     return render_template('labels.html', form=form, labels=label_list)
+
+@main.route('/advanced', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def advanced():
+    form = EliminarImagenesSinEtiqueta()
+    if form.validate_on_submit():
+        #recuperamos la primera label que es la "sin etiqueta"
+        label = Label.query.first()
+        label.pictures.delete()
+        db.session.commit()
+        
+        set_dirty()
+    return render_template('advanced.html', form=form)
 
 @main.route('/dataset', methods=['GET', 'POST'])
 @login_required
@@ -409,7 +429,15 @@ def api_db_set():
         db.session.add(picture)
 
     db.session.commit()
-    CACHED_DATA['labels-count']['dirty'] = True
-    CACHED_DATA['sequences-count']['dirty'] = True
+    set_dirty()
 
     return Response('{"status":true}', status=200, mimetype='application/json')
+
+def check_dirty():
+    return CACHED_DATA['num-pictures'] != Picture.query.count()
+
+
+def set_dirty():
+    CACHED_DATA['labels-count']['dirty'] = True
+    CACHED_DATA['sequences-count']['dirty'] = True
+    CACHED_DATA['num-pictures'] = Picture.query.count()

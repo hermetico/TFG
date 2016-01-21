@@ -33,10 +33,11 @@ class NewLabelForm(Form):
      label = StringField(u"Nombre", validators=[DataRequired()])
      submit = SubmitField(u"Registrar")
 
+class EliminarImagenesSinEtiqueta(Form):
+     submit = SubmitField(u"Eliminar")
+
 
 class CreateDatasetForm(Form):
-
-
     append_path = StringField(u"Añadir path en train/test txt")
     test_percent = IntegerField(u"Porcentaje de imagenes para test", default=0)
     #select_labels = MultiCheckboxField(None)
