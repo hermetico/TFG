@@ -34,6 +34,7 @@ class NewLabelForm(Form):
      submit = SubmitField(u"Registrar")
 
 class EliminarImagenesSinEtiqueta(Form):
+     clave = StringField(u"Escribe la palabra 'eliminar'")
      submit = SubmitField(u"Eliminar")
 
 

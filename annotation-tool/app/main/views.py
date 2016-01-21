@@ -124,12 +124,17 @@ def labels():
 def advanced():
     form = EliminarImagenesSinEtiqueta()
     if form.validate_on_submit():
-        #recuperamos la primera label que es la "sin etiqueta"
-        label = Label.query.first()
-        label.pictures.delete()
-        db.session.commit()
-        
-        set_dirty()
+        clave = form.clave.data
+        if clave == 'eliminar':
+            #recuperamos la primera label que es la "sin etiqueta"
+            label = Label.query.first()
+            label.pictures.delete()
+            db.session.commit()
+            set_dirty()
+            flash('Imagenes eliminadas correctamente', 'success')
+        else:
+            flash('La palabra de seguridad introducida no es correcta', 'danger')
+        return redirect(url_for('.advanced'))
     return render_template('advanced.html', form=form)
 
 @main.route('/dataset', methods=['GET', 'POST'])

@@ -15,7 +15,7 @@
     <h1 class="page-header">Opciones avanzadas</h1>
 {% endblock %}
 {% block content %}
-<div class="col-lg-3">
+<div class="col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-sticky-note"></i> Eliminar imagenes sin etiqueta
@@ -26,6 +26,10 @@
                     {# wtf.quick_form(form) #}
                     {{ form.hidden_tag() }}
                     <p>Esta opcion eliminará de forma permanente, de la base de datos, todas las imagenes asociadas a la etiqueta "sin-etiqueta"</p>
+                    <div class="form-group" >
+                        <label class="control-label" for="clave">A modo de seguridad, escribe la palabra 'eliminar' para seguir con el proceso</label>
+                        <input class="form-control" id="clave" name="clave" type="text" value="" placeholder="eliminar">
+                    </div>
                     <input class="btn btn-danger" id="submit" name="submit" type="submit" value="Eliminar">
                 </form>
             </div>
