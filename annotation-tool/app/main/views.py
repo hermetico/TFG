@@ -9,7 +9,10 @@ from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj
 from flask import current_app as app
 
 PAGESIZE = 75
-
+CACHED_DATA = {
+    'labels-count': {'dirty': True},
+    'sequences-count': {'dirty': True}
+}
 
 @main.context_processor
 def current_user():
@@ -26,12 +29,24 @@ def index():
 @login_required
 def main_page():
     import pygal
-    data = Label.query.all()
+    # first, we make sure whether the data is cached or not
+    if CACHED_DATA['labels-count']['dirty']:
+        print "Calculating data"
+        CACHED_DATA['labels-count']['dirty'] = False
+        data = Label.query.all()
+        labeled_data = []
+        for label in data:
+            labeled_data.append((label.name, label.pictures.count()))
+
+        CACHED_DATA['labels-count']['data'] = labeled_data
+
+    data = CACHED_DATA['labels-count']['data']
     chart = pygal.Bar()
     chart.x_labels = ["Num Pictures"]
     chart.title = "%s Pictures" % (Picture.query.count())
     for label in data:
-        chart.add(label.name, label.pictures.count())
+            chart.add(label[0], label[1])
+
     return render_template('index.html', chart=chart)
 
 
@@ -373,5 +388,7 @@ def api_db_set():
         db.session.add(picture)
 
     db.session.commit()
+    CACHED_DATA['labels-count']['dirty'] = True
+    CACHED_DATA['sequences-count']['dirty'] = True
 
     return Response('{"status":true}', status=200, mimetype='application/json')
