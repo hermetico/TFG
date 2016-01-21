@@ -40,14 +40,35 @@ def main_page():
 
         CACHED_DATA['labels-count']['data'] = labeled_data
 
-    data = CACHED_DATA['labels-count']['data']
-    chart = pygal.Bar()
-    chart.x_labels = ["Num Pictures"]
-    chart.title = "%s Pictures" % (Picture.query.count())
-    for label in data:
-            chart.add(label[0], label[1])
+    if CACHED_DATA['sequences-count']['dirty']:
+        CACHED_DATA['sequences-count']['dirty'] = False
+        data = Picture.query.all()
+        sequences = [0] * Label.query.count()
+        current_sequence = -1
+        for pic in data:
+            if current_sequence != pic.label_id:
+                current_sequence = pic.label_id
+                sequences[current_sequence - 1] += 1
 
-    return render_template('index.html', chart=chart)
+        CACHED_DATA['sequences-count']['data'] = sequences
+
+
+    data = CACHED_DATA['labels-count']['data']
+    chart_labels = pygal.Bar()
+    chart_labels.x_labels = ["Num Pictures"]
+    chart_labels.title = "%s Pictures" % (Picture.query.count())
+    for label in data:
+            chart_labels.add(label[0], label[1])
+
+    data = CACHED_DATA['sequences-count']['data']
+    chart_sequences = pygal.Bar()
+    chart_sequences.x_labels = ["Num Sequences"]
+    chart_sequences.title = "%s Sequences" % (sum(data))
+    for label in Label.query.all():
+        chart_sequences.add(label.name, data[label.id - 1])
+
+
+    return render_template('index.html', chart_labels=chart_labels, chart_sequences=chart_sequences)
 
 
 @main.route('/users', methods=['GET', 'POST'])
