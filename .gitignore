@@ -33,3 +33,5 @@ output-*
 # ignoring docs
 sphinx/build/
 
+#matconvnet files
+*matconvnet*
