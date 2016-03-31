@@ -63,7 +63,13 @@ for i = 1:nImages
 		angle = angle-270;
 
 		% Read image, rotate, crop and store
-		im = imread([path_folder '/' img_list{i}]);
+		try
+		    im = imread([path_folder '/' img_list{i}]);
+		catch
+		    warning(['Error reading image ' img_list{i}])
+		    continue
+		end
+
 		im = imRotateCrop(im, angle);
         
         
