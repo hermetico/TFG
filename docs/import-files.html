@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Importando imágenes &mdash; Annotation Tool 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="prev" title="Ejecutando la aplicación" href="deploying.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,11 +44,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="index.html" class="fa fa-home"> Annotation Tool</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Annotation Tool
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,35 +72,33 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Instalación</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-la-aplicacion-desde-github">Instalando la aplicación desde Github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#instalando-a-partir-de-una-copia-existente">Instalando a partir de una copia existente</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="deploying.html">Ejecutando la aplicación</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deploying.html#probando-la-instalacion">Probando la instalación</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deploying.html#puesta-a-punto">Puesta a punto</a></li>
-</ul>
-</li>
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying.html">Ejecutando la aplicación</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Importando imágenes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pasos-previos">Pasos previos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#importar-imagenes">Importar imagenes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tratamiento-de-imagenes-previo-a-la-importacion">Tratamiento de imagenes previo a la importación</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tratamiento-de-imagenes-previo-a-la-importacion">Tratamiento de imagenes previo a la importación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rotando-cropando-y-redimensionando">Rotando, cropando y redimensionando</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solo-redimensionando">Solo redimensionando</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -99,20 +113,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
     <li>Importando imágenes</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/import-files.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/import-files.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="importando-imagenes">
 <h1>Importando imágenes<a class="headerlink" href="#importando-imagenes" title="Permalink to this headline">¶</a></h1>
@@ -122,11 +145,11 @@
 </div>
 <div class="section" id="importar-imagenes">
 <h2>Importar imagenes<a class="headerlink" href="#importar-imagenes" title="Permalink to this headline">¶</a></h2>
-<p>Las imagenes que van a ser importadas han de estar en la carpeta <code class="docutils literal"><span class="pre">TFG/annotation-tool/import</span> <span class="pre">bucket</span></code> y puesto que originalmente es para trabajar con la imagenes de la camara Clip narrative, las imagenes han de mantener la siguiente estructura:</p>
+<p>Las imagenes que van a ser importadas han de estar en la carpeta <code class="docutils literal"><span class="pre">TFG/annotation-tool/import-bucket</span></code> y puesto que originalmente es para trabajar con la imagenes de la camara Clip narrative, las imagenes han de mantener la siguiente estructura:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">id</span><span class="o">/</span><span class="n">year</span><span class="o">/</span><span class="n">month</span><span class="o">/</span><span class="n">day</span><span class="o">/</span><span class="n">time</span><span class="o">.</span><span class="n">jpg</span>
 </pre></div>
 </div>
-<p>Como las imagenes de la camara clip narrative ya nos dan la estructura de <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code> lo unico que tenemos que hacer es copiar las imagenes que queremos importar dentro de la carpeta <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket/&lt;id&gt;</span></code> donde id sera la id del usuario al cual asociaremos las imagenes.</p>
+<p>Como las imagenes de la camara clip narrative ya nos dan la estructura de <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code> lo unico que tenemos que hacer es copiar las imagenes que queremos importar dentro de la carpeta <code class="docutils literal"><span class="pre">import-bucket/&lt;id&gt;</span></code> donde id sera la id del usuario al cual asociaremos las imagenes.</p>
 <p>Una vez hemos copiado las imagenes que queremos importar, lanzaremos el script de importacion:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd TFG/annotation-tool
 $ python manage.py import_pictures
@@ -153,7 +176,7 @@ $ python manage.py import_pictures
 <p class="first admonition-title">Note</p>
 <p>La camara narrative clip mantiene la siguiente estructura de carpetas <code class="docutils literal"><span class="pre">year/month/day/time.jpg</span></code>. Este script espera encontrar la estructura <code class="docutils literal"><span class="pre">name/year/month/day/time.jpg</span></code> dentro de la carpeta origen indicada.</p>
 <p>Dentro de la carpeta <code class="docutils literal"><span class="pre">TFG/matlab-scripts/matlab/</span></code> se guardarán los logs de cada proceso matlab ejecutado.</p>
-<p class="last">Puedes indicar que la carpeta destino sea la propia <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket</span></code> asi luego tan solo tendras que modificar la id del usuario</p>
+<p class="last">Puedes indicar que la carpeta destino sea la propia <code class="docutils literal"><span class="pre">import-bucket</span></code> asi luego tan solo tendras que modificar la id del usuario</p>
 </div>
 </div>
 <div class="section" id="solo-redimensionando">
@@ -166,7 +189,7 @@ $ python manage.py import_pictures
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Al igual que el script anterior, espera una estructura de carpetas del tipo <code class="docutils literal"><span class="pre">name/year/month/day/time.jpg</span></code></p>
-<p>En este caso, puedes ejecutar el script sobre la propia carpeta <code class="docutils literal"><span class="pre">import</span> <span class="pre">bucket</span></code> para redimensionar todas las imagenes que haya dentro.</p>
+<p>En este caso, puedes ejecutar el script sobre la propia carpeta <code class="docutils literal"><span class="pre">import-bucket</span></code> para redimensionar todas las imagenes que haya dentro.</p>
 <p class="last">Actualmente el tamaño especificado es de 256x256 pero si quieres lo puedes modificar sobre el propio script en la variable <code class="docutils literal"><span class="pre">SIZE=&quot;256x256&quot;</span></code></p>
 </div>
 </div>
@@ -174,13 +197,14 @@ $ python manage.py import_pictures
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="deploying.html" class="btn btn-neutral" title="Ejecutando la aplicación"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deploying.html" class="btn btn-neutral" title="Ejecutando la aplicación" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -190,12 +214,13 @@ $ python manage.py import_pictures
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Juan Marín.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
