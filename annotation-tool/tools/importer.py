@@ -5,7 +5,8 @@ import subprocess
 import glob
 
 DEFAULT_LABEL = 1
-TIME_FORMAT = "%H:%M:%S"
+FROM_TIME_FORMAT = "%H%M%S"
+TO_TIME_FORMAT = "%H:%M:%S"
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
@@ -27,7 +28,14 @@ def getDateTimeFromParams(year, month, day, time):
 
 
 def getTimeFromName(name):
-    return datetime.time(datetime.now()).strftime(TIME_FORMAT)
+    if "_" in name:
+        # new format "20151230_075637_000.jpg"  the time is the middle chunk
+        name = name.split("_")[1]
+    else:
+        # old format "075637.jpg"  the time is first chunk
+        name = name.split(".")[0]
+    return datetime.time(datetime.strptime(name, FROM_TIME_FORMAT)).strftime(TO_TIME_FORMAT)
+
 
 
 def moveFilesToFolder(origin, destiny, folders):
