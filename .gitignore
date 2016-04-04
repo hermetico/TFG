@@ -16,6 +16,7 @@ annon-tool.conf
 annon-tool-uwsgi.ini
 
 #media files
+*import-bucket/
 *import bucket/
 *media/
 *.zip
