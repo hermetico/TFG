@@ -41,6 +41,9 @@ ng-app="annonApp"
                     <label for="check-{a picture.id a}" class="picture-label-{a picture.label a}" title="label {a picture.label a}">
                         <input id="check-{a picture.id a}" type="checkbox" ng-change="elemChange()" ng-model="selectedCheckboxes[picture.id]" value="">
                         <img ng-src="{{ url_for('static', filename='media/')}}{a picture.path a}" imageonload border="0">
+                        <button type="button" class="btn btn-default button-comment" data-id="{a picture.id a}" title="Añadir un comentario">
+                          <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                        </button>
                     </label>
 
                 </li>
@@ -56,9 +59,14 @@ ng-app="annonApp"
     {% endfor %}
 </div>
 
+{% include 'pictures-modal.html' %}
+
+
 
 {% endblock %}
 {% block scripts %}
     {{super()}}
     <script src="{{ url_for('static', filename='js/shiftkey.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/comment-modal-box.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/extensions.js') }}"></script>
 {% endblock %}

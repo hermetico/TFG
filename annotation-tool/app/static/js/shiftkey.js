@@ -36,20 +36,3 @@ $.fn.shiftSelectable = function() {
 
 
 };
-
-var numCheckBoxes = 0;
-var _lastChecked;
-
-// checkboxes are loaded with angular, so, an easy way to find out if there are new checkboxes
-// is an interval
-var loadingCheckBoxes = setInterval(
-    function(){
-        var newChecks = $(document.body).find("input[type='checkbox']");
-        if(newChecks.length > numCheckBoxes){
-            numCheckBoxes = newChecks.length;
-            newChecks.shiftSelectable();
-        }
-
-    },
-    900
-    )

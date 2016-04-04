@@ -12,7 +12,7 @@ PAGESIZE = 75
 CACHED_DATA = {
     'labels-count': {'dirty': True},
     'sequences-count': {'dirty': True},
-    'num-pictures':0
+    'num-pictures': 0
 
 }
 
@@ -123,6 +123,7 @@ def labels():
 @admin_required
 def advanced():
     form = EliminarImagenesSinEtiqueta()
+    #formulario eliminar imagenes extra
     if form.validate_on_submit():
         clave = form.clave.data
         if clave == 'eliminar':
@@ -215,10 +216,11 @@ def create_dataset():
 @login_required
 @admin_required
 def export_labels():
+    separator = app.config['CSV_SEPARATOR']
     labels = Label.query.all()
     response = ""
     for label in labels:
-        response += '%s %s\n' % (label.id, label.name)
+        response += '%s%s%s\n' % (label.id, separator, label.name)
     return Response(response, mimetype='text/txt')
 
 
@@ -226,10 +228,11 @@ def export_labels():
 @login_required
 @admin_required
 def export_train():
+    separator = app.config['CSV_SEPARATOR']
     pictures = Picture.query.all()
     response = ""
     for picture in pictures:
-        response += '%s %s\n' % (picture.path, picture.label_id)
+        response += '%s%s%s%s%s\n' % (picture.path, separator, picture.label_id, separator, picture.comment)
     return Response(response, mimetype='text/txt')
 
 
@@ -437,6 +440,39 @@ def api_db_set():
     set_dirty()
 
     return Response('{"status":true}', status=200, mimetype='application/json')
+
+#---------------- comentarios en imagenes
+
+@main.route('/api/picture/<int:id>')
+@login_required
+def api_db_get_picture(id):
+    if id is not None:
+        picture = Picture.query.filter_by(id=id).first()
+        result = dict(id=picture.id, path=picture.path, labelid=picture.label_id, comment=picture.comment, status=True)
+    else:
+        result = '{"status":false}'
+    js = json.dumps(result)
+    return Response(js, status=200, mimetype='application/json')
+
+
+@main.route('/api/picture/comment', methods=['POST'])
+@login_required
+def api_db_set_picture_comment():
+    data = request.form
+    if data['id'] is not None:
+        pic = Picture.query.filter_by(id=data['id']).first()
+        pic.comment = data['comment']
+        db.session.add(pic)
+
+        db.session.commit()
+        result = '{"status":true}'
+    else:
+        result = '{"status":false}'
+
+    js = json.dumps(result)
+    return Response(js, status=200, mimetype='application/json')
+
+
 
 def check_dirty():
     return CACHED_DATA['num-pictures'] != Picture.query.count()

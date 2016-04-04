@@ -1,16 +1,18 @@
 .pictures-list{overflow:hidden;}
 
-.pictures-list label{
+.pictures-list label, .modal label.label-modal-picture{
   border-width:5px;
   border-style:solid;
     /* 160x120 + 2 de borde de imagen*/
   height:274px;
   padding:0;
   margin:0;
+  position:relative;
  }
-.pictures-list img{
+.pictures-list img, .modal img{
   border-width:5px;
   border-style:solid;
+  border-color:transparent;
  }
 .pictures-list input[type=checkbox] + img{
     border-color:transparent;
@@ -31,6 +33,9 @@
 
 .labels-list button{width:100%;}
 
+.pictures-list .button-comment{position:absolute; top:10px; right:10px; display:none;}
+.pictures-list label:hover .button-comment{display:block;}
+
 .panel-etiquetas-flotante{
   width:200px;
   position:fixed;
@@ -42,6 +47,7 @@
   right:0px;
 }
 .panel-etiquetas-flotante button{ height:35px;}
+
 @media screen and (max-height:900px){
 	.panel-etiquetas-flotante button{ height:25px; padding:0px 5px;}
 }
@@ -49,7 +55,7 @@
 
 /********************************** COLORS ***************************/
 
-.pictures-list label.picture-label-1{
+label.picture-label-1{
     border-color:#fff;
     background-color:#fff;
 }
@@ -57,7 +63,7 @@
   background-color:#fff;
 }
 
-.pictures-list label.picture-label-2{
+label.picture-label-2{
     border-color:#9CC8D6;
     background-color:#9CC8D6;
 }
@@ -66,7 +72,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-3{
+label.picture-label-3{
     border-color:#C79CD6;
     background-color:#C79CD6;
 }
@@ -75,7 +81,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-4{
+label.picture-label-4{
     border-color:#D6AA9C;
     background-color:#D6AA9C;
 }
@@ -84,7 +90,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-5{
+label.picture-label-5{
     border-color:#ABD69C;
     background-color:#ABD69C;
 }
@@ -93,7 +99,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-6{
+label.picture-label-6{
     border-color:#FFA8D5;
     background-color:#FFA8D5;
 }
@@ -102,7 +108,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-7{
+label.picture-label-7{
     border-color:#FFFDA8;
     background-color:#FFFDA8;
 }
@@ -111,7 +117,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-8{
+label.picture-label-8{
     border-color:#A8FFD2;
     background-color:#A8FFD2;
 }
@@ -120,7 +126,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-9{
+label.picture-label-9{
     border-color:#A8AAFF;
     background-color:#A8AAFF;
 }
@@ -129,7 +135,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-10{
+label.picture-label-10{
     border-color:#E770FF;
     background-color:#E770FF;
 }
@@ -138,7 +144,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-11{
+label.picture-label-11{
     border-color:#FFA070;
     background-color:#FFA070;
 }
@@ -147,7 +153,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-12{
+label.picture-label-12{
     border-color:#70CFFF;
     background-color:#70CFFF;
 }
@@ -156,7 +162,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-13{
+label.picture-label-13{
     border-color:#87FF70;
     background-color:#87FF70;
 }
@@ -174,7 +180,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-15{
+label.picture-label-15{
     border-color:#D45386;
     background-color:#D45386;
 }
@@ -184,7 +190,7 @@
 }
 
 
-.pictures-list label.picture-label-16{
+label.picture-label-16{
     border-color:#C7D453;
     background-color:#C7D453;
 }
@@ -193,7 +199,7 @@
   color:#000;
 }
 
-.pictures-list label.picture-label-17{
+label.picture-label-17{
     border-color:#B03C3C;
     background-color:#B03C3C;
 }
@@ -202,7 +208,7 @@
   color:#fff;
 }
 
-.pictures-list label.picture-label-18{
+label.picture-label-18{
     border-color:#763CB0;
     background-color:#763CB0;
 }
@@ -211,7 +217,7 @@
   color:#fff;
 }
 
-.pictures-list label.picture-label-19{
+label.picture-label-19{
     border-color:#76B03C;
     background-color:#76B03C;
 }
@@ -220,7 +226,7 @@
   color:#fff;
 }
 
-.pictures-list label.picture-label-20{
+label.picture-label-20{
     border-color:#4FA1A1;
     background-color:#4FA1A1;
 }
@@ -229,7 +235,7 @@
   color:#fff;
 }
 
-.pictures-list label.picture-label-21{
+label.picture-label-21{
     border-color:#5E85C4;
     background-color:#5E85C4;
 }

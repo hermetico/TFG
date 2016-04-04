@@ -1,0 +1,27 @@
+<div class="modal fade" id="modal-dialog-picture-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Comentar imagen</h4>
+      </div>
+      <div class="modal-body row">
+        <div class="col-lg-7 col-sm-7 col-xs-7">
+          <label id="modal-picture-label" data-base-class="picture-label-" class="label-modal-picture">
+              <img id="modal-picture" data-base-path="{{ url_for('static', filename='media/')}}" src="#" border="0">
+          </label>
+          </div>
+            <div class="col-lg-5 col-sm-5 col-xs-5">
+          <form>
+            <label for="modal-comment" >Comentario:</label>
+            <textarea id="modal-comment" rows="10" cols="20">A proper comment</textarea>
+          </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="modal-save">Guardar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

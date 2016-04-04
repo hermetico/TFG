@@ -70,6 +70,7 @@ class Picture(db.Model):
     date = db.Column(db.DateTime, index=True)
     path = db.Column(db.String(256))
     label_id = db.Column(db.Integer, db.ForeignKey('labels.id'), index=True)
+    comment = db.Column(db.String(256), default='')
 
 
     def __repr__(self):
@@ -89,7 +90,8 @@ class Picture(db.Model):
                  userid=self.user_id,
                  date=self.date,
                  path=self.path,
-                 labelid=self.label_id)
+                 labelid=self.label_id,
+                 comment=self.comment)
         )
 
 
