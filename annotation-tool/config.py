@@ -8,6 +8,7 @@ class Config:
     IMPORT_FOLDER = os.path.join(basedir, "import-bucket")
     IMPORTED_PICTURES_FOLDER = os.path.join(basedir, "app", "static", "media")
     STATIC_FOLDER = os.path.join(basedir, "app", "static")
+    CSV_SEPARATOR = ";"
 
     @staticmethod
     def init_app(app):
