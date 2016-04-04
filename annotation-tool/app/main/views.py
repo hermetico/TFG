@@ -5,7 +5,7 @@ from .decorators import admin_required
 from . import main
 from .. import db
 from ..models import User, Label, Picture, Role
-from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj, EliminarImagenesSinEtiqueta
+from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, EliminarImagenesSinEtiqueta, LimpiarComentariosEtiquetasDeImagenes
 from flask import current_app as app
 
 PAGESIZE = 75
@@ -122,10 +122,11 @@ def labels():
 @login_required
 @admin_required
 def advanced():
-    form = EliminarImagenesSinEtiqueta()
+    form_eliminar = EliminarImagenesSinEtiqueta()
+    form_limpiar = LimpiarComentariosEtiquetasDeImagenes()
     #formulario eliminar imagenes extra
-    if form.validate_on_submit():
-        clave = form.clave.data
+    if form_eliminar.validate_on_submit() and form_eliminar.eliminar.data:
+        clave = form_eliminar.clave.data
         if clave == 'eliminar':
             #recuperamos la primera label que es la "sin etiqueta"
             label = Label.query.first()
@@ -136,7 +137,18 @@ def advanced():
         else:
             flash('La palabra de seguridad introducida no es correcta', 'danger')
         return redirect(url_for('.advanced'))
-    return render_template('advanced.html', form=form)
+    elif form_limpiar.validate_on_submit() and form_limpiar.limpiar.data:
+        clave = form_limpiar.clave.data
+        if clave == 'clear':
+            label = Label.query.first()
+            db.session.query(Picture).update({Picture.label_id: label.id, Picture.comment: ''})
+            db.session.commit()
+            set_dirty()
+            flash('Etiquetas y comentarios eliminados correctamente', 'success')
+        else:
+            flash('La palabra de seguridad introducida no es correcta', 'danger')
+        return redirect(url_for('.advanced'))
+    return render_template('advanced.html', form_eliminar=form_eliminar, form_limpiar=form_limpiar)
 
 @main.route('/dataset', methods=['GET', 'POST'])
 @login_required

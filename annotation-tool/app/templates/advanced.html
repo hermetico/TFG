@@ -23,19 +23,40 @@
         <div class="panel-body">
             <div class="list-group">
                 <form class="form" method="post" role="form" >
-                    {# wtf.quick_form(form) #}
-                    {{ form.hidden_tag() }}
+                    {# wtf.quick_form(form_eliminar) #}
+                    {{ form_eliminar.hidden_tag() }}
                     <p>Esta opcion eliminará de forma permanente, de la base de datos, todas las imagenes asociadas a la etiqueta "sin-etiqueta"</p>
                     <div class="form-group" >
                         <label class="control-label" for="clave">A modo de seguridad, escribe la palabra 'eliminar' para seguir con el proceso</label>
                         <input class="form-control" id="clave" name="clave" type="text" value="" placeholder="eliminar">
                     </div>
-                    <input class="btn btn-danger" id="submit" name="submit" type="submit" value="Eliminar">
+                    <input class="btn btn-danger" id="eliminar" name="eliminar" type="submit" value="Eliminar">
                 </form>
             </div>
         </div>
         <!-- /.panel-body -->
     </div>
 </div>
-
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-sticky-note"></i> Limpiar etiquetas y comentarios de imagenes
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                <form class="form" method="post" role="form" >
+                    {# wtf.quick_form(form_limpiar) #}
+                    {{ form_limpiar.hidden_tag() }}
+                    <p>Esta opcion eliminará de forma permanente etiquetas y comentarios asociados a imagenes</p>
+                    <div class="form-group" >
+                        <label class="control-label" for="clave">A modo de seguridad, escribe la palabra 'clear' para seguir con el proceso</label>
+                        <input class="form-control" id="clave" name="clave" type="text" value="" placeholder="clear">
+                    </div>
+                    <input class="btn btn-danger" id="limpiar" name="limpiar" type="submit" value="Limpiar">
+                </form>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
 {% endblock %}

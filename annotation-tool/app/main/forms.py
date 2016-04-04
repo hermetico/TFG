@@ -35,7 +35,11 @@ class NewLabelForm(Form):
 
 class EliminarImagenesSinEtiqueta(Form):
      clave = StringField(u"Escribe la palabra 'eliminar'")
-     submit = SubmitField(u"Eliminar")
+     eliminar = SubmitField(u"Eliminar")
+
+class LimpiarComentariosEtiquetasDeImagenes(Form):
+     clave = StringField(u"Escribe la palabra 'clear'")
+     limpiar = SubmitField(u"Limpiar")
 
 
 class CreateDatasetForm(Form):
