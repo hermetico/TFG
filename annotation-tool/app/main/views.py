@@ -423,7 +423,9 @@ def apiget(userid, date, page=1, labelid=None):
         # because at this step, those 15 missing pictures will fall into the first page
 
         # we use session[date] to store the last id requested
-        if date not in session:
+        # the page will help us to start from the bottom if page 1 is requested
+        # This could happen when refreshing the page
+        if date not in session or page == 1:
             pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
                 .filter(Picture.label_id==labelid).all()
