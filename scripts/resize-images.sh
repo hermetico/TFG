@@ -28,6 +28,15 @@ then
     exit 1
 fi
 
+if [ -z "$3" ]
+then
+    echo Using min depth 4
+    MIN_DEPTH="4"
+else
+    echo Using min depth $3
+    MIN_DEPTH="$3"
+
+fi
 
 SRCFOLDER="$1"
 NOW="$(date)"
@@ -52,8 +61,8 @@ echo
 # All the folders recursively only the next type of folder structure
 # user/year/month/day
 # executes the matlab script for each folder
-echo ">> find" '"'"$SRCFOLDER"'"' -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d
-find "$SRCFOLDER" -mindepth 4 -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d | while read path
+echo ">> find" '"'"$SRCFOLDER"'"' -mindepth $MIN_DEPTH -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d
+find "$SRCFOLDER" -mindepth $MIN_DEPTH -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d | while read path
 do
     
     # executes the script
