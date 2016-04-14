@@ -16,6 +16,7 @@ CACHED_DATA = {
 
 }
 
+
 @main.context_processor
 def current_user():
     # recuperamos los usuarios con imagenes
@@ -416,10 +417,26 @@ def catalogday(userid, year, month, day, labelid=None):
 def apiget(userid, date, page=1, labelid=None):
     pagesize = PAGESIZE
     if labelid is not None:
-        pictures = Picture.query.filter(Picture.user_id==userid)\
+        # when a label is selected we cannot paginate the same way, because as long as we are setting new labels
+        # the number of the pages remain the same, so if we paginate by 50 pictures
+        # and in the first page we label 15 pictures, when we request the second page, we'll be missing 15 labels
+        # because at this step, those 15 missing pictures will fall into the first page
+
+        # we use session[date] to store the last id requested
+        if date not in session:
+            pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
-                .filter(Picture.label_id==labelid)\
-                .paginate(page, pagesize, False).items
+                .filter(Picture.label_id==labelid).all()
+        else:
+            from_id = session[date]
+            pictures = Picture.query.filter(Picture.user_id==userid)\
+                .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
+                .filter(Picture.label_id==labelid).filter(Picture.id > from_id).all()
+
+        pictures = pictures[:pagesize]
+        # keep track of the last picture id
+        session[date] = pictures[-1].id
+
     else:
         pictures = Picture.query.filter(Picture.user_id==userid)\
                 .filter(db.func.strftime('%Y-%m-%d', date)==db.func.strftime('%Y-%m-%d', Picture.date))\
