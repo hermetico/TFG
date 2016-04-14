@@ -24,17 +24,17 @@ set -o nounset                              # Treat unset variables as an error
 if [ -z "$1" ]
 then
     echo No argument supplied
-    echo Usage $0 abs-path-to-execute abs-path-to-move-results
+    echo "Usage $0 abs-path-to-execute [min-depth]"
     exit 1
 fi
 
-if [ -z "$3" ]
+if [ -z "$2" ]
 then
     echo Using min depth 4
     MIN_DEPTH="4"
 else
-    echo Using min depth $3
-    MIN_DEPTH="$3"
+    echo Using min depth $2
+    MIN_DEPTH="$d"
 
 fi
 
@@ -59,8 +59,6 @@ echo
 
 
 # All the folders recursively only the next type of folder structure
-# user/year/month/day
-# executes the matlab script for each folder
 echo ">> find" '"'"$SRCFOLDER"'"' -mindepth $MIN_DEPTH -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d
 find "$SRCFOLDER" -mindepth $MIN_DEPTH -not -path "*meta*" -not -path "*Meta*" -not -path "*_Crop*" -type d | while read path
 do
