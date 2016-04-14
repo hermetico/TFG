@@ -18,24 +18,18 @@ def RepresentsInt(s):
         return False
 
 
-def getDateTimeFromParams(year, month, day, time):
+def getDateTimeFromParams(date_, time):
     """Devuelve un objeto fecha a partir de los parametros con el siguiente
     formato de salida:
         '2015-02-24 13:00:00'
     """
-    cadena = "%s-%s-%s %s" %(year, month, day, time)
+    cadena = "%s %s" %(date_, time)
     return datetime.strptime(cadena, DATETIME_FORMAT)
 
 
-def getTimeFromName(name):
-    if "_" in name:
-        # new format "20151230_075637_000.jpg"  the time is the middle chunk
-        name = name.split("_")[1]
-    else:
-        # old format "075637.jpg"  the time is first chunk
-        name = name.split(".")[0]
-    return datetime.time(datetime.strptime(name, FROM_TIME_FORMAT)).strftime(TO_TIME_FORMAT)
-
+def getNowTime():
+    """Returns now in a convenient format"""
+    return datetime.now().time().strftime(TO_TIME_FORMAT)
 
 
 def moveFilesToFolder(origin, destiny, folders):
@@ -111,43 +105,32 @@ def load(context):
     total = 0
     # los usuarios son el primer nivel en la carpeta
     users = sorted([folder for folder in os.listdir(route) if os.path.isdir(os.path.join(route, folder))])
-
-    # comprobamos que las carpetas son validas, la funcion check elimina las que
-    # no
+    # comprobamos que las carpetas son validas, la funcion check elimina las que no
     users = check_users(db, User, users)
     # por cada usuario
     print "Incorporando nuevas imagenes a la base de datos"
     for user in users:
-
         userroute = os.path.join(route, user)
-        # sacamos los años por usuario
-        years = sorted([folder for folder in os.listdir(userroute) if os.path.isdir(os.path.join(userroute, folder))])
+        # sacamos la fecha de la carpeta
+        # no tenemos multiples carpetas para la fecha sino una carpeta que indica year-month-day
+        dates = sorted([folder for folder in os.listdir(userroute) if os.path.isdir(os.path.join(userroute, folder))])
         # por cada año
-        for year in years:
-            yearroute = os.path.join(userroute, year)
-            #sacamos los meses por el año
-            months = sorted([folder for folder in os.listdir(yearroute) if os.path.isdir(os.path.join(yearroute, folder))])
-            #por cada mes
-            for month in months:
-                monthroute = os.path.join(yearroute, month)
-                days = sorted([folder for folder in os.listdir(monthroute) if os.path.isdir(os.path.join(monthroute, folder))])
-                for day in days:
-                    dayroute = os.path.join(monthroute, day)
-                    #pictures = [folder for folder in os.listdir(dayroute)]
-                    # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
-                    pictures = glob.glob1(dayroute, '*jpg')
-                    pictures.extend(glob.glob1(dayroute, '*.png'))
-                    pictures = sorted(pictures)
-                    print "Importing %s pictures" % len(pictures)
-                    total += len(pictures)
-                    for picture in pictures:
-                        path = os.path.join(user, year, month, day, picture)
-                        time = getTimeFromName(picture)
-                        nDatetime = getDateTimeFromParams(year, month, day, time)
+        for date_ in dates:
+            dayroute = os.path.join(userroute, date_)
+            # aqui tenemos todas las fotos de este dia concreto, imprimos la ruta relativa
+            pictures = glob.glob1(dayroute, '*jpg')
+            pictures.extend(glob.glob1(dayroute, '*.png'))
+            pictures = sorted(pictures)
+            print "Importing %s pictures" % len(pictures)
+            total += len(pictures)
+            for picture in pictures:
+                path = os.path.join(user, date_, picture)
+                time = getNowTime() # we use a fake time because the file name doesn't provide it
+                nDatetime = getDateTimeFromParams(date_, time)
 
-                        nPicture = Picture(path=path, user_id=user, label_id=DEFAULT_LABEL, date=nDatetime)
-                        # ya tenemos el nuevo objeto imagen, solo hay que guardarlo en la base de datos
-                        db.session.add(nPicture)
+                nPicture = Picture(path=path, user_id=user, label_id=DEFAULT_LABEL, date=nDatetime)
+                # ya tenemos el nuevo objeto imagen, solo hay que guardarlo en la base de datos
+                db.session.add(nPicture)
 
     db.session.commit()
     # movemos todos los arhivos una vez insertados en la bd

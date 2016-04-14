@@ -54,6 +54,15 @@ def import_pictures():
     context = dict(app=app, db=db, User=User, Label=Label, Picture=Picture, route=origin, destiny=destiny)
     importer.load(context)
 
+@manager.command
+def import_pictures_simplified():
+    """Import the pictures from the import folder and add them to the database"""
+    from tools import importer_simplified
+    origin = app.config['IMPORT_FOLDER']
+    destiny = app.config['IMPORTED_PICTURES_FOLDER']
+    context = dict(app=app, db=db, User=User, Label=Label, Picture=Picture, route=origin, destiny=destiny)
+    importer_simplified.load(context)
+
 
 @manager.command
 def deploy():
