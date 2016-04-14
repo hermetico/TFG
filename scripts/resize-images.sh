@@ -34,7 +34,7 @@ then
     MIN_DEPTH="4"
 else
     echo Using min depth $2
-    MIN_DEPTH="$d"
+    MIN_DEPTH="$2"
 
 fi
 
