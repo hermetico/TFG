@@ -283,16 +283,19 @@ def export_labels():
 @admin_required
 def export_train():
     import numpy as np
+    import os
+    media_folder = app.config['IMPORTED_PICTURES_FOLDER']
     pictures = Picture.query.all()
     response = ""
 
     pictures = [ "%s %i"%(pic.path, pic.label_id - 2) for pic in pictures ]
     pictures = np.random.permutation(pictures)
 
-    for picture in pictures:
-        response += '%s\n' % (picture)
-    return Response(response, mimetype='text/txt')
+    with open(os.path.join(media_folder,"train.txt"), "wb") as fo:
+        for picture in pictures:
+            fo.write('%s\n' % picture)
 
+    return send_file(os.path.join(media_folder,"train.txt"), mimetype='text/txt')
 
 """
 @main.route('/export/dataset.zip', methods=['GET'])
