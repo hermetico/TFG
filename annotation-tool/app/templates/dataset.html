@@ -25,13 +25,32 @@
                 <form class="form" method="post" role="form" >
                     {# wtf.quick_form(form) #}
                     {{ form.hidden_tag() }}
+                    <div class="form-group "  title="Hace un random sobre el set de imagenes">
+                        <label class="control-label" for="shuffle_images">Imagenes aleatorias</label>
+                        <br>
+                        <input class="" id="shuffle_images" name="shuffle_images" type="checkbox">
+                    </div>
+                    <div class="form-group "  title="El path de las imagenes sera el path absoluto dentro del servidor">
+                        <label class="control-label" for="use_local_abs_path">Usar path absoluto del servidor para imagenes</label>
+                        <br>
+                        <input class="" id="use_local_abs_path" name="use_local_abs_path" type="checkbox">
+                    </div>
                     <div class="form-group" title="Si se deja en blanco las imagenes vendran con la ruta relativa, sino, se incluirá el path especificado para generar la ruta absoluta">
-                        <label class="control-label" for="append_path">Añadir absolute path en train/test txt</label>
+                        <label class="control-label" for="append_path">Añadir path propio en train/val/test txt</label>
                         <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/media/test-dataset/">
+                    </div>
+                    <div class="form-group "  title="Si esta a 0 no se generara el archivo val.txt">
+                        <label class="control-label" for="validation_percent">Porcentaje de imagenes para validation</label>
+                        <input class="form-control" id="validation_percent" name="validation_percent" type="number" value="0">
                     </div>
                     <div class="form-group "  title="Si esta a 0 no se generara el archivo test.txt">
                         <label class="control-label" for="test_percent">Porcentaje de imagenes para test</label>
                         <input class="form-control" id="test_percent" name="test_percent" type="number" value="0">
+                    </div>
+                    <div class="form-group "  title="Adjunta las imagenes, si hay muchas puede dar error del servidor">
+                        <label class="control-label" for="download_images">Descargar imagenes</label>
+                        <br>
+                        <input class="" id="download_images" name="download_images" type="checkbox">
                     </div>
                     {# form.select_labels #}
                     <input class="btn btn-default" id="submit" name="submit" type="submit" value="Generar dataset">

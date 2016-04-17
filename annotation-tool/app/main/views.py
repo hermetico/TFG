@@ -174,49 +174,86 @@ def create_dataset():
 
     if form.validate_on_submit():
         percent_test = form.test_percent.data
+        percent_validation = form.validation_percent.data
         path = form.append_path.data or ""
+        local_abs_path = form.use_local_abs_path.data or False
+        shuffle_images = form.shuffle_images.data or False
+        download_images = form.download_images.data or False
+
         import shutil, os
+        import numpy as np
         pictures = Picture.query.all()
         labels = Label.query.all()
         media_folder = app.config['IMPORTED_PICTURES_FOLDER']
         static_folder = app.config['STATIC_FOLDER']
-        zip_file = static_folder + '/dataset'
+        zip_file = os.path.join(static_folder, 'dataset')
+        txt_files = ["train.txt", "test.txt", "val.txt", "labels.txt"]
 
         # remove old files
-        for file_name in ["/train.txt", "/test.txt"]:
-            file_name = static_folder + file_name
+        for file_name in txt_files:
+            file_name = os.path.join(media_folder, file_name)
             if os.path.isfile(file_name):
                 os.remove(file_name)
 
-        if percent_test > 0:
-            import random
-            num_images = len(pictures)
-            num_test = int(num_images * (percent_test / 100.))
-            test_indices = random.sample(xrange(num_images), num_test)
-            test_data = [pictures[i] for i in test_indices]
-            train_data = [pictures[i] for i in xrange(num_images)if i not in test_indices]
+        tmp_folder = os.path.join(media_folder, 'tmp_dataset')
+        if os.path.exists(tmp_folder):
+            shutil.rmtree(tmp_folder)
 
+        # add global or relative path
+        path = media_folder if local_abs_path else path
+
+        pictures = [ "%s %i"%(os.path.join(path, pic.path), pic.label_id - 1) for pic in pictures ]
+
+        # shuffle images if needed
+        if shuffle_images:
+            pictures = np.random.permutation(pictures)
+
+        num_images = len(pictures)
+        num_validation, num_test = 0, 0
+
+        if percent_validation > 0:
+            num_validation = int(num_images * (percent_validation / 100.))
+            validation_images = pictures[:num_validation]
             # creates the txt
-            with open(media_folder + "/train.txt", "wb") as fo:
-                for picture in train_data:
-                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+            with open(os.path.join(media_folder, "val.txt"), "wb") as fo:
+                for picture in validation_images:
+                    fo.write('%s\n' % picture)
+            # shrinks the num of pictures
+            pictures = pictures[num_validation:]
 
-            with open(media_folder + "/test.txt", "wb") as fo:
-                for picture in test_data:
-                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+        if percent_test > 0:
+            num_test = int(num_images * (percent_test / 100.))
+            test_images = pictures[:num_test]
+            # creates the txt
+            with open(os.path.join(media_folder,"test.txt"), "wb") as fo:
+                for picture in test_images:
+                    fo.write('%s\n' % picture)
+            # shrinks the num of pictures
+            pictures = pictures[num_test:]
 
-        else:
-            # creates the csv
-            with open(media_folder + "/train.txt", "wb") as fo:
-                for picture in pictures:
-                    fo.write('%s%s %s\n' % (path, picture.path, picture.label_id))
+        with open(os.path.join(media_folder,"train.txt"), "wb") as fo:
+            for picture in pictures:
+                fo.write('%s\n' % picture)
 
-        with open(media_folder + "/labels.txt", "wb") as fo:
+
+        with open(os.path.join(media_folder,  "labels.txt"), "wb") as fo:
             for label in labels:
-                fo.write('%s %s\n' % (label.id, label.name))
+                fo.write('%s\n' % (label.name))
 
-        # creates the zip using shutil
-        shutil.make_archive(zip_file, 'zip', media_folder)
+        if download_images:
+            # creates the zip of everything using shutil
+            shutil.make_archive(zip_file, 'zip', media_folder)
+        else:
+            os.mkdir(tmp_folder)
+            # moves the txt files to a temp folder
+            for file_name in txt_files:
+                src = os.path.join(media_folder, file_name)
+                if os.path.isfile(src):
+                    dst = os.path.join(tmp_folder, file_name)
+                    shutil.copy(src, dst)
+            shutil.make_archive(zip_file, 'zip', tmp_folder)
+
+
 
         return send_file(zip_file + '.zip', mimetype='application/zip')
 
@@ -236,7 +273,7 @@ def export_labels():
     labels = Label.query.all()
     response = ""
     for label in labels:
-        response += '%s %s\n' % (label.id, label.name)
+        response += '%s\n' % (label.name)
     return Response(response, mimetype='text/txt')
 
 
@@ -244,10 +281,15 @@ def export_labels():
 @login_required
 @admin_required
 def export_train():
+    import numpy as np
     pictures = Picture.query.all()
     response = ""
+
+    pictures = [ "%s %i"%(pic.path, pic.label_id - 1) for pic in pictures ]
+    pictures = np.random.permutation(pictures)
+
     for picture in pictures:
-        response += '%s %s\n' % (picture.path, picture.label_id)
+        response += '%s\n' % (picture)
     return Response(response, mimetype='text/txt')
 
 
