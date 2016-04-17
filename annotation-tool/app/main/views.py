@@ -182,7 +182,7 @@ def create_dataset():
 
         import shutil, os
         import numpy as np
-        pictures = Picture.query.all()
+        pictures = Picture.query.filter(Picture.label_id != Label.query.first().id).all()
         labels = Label.query.all()
         media_folder = app.config['IMPORTED_PICTURES_FOLDER']
         static_folder = app.config['STATIC_FOLDER']
@@ -285,7 +285,7 @@ def export_train():
     import numpy as np
     import os
     media_folder = app.config['IMPORTED_PICTURES_FOLDER']
-    pictures = Picture.query.all()
+    pictures = Picture.query.filter(Picture.label_id != Label.query.first().id).all()
     response = ""
 
     pictures = [ "%s %i"%(pic.path, pic.label_id - 2) for pic in pictures ]
