@@ -202,7 +202,7 @@ def create_dataset():
         # add global or relative path
         path = media_folder if local_abs_path else path
 
-        pictures = [ "%s %i"%(os.path.join(path, pic.path), pic.label_id - 1) for pic in pictures ]
+        pictures = [ "%s %i"%(os.path.join(path, pic.path), pic.label_id - 2) for pic in pictures ]
 
         # shuffle images if needed
         if shuffle_images:
@@ -235,7 +235,7 @@ def create_dataset():
             for picture in pictures:
                 fo.write('%s\n' % picture)
 
-
+        labels.pop(0) # do not return the label "sin-etiqueta"
         with open(os.path.join(media_folder,  "labels.txt"), "wb") as fo:
             for label in labels:
                 fo.write('%s\n' % (label.name))
@@ -285,7 +285,7 @@ def export_train():
     pictures = Picture.query.all()
     response = ""
 
-    pictures = [ "%s %i"%(pic.path, pic.label_id - 1) for pic in pictures ]
+    pictures = [ "%s %i"%(pic.path, pic.label_id - 2) for pic in pictures ]
     pictures = np.random.permutation(pictures)
 
     for picture in pictures:
@@ -310,6 +310,7 @@ def export_dataset():
         for picture in pictures:
             fo.write('%s %s\n' % (picture.path, picture.label_id))
 
+    labels.pop(0)
     with open(media_folder + "/labels.txt", "wb") as fo:
         for label in labels:
             fo.write('%s %s\n' % (label.id, label.name))
