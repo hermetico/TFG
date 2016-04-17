@@ -272,6 +272,7 @@ def create_dataset():
 def export_labels():
     labels = Label.query.all()
     response = ""
+    labels.pop(0)
     for label in labels:
         response += '%s\n' % (label.name)
     return Response(response, mimetype='text/txt')
@@ -293,7 +294,7 @@ def export_train():
     return Response(response, mimetype='text/txt')
 
 
-
+"""
 @main.route('/export/dataset.zip', methods=['GET'])
 @login_required
 @admin_required
@@ -319,7 +320,7 @@ def export_dataset():
     shutil.make_archive(zip_file, 'zip', media_folder)
 
     return send_file(zip_file + '.zip', mimetype='application/zip')
-
+"""
 
 
 
