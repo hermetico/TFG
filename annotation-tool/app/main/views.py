@@ -125,7 +125,7 @@ def labels():
 def advanced():
     form = EliminarImagenesSinEtiqueta()
     if form.validate_on_submit():
-        import os, subprocess
+        import os, subprocess, shutil
         clave = form.clave.data
         if clave == 'eliminar':
             #recuperamos la primera label que es la "sin etiqueta"
@@ -142,8 +142,8 @@ def advanced():
             # para eliminarlas tmb
             # de destiny eliminamos las carpetas vacias
             command = ["find", app.config['IMPORTED_PICTURES_FOLDER'], "-empty", "-type", "d", "-delete"]
-            p = subprocess.Popen(command)
-            p.wait()
+            os.system(" ".join(command))
+            #p.wait()
             #################################################################################################
 
             label.pictures.delete()
