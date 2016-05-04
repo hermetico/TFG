@@ -41,6 +41,8 @@ def main_page():
         print "Calculating data"
         CACHED_DATA['labels-count']['dirty'] = False
         data = Label.query.all()
+        # no mostramos las sin etiquetar
+        data.pop(0)
         labeled_data = []
         for label in data:
             labeled_data.append((label.name, label.pictures.count()))
@@ -59,11 +61,14 @@ def main_page():
 
         CACHED_DATA['sequences-count']['data'] = sequences
 
-
+    # chart the numero de imagenes etiquetadas
     data = CACHED_DATA['labels-count']['data']
     chart_labels = pygal.Bar()
     chart_labels.x_labels = ["Num Pictures"]
-    chart_labels.title = "%s Pictures" % (Picture.query.count())
+    chart_labels.title = "%s Pictures - %s without label" %(
+        Picture.query.count(),
+        Label.query.first().pictures.count()
+    )
     for label in data:
             chart_labels.add(label[0], label[1])
 
