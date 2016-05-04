@@ -65,9 +65,14 @@ def main_page():
     data = CACHED_DATA['labels-count']['data']
     chart_labels = pygal.Bar()
     chart_labels.x_labels = ["Num Pictures"]
-    chart_labels.title = "%s Pictures - %s without label" %(
-        Picture.query.count(),
-        Label.query.first().pictures.count()
+
+    num_pics = Picture.query.count()
+    num_pics_not_labeled = Label.query.first().pictures.count()
+    num_pics_labeled = num_pics - num_pics_not_labeled
+    chart_labels.title = "%s Pics - %s with label - %s without label" %(
+        num_pics,
+        num_pics_labeled,
+        num_pics_not_labeled
     )
     for label in data:
             chart_labels.add(label[0], label[1])
