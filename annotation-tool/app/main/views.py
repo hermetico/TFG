@@ -196,8 +196,10 @@ def create_dataset():
         labels = Label.query.all()
         media_folder = app.config['IMPORTED_PICTURES_FOLDER']
         static_folder = app.config['STATIC_FOLDER']
+        tools_folder = app.config['PYTOOLS_FOLDER']
         zip_file = os.path.join(static_folder, 'dataset')
         txt_files = ["train.txt", "test.txt", "val.txt", "labels.txt"]
+        py_files = ["download_pictures.py"]
 
         # remove old files
         for file_name in txt_files:
@@ -261,6 +263,14 @@ def create_dataset():
                 if os.path.isfile(src):
                     dst = os.path.join(tmp_folder, file_name)
                     shutil.copy(src, dst)
+
+            for filename in py_files:
+                src = os.path.join(py_folder, file_name)
+                if os.path.isfile(src):
+                    dst = os.path.join(tmp_folder, file_name)
+                    shutil.copy(src, dst)
+
+
             shutil.make_archive(zip_file, 'zip', tmp_folder)
 
 
