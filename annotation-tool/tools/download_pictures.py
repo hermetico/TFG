@@ -1,7 +1,5 @@
 import os, sys
-import numpy as np
 import urllib
-from multiprocessing.dummy import Pool as ThreadPool
 import time
 
 # USAGE
@@ -24,11 +22,11 @@ COUNT = 0
 MAX = 0
 BARLENGTH = 40
 THREADS = 1  # with one works just fine
-MAIN_FOLDER = os.path.abspath('.')
+
 
 
 def update_progress(step, end):
-    """Shows a fancy progresbar"""
+    """Shows a fancy progressbar"""
     progress = step / float(end)
     barLength = BARLENGTH # Modify this to change the length of the progress bar
     status = "Downloading..."
@@ -96,15 +94,17 @@ def download_set(set):
 
 def download_pictures(struct):
     if THREADS > 1:
+        # just in case people do not have numpy or use weird o.s.'s
+        import numpy as np
+        from multiprocessing.dummy import Pool as ThreadPool
         data = np.array_split(struct, THREADS)
+        pool = ThreadPool(THREADS)
+        pool.map(download_set, data)
     else:
+        # 1 thread should always work
         data = [struct]
-
-    pool = ThreadPool(THREADS)
-    pool.map(download_set, data)
-
-    #for set in data:
-    #    download_set(set)
+        for set in data:
+            download_set(set)
 
 
 
@@ -124,6 +124,8 @@ if __name__ == '__main__':
     global MAIN_FOLDER
     if len(sys.argv) > 1:  # we have output folder
         MAIN_FOLDER = sys.argv[1]
+    else:
+        MAIN_FOLDER = os.path.abspath('.')
 
     main()
 
