@@ -197,7 +197,9 @@ def create_dataset():
         shuffle_images = form.shuffle_images.data or False
         # only labels that have been selected
         query_labels = [int(label) for label in form.select_labels.data]
-
+        if len(query_labels) == 0:
+            flash('No has seleccionado ninguna etiqueta!', 'danger')
+            return redirect(url_for('.create_dataset'))
 
         # only return labels and pictures from selected labels
         pictures = Picture.query.filter(Picture.label_id.in_(query_labels)).all()
