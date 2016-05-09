@@ -61,14 +61,14 @@ def read_pictures():
                 complete_path = picture_path.split('/')
                 path = complete_path[:-1]
                 picture = complete_path[-1]
-                pictures.append((os.path.sep.join(path), picture))
+                pictures.append((path, picture))
     return pictures
 
 
 def create_folders(struct):
     """Creates all the folders needed"""
     for info in struct:
-        folder = info[0]
+        folder = os.path.sep.join(info[0])
         abs_path = os.path.join(MAIN_FOLDER, folder)
         if not os.path.exists(abs_path):
             #print "%s doesn't exists" %(abs_path)
@@ -79,11 +79,12 @@ def create_folders(struct):
 def download_set(set):
     global COUNT
     for num, info in enumerate(set):
-        folder = info[0]
+        url_path = '/'.join(info[0] + [info[1]])
+        local_path = os.path.sep.join(info[0] + [info[1]])
         pic_name = info[1]
-        url = SITE + '/'.join(info)
-        abs_path = os.path.join(MAIN_FOLDER, folder, pic_name)
-        urllib.urlretrieve(url, abs_path)
+
+        abs_path = os.path.join(MAIN_FOLDER, local_path, pic_name)
+        urllib.urlretrieve(SITE + '/' + url_path, abs_path)
 
         COUNT += 1
         if num % 10 == 0:
