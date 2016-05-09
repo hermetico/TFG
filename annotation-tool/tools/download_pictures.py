@@ -24,7 +24,7 @@ SITE = 'http://%s/static/media/' % HOST
 COUNT = 0
 MAX = 0
 BARLENGTH = 40
-THREADS = 1  # with 1 works just fine, with 4 is obviously faster
+
 
 
 
@@ -88,7 +88,7 @@ def download_set(set):
         urllib.urlretrieve(SITE + '/' + url_relative_path, abs_path)
 
         COUNT += 1
-        if num % 10 == 0:
+        if num % 5 == 0:
             update_progress(COUNT, MAX)
     update_progress(COUNT, MAX)
 
@@ -129,12 +129,14 @@ if __name__ == '__main__':
     global MAIN_FOLDER, THREADS
 
     if '--path' in sys.argv:
-        MAIN_FOLDER = sys.argv[sys.argv.index('--path')]
+        MAIN_FOLDER = sys.argv[sys.argv.index('--path') + 1]
     else:
         MAIN_FOLDER = os.path.abspath('.')
 
     if '--threads' in sys.argv:
-        THREADS = sys.argv[sys.argv.index('--threads')]
+        THREADS = int(sys.argv[sys.argv.index('--threads') + 1])
+    else:
+        THREADS = 1  # with 1 works just fine, with 4 is obviously faster
 
     main()
 
