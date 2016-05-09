@@ -79,12 +79,10 @@ def create_folders(struct):
 def download_set(set):
     global COUNT
     for num, info in enumerate(set):
-        url_path = '/'.join(info[0] + [info[1]])
-        local_path = os.path.sep.join(info[0] + [info[1]])
-        pic_name = info[1]
-
-        abs_path = os.path.join(MAIN_FOLDER, local_path, pic_name)
-        urllib.urlretrieve(SITE + '/' + url_path, abs_path)
+        url_relative_path = '/'.join(info[0] + [info[1]])
+        local_relative_path = os.path.sep.join(info[0] + [info[1]])
+        abs_path = os.path.join(MAIN_FOLDER, local_relative_path)
+        urllib.urlretrieve(SITE + '/' + url_relative_path, abs_path)
 
         COUNT += 1
         if num % 10 == 0:
