@@ -43,7 +43,6 @@ class CreateDatasetForm(Form):
     append_path = StringField(u"Añadir path en train/test txt")
     use_local_abs_path = BooleanField(u"Usar path absoluto del servidor", default=False)
     shuffle_images = BooleanField(u"De volver imagenes con orden aleatorio", default=False)
-    download_images = BooleanField(u"Descargar imagenes", default=False)
     validation_percent = IntegerField(u"Porcentaje de imagenes para validation", default=0)
     test_percent = IntegerField(u"Porcentaje de imagenes para test", default=0)
-    #select_labels = MultiCheckboxField(None)
+    select_labels = MultiCheckboxField(None)

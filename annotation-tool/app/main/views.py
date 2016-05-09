@@ -170,30 +170,39 @@ def advanced():
 @admin_required
 def create_dataset():
 
-    #labels = Label.query.all()
-    #choices = ChoiceObj('Etiquetas', [ u"%i" % label.id for label in labels])
-    #form = CreateDatasetForm(obj=choices)
-    #form.select_labels.choices = [(label.id, label.name) for label in labels]
+
 
     #if request.method == 'POST':
     #    path = form.append_path.data or ""
     #    test = form.test_percent.data
     #    qLabels = [int(q) for w in form.select_labels.data]
 
-    form = CreateDatasetForm()
+    #form = CreateDatasetForm()
 
-    if form.validate_on_submit():
+    # hack
+    labels = Label.query.all()
+    labels.pop(0)  # removes first label
+    choices = ChoiceObj('Etiquetas', [u"%i" % label.id for label in labels])
+    form = CreateDatasetForm(obj=choices)
+    form.select_labels.choices = [(label.id, label.name) for label in labels]
+
+    # validate_on_submit()fails with the multicheckbox
+    if form.is_submitted():
+        import shutil, os
+        import numpy as np
         percent_test = form.test_percent.data
         percent_validation = form.validation_percent.data
         path = form.append_path.data or ""
         local_abs_path = form.use_local_abs_path.data or False
         shuffle_images = form.shuffle_images.data or False
-        download_images = form.download_images.data or False
+        # only labels that have been selected
+        query_labels = [int(label) for label in form.select_labels.data]
 
-        import shutil, os
-        import numpy as np
-        pictures = Picture.query.filter(Picture.label_id != Label.query.first().id).all()
-        labels = Label.query.all()
+
+        # only return labels and pictures from selected labels
+        pictures = Picture.query.filter(Picture.label_id.in_(query_labels)).all()
+        labels = Label.query.filter(Label.id.in_(query_labels)).all()
+
         media_folder = app.config['IMPORTED_PICTURES_FOLDER']
         static_folder = app.config['STATIC_FOLDER']
         tools_folder = app.config['PYTOOLS_FOLDER']
@@ -213,8 +222,8 @@ def create_dataset():
 
         # add global or relative path
         path = media_folder if local_abs_path else path
-
-        pictures = [ "%s %i"%(os.path.join(path, pic.path), pic.label_id - 2) for pic in pictures ]
+        # the id of the label must be changed accordingly to the selected labels to download
+        pictures = [ "%s %i"%(os.path.join(path, pic.path), query_labels.index(pic.label_id)) for pic in pictures ]
 
         # shuffle images if needed
         if shuffle_images:
@@ -247,31 +256,32 @@ def create_dataset():
             for picture in pictures:
                 fo.write('%s\n' % picture)
 
-        labels.pop(0) # do not return the label "sin-etiqueta"
+        #labels.pop(0) # do not return the label "sin-etiqueta"
         with open(os.path.join(media_folder,  "labels.txt"), "wb") as fo:
             for label in labels:
                 fo.write('%s\n' % (label.name))
 
-        if download_images:
+        #if download_images:
             # creates the zip of everything using shutil
-            shutil.make_archive(zip_file, 'zip', media_folder)
-        else:
-            os.mkdir(tmp_folder)
-            # moves the txt files to a temp folder
-            for file_name in txt_files:
-                src = os.path.join(media_folder, file_name)
-                if os.path.isfile(src):
-                    dst = os.path.join(tmp_folder, file_name)
-                    shutil.copy(src, dst)
+        #    shutil.make_archive(zip_file, 'zip', media_folder)
+        #else:
+        # creates the zip with the files
+        os.mkdir(tmp_folder)
+        # moves the txt files to a temp folder
+        for file_name in txt_files:
+            src = os.path.join(media_folder, file_name)
+            if os.path.isfile(src):
+                dst = os.path.join(tmp_folder, file_name)
+                shutil.copy(src, dst)
 
-            for filename in py_files:
-                src = os.path.join(py_folder, file_name)
-                if os.path.isfile(src):
-                    dst = os.path.join(tmp_folder, file_name)
-                    shutil.copy(src, dst)
+        for file_name in py_files:
+            src = os.path.join(tools_folder, file_name)
+            if os.path.isfile(src):
+                dst = os.path.join(tmp_folder, file_name)
+                shutil.copy(src, dst)
 
 
-            shutil.make_archive(zip_file, 'zip', tmp_folder)
+        shutil.make_archive(zip_file, 'zip', tmp_folder)
 
 
 

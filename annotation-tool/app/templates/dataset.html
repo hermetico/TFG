@@ -15,49 +15,82 @@
     <h1 class="page-header">Generar dataset</h1>
 {% endblock %}
 {% block content %}
-<div class="col-lg-8">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="fa fa-sticky-note"></i> Opciones dataset
-        </div>
-        <div class="panel-body">
-            <div class="list-group">
-                <form class="form" method="post" role="form" >
-                    {# wtf.quick_form(form) #}
-                    {{ form.hidden_tag() }}
-                    <div class="form-group "  title="Hace un random sobre el set de imagenes">
-                        <label class="control-label" for="shuffle_images">Imagenes aleatorias</label>
-                        <br>
-                        <input class="" id="shuffle_images" name="shuffle_images" type="checkbox">
+    <form class="form" method="post" role="form" >
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="glyphicon glyphicon-th-list"></i> Etiquetas para el dataset
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <label class="control-label" for="marcar-todos">Marcar todas</label>
+                    <input class="" id="marcar-todos" name="marcar-todos" data-who="{{form.select_labels.name}}" type="checkbox" >
+                    <br>
+                    <br>
+                    {% for label in form.select_labels.choices %}
+                    <div class="list-group-item label-{{label[0]}}">
+                        <label class="control-label" for="{{form.select_labels.name}}-{{label[0]}}">{{label[1]}}</label>
+                        <span class="pull-right text-muted small">
+                            <input class="" id="{{form.select_labels.name}}-{{label[0]}}"
+                                   name="{{form.select_labels.name}}" type="checkbox" value="{{label[0]}}">
+                        </span>
                     </div>
-                    <div class="form-group "  title="El path de las imagenes sera el path absoluto dentro del servidor">
-                        <label class="control-label" for="use_local_abs_path">Usar path absoluto del servidor para imagenes</label>
-                        <br>
-                        <input class="" id="use_local_abs_path" name="use_local_abs_path" type="checkbox">
-                    </div>
-                    <div class="form-group" title="Si se deja en blanco las imagenes vendran con la ruta relativa, sino, se incluirá el path especificado para generar la ruta absoluta">
-                        <label class="control-label" for="append_path">Añadir path propio en train/val/test txt</label>
-                        <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/media/test-dataset/">
-                    </div>
-                    <div class="form-group "  title="Si esta a 0 no se generara el archivo val.txt">
-                        <label class="control-label" for="validation_percent">Porcentaje de imagenes para validation</label>
-                        <input class="form-control" id="validation_percent" name="validation_percent" type="number" value="0">
-                    </div>
-                    <div class="form-group "  title="Si esta a 0 no se generara el archivo test.txt">
-                        <label class="control-label" for="test_percent">Porcentaje de imagenes para test</label>
-                        <input class="form-control" id="test_percent" name="test_percent" type="number" value="0">
-                    </div>
-                    <div class="form-group "  title="Adjunta las imagenes, si hay muchas puede dar error del servidor">
-                        <label class="control-label" for="download_images">Descargar imagenes</label>
-                        <br>
-                        <input class="" id="download_images" name="download_images" type="checkbox">
-                    </div>
+                    {% endfor %}
                     {# form.select_labels #}
-                    <input class="btn btn-default" id="submit" name="submit" type="submit" value="Generar dataset">
-                </form>
+                </div>
             </div>
         </div>
-        <!-- /.panel-body -->
     </div>
-</div>
+    <!-- /.col -->
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-sticky-note"></i> Opciones dataset
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+
+                        {# wtf.quick_form(form) #}
+                        {{ form.hidden_tag() }}
+                        <div class="form-group "  title="Hace un random sobre el set de imagenes">
+                            <label class="control-label" for="shuffle_images">Imagenes aleatorias</label>
+                            <br>
+                            <input class="" id="shuffle_images" name="shuffle_images" type="checkbox">
+                        </div>
+                        <div class="form-group "  title="El path de las imagenes sera el path absoluto dentro del servidor">
+                            <label class="control-label" for="use_local_abs_path">Usar path absoluto del servidor para imagenes</label>
+                            <br>
+                            <input class="" id="use_local_abs_path" name="use_local_abs_path" type="checkbox">
+                        </div>
+                        <div class="form-group" title="Si se deja en blanco las imagenes vendran con la ruta relativa, sino, se incluirá el path especificado para generar la ruta absoluta">
+                            <label class="control-label" for="append_path">Añadir path propio en train/val/test txt</label>
+                            <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/media/test-dataset/">
+                        </div>
+                        <div class="form-group "  title="Si esta a 0 no se generara el archivo val.txt">
+                            <label class="control-label" for="validation_percent">Porcentaje de imagenes para validation</label>
+                            <input class="form-control" id="validation_percent" name="validation_percent" type="number" value="0">
+                        </div>
+                        <div class="form-group "  title="Si esta a 0 no se generara el archivo test.txt">
+                            <label class="control-label" for="test_percent">Porcentaje de imagenes para test</label>
+                            <input class="form-control" id="test_percent" name="test_percent" type="number" value="0">
+                        </div>
+
+
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col -->
+
+
+    <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Generar dataset">
+    </form>
+    <!-- Custom Theme JavaScript -->
+    <script src="{{url_for('static', filename='js/checkbox_multiselect.js')}}"></script>
+    <script>
+        $('#marcar-todos').multiselect()
+    </script>
 {% endblock %}
