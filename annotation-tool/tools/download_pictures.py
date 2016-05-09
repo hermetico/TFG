@@ -3,7 +3,10 @@ import urllib
 import time
 
 # USAGE
-# >> python download_pictures.py [destination-folder]
+# >> python download_pictures.py
+# optinal parameters
+# --path <output path>
+# --threads <num threads to download>
 
 
 
@@ -21,7 +24,7 @@ SITE = 'http://%s/static/media/' % HOST
 COUNT = 0
 MAX = 0
 BARLENGTH = 40
-THREADS = 1  # with one works just fine
+THREADS = 1  # with 1 works just fine, with 4 is obviously faster
 
 
 
@@ -114,20 +117,24 @@ def main():
     MAX = len(pictures)
     print "Creating folder structure ..."
     create_folders(pictures)
-    print "%i pictures are going do be downloaded" % (MAX, )
+    print "%i pictures are going do be downloaded using %i worker(s)" % (MAX, THREADS)
     init = time.clock()
     download_pictures(pictures)
     end = time.clock()
     print
-    print "%i pictures downloaded with %i worker in  %f seconds" % (MAX, THREADS, end-init)
+    print "%i pictures downloaded with %i worker(s) in  %f seconds" % (MAX, THREADS, end-init)
 
 
 if __name__ == '__main__':
-    global MAIN_FOLDER
-    if len(sys.argv) > 1:  # we have output folder
-        MAIN_FOLDER = sys.argv[1]
+    global MAIN_FOLDER, THREADS
+
+    if '--path' in sys.argv:
+        MAIN_FOLDER = sys.argv[sys.argv.index('--path')]
     else:
         MAIN_FOLDER = os.path.abspath('.')
+
+    if '--threads' in sys.argv:
+        THREADS = sys.argv[sys.argv.index('--threads')]
 
     main()
 
