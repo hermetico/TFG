@@ -110,14 +110,17 @@ def download_pictures(struct):
 
 def main():
     global MAX
+    print "Reading pictures ..."
     pictures = read_pictures()
     MAX = len(pictures)
+    print "Creating folder structure ..."
     create_folders(pictures)
+    print "%i pictures are going do be downloaded" % (MAX, )
     init = time.clock()
     download_pictures(pictures)
     end = time.clock()
-
-    print "%i pictures with %i workers, %f seconds" % (MAX, THREADS, end-init)
+    print
+    print "%i pictures downloaded with %i worker in  %f seconds" % (MAX, THREADS, end-init)
 
 
 if __name__ == '__main__':
