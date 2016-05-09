@@ -184,7 +184,7 @@ def create_dataset():
     labels.pop(0)  # removes first label
     choices = ChoiceObj('Etiquetas', [u"%i" % label.id for label in labels])
     form = CreateDatasetForm(obj=choices)
-    form.select_labels.choices = [(label.id, label.name) for label in labels]
+    form.select_labels.choices = [(label.id, "%s (%i pictures)"%(label.name, label.pictures.count())) for label in labels]
 
     # validate_on_submit()fails with the multicheckbox
     if form.is_submitted():
@@ -208,7 +208,7 @@ def create_dataset():
         tools_folder = app.config['PYTOOLS_FOLDER']
         zip_file = os.path.join(static_folder, 'dataset')
         txt_files = ["train.txt", "test.txt", "val.txt", "labels.txt"]
-        py_files = ["download_pictures.py"]
+        py_file = "download_pictures.py"
 
         # remove old files
         for file_name in txt_files:
@@ -241,6 +241,8 @@ def create_dataset():
                     fo.write('%s\n' % picture)
             # shrinks the num of pictures
             pictures = pictures[num_validation:]
+        else:
+            txt_files.pop(txt_files.index('val.txt'))
 
         if percent_test > 0:
             num_test = int(num_images * (percent_test / 100.))
@@ -251,6 +253,8 @@ def create_dataset():
                     fo.write('%s\n' % picture)
             # shrinks the num of pictures
             pictures = pictures[num_test:]
+        else:
+            txt_files.pop(txt_files.index('test.txt'))
 
         with open(os.path.join(media_folder,"train.txt"), "wb") as fo:
             for picture in pictures:
@@ -261,10 +265,7 @@ def create_dataset():
             for label in labels:
                 fo.write('%s\n' % (label.name))
 
-        #if download_images:
-            # creates the zip of everything using shutil
-        #    shutil.make_archive(zip_file, 'zip', media_folder)
-        #else:
+
         # creates the zip with the files
         os.mkdir(tmp_folder)
         # moves the txt files to a temp folder
@@ -274,12 +275,21 @@ def create_dataset():
                 dst = os.path.join(tmp_folder, file_name)
                 shutil.copy(src, dst)
 
-        for file_name in py_files:
-            src = os.path.join(tools_folder, file_name)
-            if os.path.isfile(src):
-                dst = os.path.join(tmp_folder, file_name)
-                shutil.copy(src, dst)
-
+        # creates the download script
+        src = os.path.join(tools_folder, py_file)
+        dst = os.path.join(tmp_folder, py_file)
+        # we are going to insert the txt files inside the python script
+        # so we do not want the labels.txt inside becase it doesn't contain
+        # images to be downloaded
+        txt_files.pop(txt_files.index('labels.txt'))
+        with open(src, 'r') as f:
+            content = f.read()
+            param_host = request.host
+            param_files = str(txt_files)
+            content = content.replace('$HOST$', param_host)
+            content = content.replace("'$FILES$'", param_files)
+            with open(dst, 'w') as output:
+                output.write(content)
 
         shutil.make_archive(zip_file, 'zip', tmp_folder)
 

@@ -4,15 +4,18 @@ import urllib
 from multiprocessing.dummy import Pool as ThreadPool
 import time
 
-# Modify these params
-HOST = 'localhost'
-THREADS = 1 # with one works just fine
-FILES = [
-    '/home/hermetico/Desktop/dataset/train.txt',
-    '/home/hermetico/Desktop/dataset/test.txt'
-]
+# USAGE
+# >> python download_pictures.py [destination-folder]
 
-MAIN_FOLDER = this_folder = os.path.abspath('.')
+
+
+##################################################################
+# Automatic generated params, modify in case something looks wrong
+HOST = '$HOST$'
+FILES = '$FILES$'
+##################################################################
+
+
 
 
 # Usually you do not need to modify these params
@@ -20,9 +23,12 @@ SITE = 'http://%s/static/media/' % HOST
 COUNT = 1
 MAX = 0
 BARLENGTH = 40
+THREADS = 1  # with one works just fine
+MAIN_FOLDER = os.path.abspath('.')
 
 
 def update_progress(step, end):
+    """Shows a fancy progresbar"""
     progress = step / float(end)
     barLength = BARLENGTH # Modify this to change the length of the progress bar
     status = "Downloading..."
@@ -62,6 +68,7 @@ def read_pictures():
 
 
 def create_folders(struct):
+    """Creates all the folders needed"""
     for info in struct:
         folder = info[0]
         abs_path = os.path.join(MAIN_FOLDER, folder)
@@ -110,9 +117,13 @@ def main():
     download_pictures(pictures)
     end = time.clock()
 
-    print "Data downloaded with %i threads, %f seconds"%(THREADS, end-init)
+    print "Data downloaded with %i workers, %f seconds" % (THREADS, end-init)
 
 
 if __name__ == '__main__':
+    global MAIN_FOLDER
+    if len(sys.argv) > 1:  # we have output folder
+        MAIN_FOLDER = sys.argv[1]
+
     main()
 
