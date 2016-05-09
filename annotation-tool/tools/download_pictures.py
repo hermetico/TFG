@@ -20,7 +20,7 @@ FILES = '$FILES$'
 
 # Usually you do not need to modify these params
 SITE = 'http://%s/static/media/' % HOST
-COUNT = 1
+COUNT = 0
 MAX = 0
 BARLENGTH = 40
 THREADS = 1  # with one works just fine
@@ -117,7 +117,7 @@ def main():
     download_pictures(pictures)
     end = time.clock()
 
-    print "Data downloaded with %i workers, %f seconds" % (THREADS, end-init)
+    print "%i pictures with %i workers, %f seconds" % (MAX, THREADS, end-init)
 
 
 if __name__ == '__main__':
