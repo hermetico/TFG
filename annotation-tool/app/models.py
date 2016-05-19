@@ -19,7 +19,7 @@ class Role(db.Model):
     users = db.relationship('User', backref='role', lazy='dynamic')
 
     def __repr__(self):
-        return '<Role %r>' % self.name
+        return '<id: %i, name: %r>' % (self.id, self.name)
 
 
 class User(UserMixin, db.Model):
@@ -100,4 +100,4 @@ class Label(db.Model):
     pictures = db.relationship('Picture', backref='label', lazy='dynamic')
 
     def __repr__(self):
-        return '<Label %r>' % self.name
+        return '<id: i%, name %r>' % (self.id, self.name)
