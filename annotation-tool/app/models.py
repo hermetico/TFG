@@ -100,4 +100,4 @@ class Label(db.Model):
     pictures = db.relationship('Picture', backref='label', lazy='dynamic')
 
     def __repr__(self):
-        return '<id: i%, name %r>' % (self.id, self.name)
+        return '<id: %i, name %r>' % (self.id, self.name)
