@@ -65,7 +65,8 @@ def read_pictures():
                     pass
                 if EXTRA_PATH:
                     # we should extract the extra_path before trying to download the picture etc..
-                    picture_path = picture_path.replace(EXTRA_PATH + os.path.sep, "")
+                    # also avoids the path starting with / or \
+                    picture_path = picture_path.replace(EXTRA_PATH, "")[1:]
                 complete_path = picture_path.split('/')
                 path = complete_path[:-1]
                 picture = complete_path[-1]
