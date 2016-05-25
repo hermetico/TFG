@@ -10,7 +10,7 @@ from app.models import User, Role, Picture, Label
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand, upgrade
 
-#print "******LOADING  ENVIROMENT MANUALLY" 
+#print "******LOADING  ENVIROMENT MANUALLY"
 #os.environ['FLASK_CONFIG'] = 'production'
 #print "Production enviroment loaded"
 
@@ -24,8 +24,10 @@ if os.path.exists(enviroment_file):
             os.environ[var[0]] = var[1]
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+
 manager = Manager(app)
 migrate = Migrate(app, db)
+
 
 def make_shell_context():
     return dict(app=app, db=db, User=User,
@@ -73,10 +75,15 @@ def deploy():
     deploy.initial_deploy(context)
 
 
-
+def debug():
+    print "Running enviroment in debug mode"
+    app.run(host='0.0.0.0', port=9999, debug=True)
 
 
 
 
 if __name__ == '__main__':
-    manager.run()
+    if 'debug' in sys.argv:
+        debug()
+    else:
+        manager.run()

@@ -43,21 +43,25 @@ def main_page():
         data = Label.query.all()
         # no mostramos las sin etiquetar
         data.pop(0)
-        labeled_data = []
+        labeled_data = {}
         for label in data:
-            labeled_data.append((label.name, label.pictures.count()))
+            labeled_data[label.id] = (label.name, label.pictures.count())
+            #labeled_data.append((label.name, label.pictures.count()))
 
         CACHED_DATA['labels-count']['data'] = labeled_data
 
     if CACHED_DATA['sequences-count']['dirty']:
         CACHED_DATA['sequences-count']['dirty'] = False
         data = Picture.query.all()
-        sequences = [0] * Label.query.count()
+        sequences = {}
+        #sequences = [0] * Label.query.count()
         current_sequence = -1
         for pic in data:
             if current_sequence != pic.label_id:
                 current_sequence = pic.label_id
-                sequences[current_sequence - 1] += 1
+                if not current_sequence in sequences:
+                    sequences[current_sequence] = 0
+                sequences[current_sequence] += 1
 
         CACHED_DATA['sequences-count']['data'] = sequences
 
@@ -74,15 +78,19 @@ def main_page():
         num_pics_labeled,
         num_pics_not_labeled
     )
-    for label in data:
-            chart_labels.add(label[0], label[1])
+    for label in data.values():
+        chart_labels.add(label[0], label[1])
 
     data = CACHED_DATA['sequences-count']['data']
     chart_sequences = pygal.Bar()
     chart_sequences.x_labels = ["Num Sequences"]
-    chart_sequences.title = "%s Sequences" % (sum(data))
-    for label in Label.query.all():
-        chart_sequences.add(label.name, data[label.id - 1])
+    chart_sequences.title = "%s Sequences" % (sum(data.values()))
+    print data
+    for label in Label.query.filter(Label.id != Label.query.first().id).all():
+        if label.id in data:
+            chart_sequences.add(label.name, data[label.id])
+        else:
+            chart_sequences.add(label.name, 0)
 
 
     return render_template('index.html', chart_labels=chart_labels, chart_sequences=chart_sequences)
