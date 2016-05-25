@@ -46,7 +46,7 @@ Las imagenes se deben encontrar en la misma carpeta que con el método anterior.
 
     En este caso no se utilizara hora para  almacenar las imagenes. La fecha debe estar en formato iso 8601, que se representa de la siguiente manera ``YYYY-MM-DD``. Lo cual quiere decir que primero va representado el año con 4 digitos, luego el mes con dos digitos y finalmente el dia también con 2 digitos. La siguiente es una muestra de una ruta valida::
 
-    1/2016-06-01/picture.jpg
+        1/2016-06-01/picture.jpg
 
     De esta forma tenemos una estructura similar a la anterior pero mas sencilla de mantener.
 
