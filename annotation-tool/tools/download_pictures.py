@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 import urllib
 import time
 
@@ -11,9 +12,10 @@ import time
 
 
 ##################################################################
-# Automatic generated params, modify in case something looks wrong
+# Auto generated params, modify in case something looks wrong
 HOST = '$HOST$'
 FILES = '$FILES$'
+EXTRA_PATH = '$PATH$'
 ##################################################################
 
 
@@ -61,6 +63,9 @@ def read_pictures():
                 except ValueError:
                     print "Skip file %s" % (line)
                     pass
+                if EXTRA_PATH:
+                    # we should extract the extra_path before trying to download the picture etc..
+                    picture_path = picture_path.replace(EXTRA_PATH + os.path.sep, "")
                 complete_path = picture_path.split('/')
                 path = complete_path[:-1]
                 picture = complete_path[-1]

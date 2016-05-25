@@ -318,6 +318,7 @@ def create_dataset():
             param_files = str(txt_files)
             content = content.replace('$HOST$', param_host)
             content = content.replace("'$FILES$'", param_files)
+            content = content.replace('$PATH$', path)
             with open(dst, 'w') as output:
                 output.write(content)
 
