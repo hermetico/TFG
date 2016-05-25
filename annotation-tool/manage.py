@@ -24,6 +24,7 @@ if os.path.exists(enviroment_file):
             os.environ[var[0]] = var[1]
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+app.debug = True
 manager = Manager(app)
 migrate = Migrate(app, db)
 

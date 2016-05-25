@@ -5,7 +5,7 @@ from .decorators import admin_required
 from . import main
 from .. import db
 from ..models import User, Label, Picture, Role
-from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj, EliminarImagenesSinEtiqueta
+from .forms import NewUserForm, NewLabelForm, CreateDatasetForm, ChoiceObj, EliminarImagenesSinEtiqueta, EliminarImagenesYEtiquetas
 from flask import current_app as app
 
 PAGESIZE = 75
@@ -129,14 +129,16 @@ def labels():
     label_list = Label.query.order_by(Label.id).all()
     return render_template('labels.html', form=form, labels=label_list)
 
+
 @main.route('/advanced', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def advanced():
-    form = EliminarImagenesSinEtiqueta()
-    if form.validate_on_submit():
-        import os, subprocess, shutil
-        clave = form.clave.data
+    form_eliminar_sin_etiqueta = EliminarImagenesSinEtiqueta()
+    form_limpiar_db = EliminarImagenesYEtiquetas()
+    if form_eliminar_sin_etiqueta.validate_on_submit() and form_eliminar_sin_etiqueta.eliminar.data:
+        import os,  shutil
+        clave = form_eliminar_sin_etiqueta.clave.data
         if clave == 'eliminar':
             #recuperamos la primera label que es la "sin etiqueta"
             label = Label.query.first()
@@ -160,10 +162,36 @@ def advanced():
             db.session.commit()
             set_dirty()
             flash('Imagenes eliminadas correctamente', 'success')
+
         else:
             flash('La palabra de seguridad introducida no es correcta', 'danger')
         return redirect(url_for('.advanced'))
-    return render_template('advanced.html', form=form)
+
+    elif form_limpiar_db.validate_on_submit() and form_limpiar_db.limpiar.data:
+        import os,  shutil
+        clave = form_limpiar_db.clave.data
+        print clave
+        if clave == 'eliminar-todo':
+            # deletes the all the labels except the first one
+            Label.query.filter(Label.id != 1).delete()
+            # deletes all the pictures from the DB
+            Picture.query.delete()
+            # restart indexes for labels and pictures
+            db.session.commit()
+            # Lanzamos el comando del sistema operativo para eliminar todas las imagenes
+            command = ["find", app.config['IMPORTED_PICTURES_FOLDER'], "-mindepth", "1", "-delete"]
+            os.system(" ".join(command))
+
+            set_dirty()
+            flash('Imagenes y etiquetas eliminadas correctamente', 'success')
+        else:
+            flash('La palabra de seguridad introducida no es correcta', 'danger')
+        return redirect(url_for('.advanced'))
+
+
+    return render_template('advanced.html',
+                           form_eliminar_sin_etiqueta=form_eliminar_sin_etiqueta,
+                           form_limpiar_db=form_limpiar_db)
 
 @main.route('/dataset', methods=['GET', 'POST'])
 @login_required
