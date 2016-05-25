@@ -36,8 +36,15 @@ class NewLabelForm(Form):
 
 class EliminarImagenesSinEtiqueta(Form):
      clave = StringField(u"Escribe la palabra 'eliminar'")
-     submit = SubmitField(u"Eliminar")
+     eliminar = SubmitField(u"Eliminar")
 
+class EliminarImagenesYEtiquetas(Form):
+     clave = StringField(u"Escribe la palabra 'eliminar-todo'")
+     limpiar = SubmitField(u"Eliminar")
+
+class ImportarImagenes(Form):
+     clave = StringField(u"Escribe la palabra 'eliminar-todo'")
+     importar = SubmitField(u"Eliminar")
 
 class CreateDatasetForm(Form):
     append_path = StringField(u"Añadir path en train/test txt")
