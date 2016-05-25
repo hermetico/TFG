@@ -15,7 +15,6 @@ Para importar imagenes primero has de crear un usuario a nombre del cual iran as
 Importar imagenes
 =================
 
-
 Las imagenes que van a ser importadas han de estar en la carpeta ``TFG/annotation-tool/import-bucket`` y puesto que originalmente es para trabajar con la imagenes de la camara Clip narrative, las imagenes han de mantener la siguiente estructura::
 
     id/year/month/day/time.jpg
@@ -32,6 +31,24 @@ Este script ira añadiendo las imagenes a la base de datos, les asociará el id 
 
 Cuando el script termine verás que ya no esta la carpeta que creaste, las imagenes se habran movido a la carpeta ``TFG/annotation-tool/appstatic/media/``
 
+Metodo alternativo de importación
+---------------------------------
+
+Para utilizar este metodo la estructura de la carpeta a importar debe de obedecer al siguiente patron::
+
+    id/fecha/nombre.jpg
+
+Las imagenes se deben encontrar en la misma carpeta que con el método anterior. Para lanzar el script de importación utiliza el siguiente comando::
+
+    $ python manage.py import_pictures_simplified
+
+.. note::
+
+    En este caso no se utilizara hora para  almacenar las imagenes. La fecha debe estar en formato iso 8601, que se representa de la siguiente manera ``YYYY-MM-DD``. Lo cual quiere decir que primero va representado el año con 4 digitos, luego el mes con dos digitos y finalmente el dia también con 2 digitos. La siguiente es una muestra de una ruta valida::
+
+    1/2016-06-01/picture.jpg
+
+    De esta forma tenemos una estructura similar a la anterior pero mas sencilla de mantener.
 
 Tratamiento de imagenes previo a la importación
 ===============================================

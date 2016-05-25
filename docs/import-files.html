@@ -85,7 +85,10 @@
 <li class="toctree-l1"><a class="reference internal" href="deploying.html">Ejecutando la aplicación</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Importando imágenes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pasos-previos">Pasos previos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#importar-imagenes">Importar imagenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importar-imagenes">Importar imagenes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodo-alternativo-de-importacion">Metodo alternativo de importación</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#tratamiento-de-imagenes-previo-a-la-importacion">Tratamiento de imagenes previo a la importación</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rotando-cropando-y-redimensionando">Rotando, cropando y redimensionando</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#solo-redimensionando">Solo redimensionando</a></li>
@@ -157,6 +160,23 @@ $ python manage.py import_pictures
 </div>
 <p>Este script ira añadiendo las imagenes a la base de datos, les asociará el id especificado en la carpeta y además les asociará la etiqueta por defecto especificada en el deploy.</p>
 <p>Cuando el script termine verás que ya no esta la carpeta que creaste, las imagenes se habran movido a la carpeta <code class="docutils literal"><span class="pre">TFG/annotation-tool/appstatic/media/</span></code></p>
+<div class="section" id="metodo-alternativo-de-importacion">
+<h3>Metodo alternativo de importación<a class="headerlink" href="#metodo-alternativo-de-importacion" title="Permalink to this headline">¶</a></h3>
+<p>Para utilizar este metodo la estructura de la carpeta a importar debe de obedecer al siguiente patron:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">id</span><span class="o">/</span><span class="n">fecha</span><span class="o">/</span><span class="n">nombre</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>Las imagenes se deben encontrar en la misma carpeta que con el método anterior. Para lanzar el script de importación utiliza el siguiente comando:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py import_pictures_simplified
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>En este caso no se utilizara hora para  almacenar las imagenes. La fecha debe estar en formato iso 8601, que se representa de la siguiente manera <code class="docutils literal"><span class="pre">YYYY-MM-DD</span></code>. Lo cual quiere decir que primero va representado el año con 4 digitos, luego el mes con dos digitos y finalmente el dia también con 2 digitos. La siguiente es una muestra de una ruta valida:</p>
+<p>1/2016-06-01/picture.jpg</p>
+<p class="last">De esta forma tenemos una estructura similar a la anterior pero mas sencilla de mantener.</p>
+</div>
+</div>
 </div>
 <div class="section" id="tratamiento-de-imagenes-previo-a-la-importacion">
 <h2>Tratamiento de imagenes previo a la importación<a class="headerlink" href="#tratamiento-de-imagenes-previo-a-la-importacion" title="Permalink to this headline">¶</a></h2>
