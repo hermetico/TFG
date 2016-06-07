@@ -52,4 +52,5 @@ class CreateDatasetForm(Form):
     shuffle_images = BooleanField(u"De volver imagenes con orden aleatorio", default=False)
     validation_percent = IntegerField(u"Porcentaje de imagenes para validation", default=0)
     test_percent = IntegerField(u"Porcentaje de imagenes para test", default=0)
+    limit_class = IntegerField(u"Limitar el numero de imagenes por classe", default=0)
     select_labels = MultiCheckboxField(None)

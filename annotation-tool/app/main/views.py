@@ -231,14 +231,27 @@ def create_dataset():
         path = form.append_path.data or ""
         local_abs_path = form.use_local_abs_path.data or False
         shuffle_images = form.shuffle_images.data or False
+        limit_class_output = form.limit_class.data or False
         # only labels that have been selected
         query_labels = [int(label) for label in form.select_labels.data]
         if len(query_labels) == 0:
             flash('No has seleccionado ninguna etiqueta!', 'danger')
             return redirect(url_for('.create_dataset'))
 
-        # only return labels and pictures from selected labels
-        pictures = Picture.query.filter(Picture.label_id.in_(query_labels)).all()
+        # return all pictures from selected labels
+        if not limit_class_output:
+            pictures = Picture.query.filter(Picture.label_id.in_(query_labels)).all()
+        else:
+            # return a limited num of  pictures from selected labels
+            pictures = []
+            for label in query_labels:
+                pics = Picture.query.filter(Picture.label_id == label).all()
+                #if len(pics) > limit_class_output:
+                    # avoid getting always the same ones
+                #    pics = [p for p in np.random.permutation(pics)]
+                pictures += pics[:limit_class_output]
+
+
         labels = Label.query.filter(Label.id.in_(query_labels)).all()
 
         media_folder = app.config['IMPORTED_PICTURES_FOLDER']

@@ -66,6 +66,11 @@
                             <br>
                             <input class="" id="use_local_abs_path" name="use_local_abs_path" type="checkbox">
                         </div>
+                        <div class="form-group "  title="Limita el numero de imagenes por clase, util para normalizar el dataset">
+                            <label class="control-label" for="limit_class">Limitar el numero de imagenes por clase</label>
+                            <br>
+                            <input class="form-control" id="limit_class" name="limit_class" type="number" value="0" >
+                        </div>
                         <div class="form-group" title="Si se deja en blanco las imagenes vendran con la ruta relativa, sino, se incluirá el path especificado para generar la ruta absoluta">
                             <label class="control-label" for="append_path">O añadir path propio en train/val/test txt</label>
                             <input class="form-control" id="append_path" name="append_path" type="text" value="" placeholder="/home/media/test-dataset/">
