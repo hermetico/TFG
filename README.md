@@ -57,6 +57,6 @@ I would also want to acknowledge my parents, who have always trusted in me, perh
 too much. And my sister who has always been there to lend a hand and willing to share
 her experience.
 To my friends and colleagues from Universitat de Barcelona. They know I just did it
-for the lulz because Together we lose.
+for the lulz because *Together we lose*.
 Finally, I would like to thank Neurcar. She did not want me to write these acknowl-
 edgments, she is the reason why I did it though.
