@@ -1,0 +1,15 @@
+test_iter: 11
+test_interval: 109
+base_lr: 0.000037
+display: 27
+max_iter: 4370
+lr_policy: "step"
+gamma: 0.10000
+momentum: 0.9
+weight_decay: 0.005
+stepsize: 2185
+snapshot: 2185
+snapshot_prefix: "/media/hermetico/2TB/frameworks/notebooks/TFG/dist/models/finetuning-googlenet/finetune_dailyactivities"
+solver_mode: GPU
+net: "/media/hermetico/2TB/frameworks/notebooks/TFG/dist/models/finetuning-googlenet/train_val_learn_all.prototxt"
+solver_type: SGD
