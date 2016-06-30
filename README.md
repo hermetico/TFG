@@ -1,5 +1,5 @@
 # Daily activity recognition from egocentric images
-##### from manual annotation to automatic classification
+*from manual annotation to automatic classification*
 
 
 ## Abstract
@@ -58,5 +58,4 @@ too much. And my sister who has always been there to lend a hand and willing to 
 her experience.
 To my friends and colleagues from Universitat de Barcelona. They know I just did it
 for the lulz because *Together we lose*.
-Finally, I would like to thank Neurcar. She did not want me to write these acknowl-
-edgments, she is the reason why I did it though.
+Finally, I would like to thank Neurcar. She did not want me to write these acknowledgments, she is the reason why I did it though.
